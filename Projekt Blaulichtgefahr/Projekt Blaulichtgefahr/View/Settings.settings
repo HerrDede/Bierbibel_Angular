@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Projekt_Blaulichtgefahr.View" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="Datenbank_Verbindung" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="C:\Users\fbfel\source\repos\Projekt Blaulichtgefahr\Projekt Blaulichtgefahr\_data\Database1.mdf";Integrated Security=True</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>
