@@ -1,0 +1,89 @@
+<section class="page-card">
+  <div class="page-title-row">
+    <div>
+      <p class="eyebrow">Verwaltung</p>
+      <h1>Bierliste verwalten</h1>
+      <p class="page-description">Füge Biere hinzu oder entferne vorhandene Einträge aus der Sammlung.</p>
+    </div>
+    <span class="count-pill" *ngIf="authenticated">{{ beers.length }} Biere</span>
+  </div>
+
+  <app-login-panel (authenticatedChange)="setAuthenticated($event)" />
+
+  <ng-container *ngIf="authenticated">
+    <p *ngIf="message" class="status-message success-message" role="status">{{ message }}</p>
+    <p *ngIf="errorMessage" class="status-message error-message" role="alert">{{ errorMessage }}</p>
+
+    <section class="form-section" aria-labelledby="add-beer-heading">
+      <p class="eyebrow">Neuer Eintrag</p>
+      <h2 id="add-beer-heading">Bier hinzufügen</h2>
+      <form class="beer-form" (ngSubmit)="addBeer()" #beerForm="ngForm">
+        <label>
+          Brauerei
+          <input name="brauerei" type="text" [(ngModel)]="form.brauerei" required>
+        </label>
+        <label>
+          Biername
+          <input name="bierName" type="text" [(ngModel)]="form.bierName" required>
+        </label>
+        <label>
+          Sorte
+          <input name="art" type="text" [(ngModel)]="form.art" required>
+        </label>
+        <label class="rating-input">
+          Bewertung
+          <input name="bewertung" type="number" step="0.1" inputmode="decimal" [(ngModel)]="form.bewertung" required>
+        </label>
+        <button class="button button-gold submit-button" type="submit" [disabled]="beerForm.invalid || saving">
+          {{ saving ? 'Wird gespeichert …' : 'Eintrag hinzufügen' }}
+        </button>
+      </form>
+    </section>
+
+    <div class="admin-list-heading">
+      <div>
+        <p class="eyebrow">Gesamte Sammlung</p>
+        <h2>Alle Einträge</h2>
+      </div>
+    </div>
+
+    <label class="search-box">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="10.8" cy="10.8" r="6.8" />
+        <path d="m16 16 5 5" />
+      </svg>
+      <input type="search" [(ngModel)]="searchTerm" placeholder="Brauerei, Bier oder Sorte suchen …" aria-label="Bierliste durchsuchen">
+    </label>
+    <p *ngIf="loading && beers.length === 0 && !errorMessage" class="status-message" role="status">Bierliste wird geladen …</p>
+
+    <div class="table-wrap" *ngIf="beers.length">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"><button type="button" (click)="sortBy('Brauerei')">Brauerei <span>{{ sortIndicator('Brauerei') }}</span></button></th>
+            <th scope="col"><button type="button" (click)="sortBy('BierName')">Bier <span>{{ sortIndicator('BierName') }}</span></button></th>
+            <th scope="col"><button type="button" (click)="sortBy('Art')">Sorte <span>{{ sortIndicator('Art') }}</span></button></th>
+            <th scope="col"><button type="button" (click)="sortBy('Bewertung')">Bewertung <span>{{ sortIndicator('Bewertung') }}</span></button></th>
+            <th scope="col">Aktion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let beer of visibleBeers" [class.marked]="beer.marked === true">
+            <td>{{ beer.Brauerei }}</td>
+            <td class="beer-name">{{ beer.BierName }}</td>
+            <td>{{ beer.Art }}</td>
+            <td>{{ beer.Bewertung }}</td>
+            <td>
+              <button class="table-action table-action-danger" type="button" (click)="deleteBeer(beer)" [disabled]="pendingDeleteIndex !== null">
+                {{ pendingDeleteIndex === beer.index ? 'Wird gelöscht …' : 'Löschen' }}
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="visibleBeers.length === 0">
+            <td class="empty-state" colspan="5">Keine Biere zu „{{ searchTerm }}“ gefunden.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+</section>

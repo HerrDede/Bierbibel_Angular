@@ -1,0 +1,41 @@
+<div class="app-shell">
+  <header class="site-header">
+    <a class="brand-lockup" routerLink="/" aria-label="BierBibel Startseite">
+      <img src="assets/bier.png" alt="" width="48" height="48">
+      <span class="brand-copy">
+        <span class="brand-kicker">Die Sammlung</span>
+        <span class="brand-name">Bier<span>Bibel</span></span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Bierliste</a>
+      <a routerLink="/anmeldung" routerLinkActive="active">Neubewertung</a>
+      <a routerLink="/admin" routerLinkActive="active">Verwaltung</a>
+    </nav>
+
+    <div class="header-tools">
+      <button
+        class="music-button"
+        type="button"
+        (click)="toggleMusic()"
+        [attr.aria-pressed]="isPlaying"
+        [attr.aria-label]="isPlaying ? 'Musik pausieren' : 'Musik abspielen'"
+      >
+        <span aria-hidden="true">{{ isPlaying ? 'Ⅱ' : '♫' }}</span>
+      </button>
+    </div>
+  </header>
+
+  <p *ngIf="musicError" class="global-message" role="alert">{{ musicError }}</p>
+  <audio #musicPlayer preload="none" src="assets/Stubenmusik.mp3" (ended)="isPlaying = false"></audio>
+
+  <main>
+    <router-outlet />
+  </main>
+
+  <footer class="site-footer">
+    <span>BierBibel <span aria-hidden="true">·</span> Deine persönliche Biersammlung</span>
+    <a routerLink="/">Zur Bierliste <span aria-hidden="true">↑</span></a>
+  </footer>
+</div>

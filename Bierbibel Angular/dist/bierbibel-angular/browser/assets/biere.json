@@ -1,0 +1,3953 @@
+[
+    {
+        "Brauerei": "Grasser",
+        "BierName": "Huppendorfer Josefi Bock",
+        "Art": "Bockbier",
+        "Bewertung": "35"
+    },
+    {
+        "Brauerei": "Wildbr\u00e4u",
+        "BierName": "Meistersud",
+        "Art": "Spezialbier",
+        "Bewertung": "47.5"
+    },
+    {
+        "Brauerei": "Zwanzger",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "50"
+    },
+    {
+        "Brauerei": "Hertl",
+        "BierName": "Sauerkirsch Felix",
+        "Art": "Craftbier",
+        "Bewertung": "50"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Steinbock-Reserve",
+        "Art": "Bockbier",
+        "Bewertung": "55"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Sternenbr\u00e4u",
+        "Art": "Craftbier",
+        "Bewertung": "55"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "55"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Tyrol imperial zwickl",
+        "Art": "Craftbier",
+        "Bewertung": "60"
+    },
+    {
+        "Brauerei": "Mahrs Br\u00e4u",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "60"
+    },
+    {
+        "Brauerei": "Held Br\u00e4u",
+        "BierName": "G\u00f6ssweinsteiner Wallfahrtsbier",
+        "Art": "Helles",
+        "Bewertung": "60"
+    },
+    {
+        "Brauerei": "Binkert",
+        "BierName": "Original",
+        "Art": "Helles",
+        "Bewertung": "60"
+    },
+    {
+        "Brauerei": "Simon",
+        "BierName": "Schwarze Kuni",
+        "Art": "Schwarzbier",
+        "Bewertung": "62.5"
+    },
+    {
+        "Brauerei": "Zwanzger",
+        "BierName": "Bock",
+        "Art": "Bockbier",
+        "Bewertung": "65"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Hoptimum",
+        "Art": "Craftbier",
+        "Bewertung": "65"
+    },
+    {
+        "Brauerei": "Prechtel",
+        "BierName": "Brunnenlump",
+        "Art": "Helles ?",
+        "Bewertung": "65"
+    },
+    {
+        "Brauerei": "Mager",
+        "BierName": "Ur-Hell",
+        "Art": "Helles",
+        "Bewertung": "65"
+    },
+    {
+        "Brauerei": "Grasser",
+        "BierName": "Huppendorfer Pils",
+        "Art": "Pils",
+        "Bewertung": "65"
+    },
+    {
+        "Brauerei": "F\u00e4ssla",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "65"
+    },
+    {
+        "Brauerei": "Hetzelsdorfer Penning",
+        "BierName": "Weihnachtsbock",
+        "Art": "Bockbier",
+        "Bewertung": "66"
+    },
+    {
+        "Brauerei": "Kaiser",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "67"
+    },
+    {
+        "Brauerei": "Haberstumpf",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "67"
+    },
+    {
+        "Brauerei": "Zwanzger",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Weissbier",
+        "Art": "Weizen",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Tyrol imperial hell",
+        "Art": "Craftbier",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "517 Dinkel Weizen",
+        "Art": "Craftbier",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Pils alkfrei",
+        "Art": "Pils",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Helles radler",
+        "Art": "Radler",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Weltenburger Kloster",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Sommerbier",
+        "Art": "Festbier",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Ritter Br\u00e4u",
+        "BierName": "Urm\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Mahrs Br\u00e4u",
+        "BierName": "Heller bock",
+        "Art": "Helles Bockbier",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Kuchlbauer",
+        "BierName": "Sportsfreund",
+        "Art": "leichtes Dunkles Wiezen",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Glenk Br\u00e4u",
+        "BierName": "Walk\u00fcrentrunk",
+        "Art": "Helles",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Faxe",
+        "BierName": "Faxe",
+        "Art": "Helles",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Eller",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Ebensfelder",
+        "BierName": "Landbier",
+        "Art": "Helles",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Duff",
+        "BierName": "Duff",
+        "Art": "Helles",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Baumburger",
+        "BierName": "Klosterweisse",
+        "Art": "Weizen",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Bamberger klosterbr\u00e4u",
+        "BierName": "Schw\u00e4rzla",
+        "Art": "Schwarzbier",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Augustiner",
+        "BierName": "Edelstoff",
+        "Art": "Helles",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Arcobr\u00e4u",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "leichtes helles",
+        "Art": "leichtes Helles",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Baumburger",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "71"
+    },
+    {
+        "Brauerei": "Kesselring",
+        "BierName": "urfr\u00e4nkisch Landbier hell",
+        "Art": "Helles",
+        "Bewertung": "72"
+    },
+    {
+        "Brauerei": "Huppendorfer",
+        "BierName": "Heller Kathrein-Bock",
+        "Art": "Bockbier",
+        "Bewertung": "72"
+    },
+    {
+        "Brauerei": "Held Br\u00e4u",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "72"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "72.5"
+    },
+    {
+        "Brauerei": "Meister",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "72.5"
+    },
+    {
+        "Brauerei": "Hebendanz",
+        "BierName": "Sommerbier",
+        "Art": "Helles",
+        "Bewertung": "72.5"
+    },
+    {
+        "Brauerei": "Haberstumpf",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "72.5"
+    },
+    {
+        "Brauerei": "Grolsch",
+        "BierName": "Grolsch",
+        "Art": "Pils",
+        "Bewertung": "72.5"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Bock hell",
+        "Art": "Bockbier",
+        "Bewertung": "73"
+    },
+    {
+        "Brauerei": "Erdinger",
+        "BierName": "hell",
+        "Art": "Helles",
+        "Bewertung": "73"
+    },
+    {
+        "Brauerei": "Wolfsh\u00f6her",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "74"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Lager Hell",
+        "Art": "Helles",
+        "Bewertung": "74"
+    },
+    {
+        "Brauerei": "Vacher K\u00e4rwaburschen",
+        "BierName": "50 Jubil\u00e4umshalbe",
+        "Art": "Vollbier",
+        "Bewertung": "74"
+    },
+    {
+        "Brauerei": "Nikl Br\u00e4u",
+        "BierName": "Lagerbier helles zwickl",
+        "Art": "Helles",
+        "Bewertung": "74"
+    },
+    {
+        "Brauerei": "Zum L\u00f6wen Br\u00e4u",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Keller-M\u00e4rzen",
+        "Art": "Kellerbier",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Bio Zwickerla dunkel",
+        "Art": "Zwickl",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Tegernsee",
+        "BierName": "Spezial",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Staffelberg Br\u00e4u",
+        "BierName": "Betthupferl",
+        "Art": "Rotbier",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "St georgenbr\u00e4u",
+        "BierName": "Landbier",
+        "Art": "Lagerbier",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Spaten",
+        "BierName": "Oktoberfestbier",
+        "Art": "Festbier",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Ritter Br\u00e4u",
+        "BierName": "Hefe hell",
+        "Art": "Weizen",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Reh Br\u00e4u",
+        "BierName": "Zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Oberbr\u00e4u",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "L\u00f6wen Br\u00e4u",
+        "BierName": "Buttenheimer Helles",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Kuchlbauer",
+        "BierName": "TurmWeisse",
+        "Art": "Weizen",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Kanone",
+        "BierName": "Zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Kaiserdom",
+        "BierName": "Helles Vollbier",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Hummel Br\u00e4u",
+        "BierName": "R\u00e4uerla M\u00e4rzen",
+        "Art": "Rauchbier",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Hummel Br\u00e4u",
+        "BierName": "Merkendorfer Helles",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Georgenbr\u00e4u",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "F\u00fcrst Carl",
+        "BierName": "Urhell",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "F\u00e4ssla",
+        "BierName": "Weizla dunkel",
+        "Art": "Dunkles Weizen",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "F\u00e4ssla",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Chiemseer",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Burggraf",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Budweiser",
+        "BierName": "Bud",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Ayinger",
+        "BierName": "Celebrator",
+        "Art": "Bockbier",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Augustiner",
+        "BierName": "Lagerbier Hell",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Abbaje de Vauclair",
+        "BierName": "Imperiale biere blonde",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Zum L\u00f6wen Br\u00e4u",
+        "BierName": "Starker L\u00f6we",
+        "Art": "Bockbier",
+        "Bewertung": "76"
+    },
+    {
+        "Brauerei": "Mager",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "76"
+    },
+    {
+        "Brauerei": "Altenmp\u00fcnster",
+        "BierName": "Landbier",
+        "Art": "Landbier",
+        "Bewertung": "76"
+    },
+    {
+        "Brauerei": "Greif",
+        "BierName": "Hopfstar",
+        "Art": "Craftbier",
+        "Bewertung": "76.5"
+    },
+    {
+        "Brauerei": "Zwergla",
+        "BierName": "Bambergator",
+        "Art": "Bockbier",
+        "Bewertung": "77"
+    },
+    {
+        "Brauerei": "G\u00f6ller",
+        "BierName": "Baptist Helles",
+        "Art": "Helles",
+        "Bewertung": "77"
+    },
+    {
+        "Brauerei": "Winkler",
+        "BierName": "Kupfer",
+        "Art": "Lagerbier",
+        "Bewertung": "77.5"
+    },
+    {
+        "Brauerei": "Winkler",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "77.5"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Bio-zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Trunk",
+        "BierName": "Silberbock",
+        "Art": "Bockbier",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Ozujso",
+        "BierName": "Ozujsko",
+        "Art": "Helles",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Neder",
+        "BierName": "Bock",
+        "Art": "Bockbier",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Neder",
+        "BierName": "AnnaFestbier",
+        "Art": "Festbier",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Knoblach",
+        "BierName": "R\u00e4uschla M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Hetzelsdorfer Penning",
+        "BierName": "Lagerbier",
+        "Art": "Lagerbier",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Hebendanz",
+        "BierName": "Bockbier",
+        "Art": "Bockbier",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Frauendorfer",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Aufsesser",
+        "BierName": "Wegseidla Winter Edition",
+        "Art": "Festbier",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Stern Br\u00e4u",
+        "BierName": "Festbier",
+        "Art": "Rauchbier",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "P\u00fcttner Br\u00e4u",
+        "BierName": "Einfachs vollbier Hell",
+        "Art": "Helles",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "Prechtel",
+        "BierName": "Kerwa's Bier",
+        "Art": "Festbier",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "Neder",
+        "BierName": "Weisse Anna",
+        "Art": "Weizen",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "Kuchlbauer",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "Hummel Br\u00e4u",
+        "BierName": "Heller Leonhardi bock",
+        "Art": "Helles Bockbier",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "Gutmann",
+        "BierName": "dunkler weizenbock",
+        "Art": "Bockbier",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "Eichhorn",
+        "BierName": "AnnaFestbier",
+        "Art": "Festbier",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "Tucher",
+        "BierName": "Urbr\u00e4u hell",
+        "Art": "Helles",
+        "Bewertung": "79.5"
+    },
+    {
+        "Brauerei": "F\u00f6rst",
+        "BierName": "Dr\u00fcgendorf premium vollbier",
+        "Art": "vollbier",
+        "Bewertung": "79.5"
+    },
+    {
+        "Brauerei": "Zum L\u00f6wen Br\u00e4u",
+        "BierName": "Hopfen L\u00f6we",
+        "Art": "Spezialbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Schwarzes",
+        "Art": "Schwarzbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Wurm Bier",
+        "BierName": "Tunier Bock",
+        "Art": "Bockbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Wurm Bier",
+        "BierName": "Vollbier",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Pils neu",
+        "Art": "Pils",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Kr\u00e4usen Hell",
+        "Art": "Kr\u00e4usen",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Veldensteiner",
+        "BierName": "Zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Staffelberg Br\u00e4u",
+        "BierName": "Zwergator",
+        "Art": "Bockbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Simon",
+        "BierName": "Weizen",
+        "Art": "Weizen",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Scheyern",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Scherdel",
+        "BierName": "Zoigl unfiltriert",
+        "Art": "Kellerbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Ritter Br\u00e4u",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "M\u00f6nchshof",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Mettelsheimer",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Lindenbr\u00e4u",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Lindenbr\u00e4u",
+        "BierName": "Tennen Hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Kanone",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Kanone",
+        "BierName": "Dunkel (Rauchbier)",
+        "Art": "Rauchbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Jacob",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "H\u00f6nig",
+        "BierName": "Lagerbier",
+        "Art": "Lagerbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "H\u00f6nicka Br\u00e4u",
+        "BierName": "H\u00f6nicklaus",
+        "Art": "Festbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Hertl",
+        "BierName": "Impfstoff",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Held Br\u00e4u",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Hebendanz",
+        "BierName": "Edel Pils",
+        "Art": "Pils",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "G\u00fcnther Br\u00e4u",
+        "BierName": "Schwarzbier",
+        "Art": "Schwarzbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Greif Br\u00e4u",
+        "BierName": "Weisse",
+        "Art": "Weizen",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Grasser",
+        "BierName": "Huppendorfer Export",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Ganstaller Braumanufaktur",
+        "BierName": "Weizen",
+        "Art": "Weizen",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Gans Br\u00e4u",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Gamperlbr\u00e4u",
+        "BierName": "K\u00e4ttlbier",
+        "Art": "Helles hopfig",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Gambrinus Dorn Br\u00e4u",
+        "BierName": "Weisse",
+        "Art": "Weizen",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Friedmann",
+        "BierName": "Landbier",
+        "Art": "Landbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "F\u00e4ssla",
+        "BierName": "Weizla",
+        "Art": "Weizen",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Elch Br\u00e4u",
+        "BierName": "Weizen",
+        "Art": "Weizen",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Elch Br\u00e4u",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Dreykorn",
+        "BierName": "Weizen",
+        "Art": "Weizen",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Dremel",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Brobier",
+        "BierName": "fr\u00e4nkisch Rot",
+        "Art": "Rotbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Bayreuther",
+        "BierName": "Aktien Zwickl",
+        "Art": "Kellerbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Bayreuther",
+        "BierName": "Urstoff",
+        "Art": "Vollbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Aufsesser",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Allg\u00e4uer Brauhaus",
+        "BierName": "B\u00fcble Bier bayrisch hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "SChw\u00e4rzla",
+        "Art": "Schwarzbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Tucher",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Staffelberg Br\u00e4u",
+        "BierName": "Querkerla",
+        "Art": "Rauchbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Simon",
+        "BierName": "Spezial",
+        "Art": "Spezialbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Sommerbier",
+        "Art": "Helles",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Maisel",
+        "BierName": "Pilsner",
+        "Art": "Pils",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Felsen",
+        "BierName": "Weizenbock",
+        "Art": "Bockbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Falkenfelser",
+        "BierName": "Weizen",
+        "Art": "Weizen",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Falkenfelser",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Eichhorn",
+        "BierName": "Winterfestbier",
+        "Art": "Festbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Braurausch",
+        "BierName": "zwickl Hell",
+        "Art": "Zwickl",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Aufsesser",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Altenm\u00fcnster",
+        "BierName": "UrigW\u00fcrzig",
+        "Art": "Vollbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "osterfestbier",
+        "Art": "Festbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Landbier",
+        "Art": "Landbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Starkenberger",
+        "BierName": "Heimatbier",
+        "Art": "Helles",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Schinner",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "P\u00fcttner Br\u00e4u",
+        "BierName": "Basalter Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Mahrs Br\u00e4u",
+        "BierName": "Weisser Bock",
+        "Art": "Bockbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Kulmbacher",
+        "BierName": "Bierwocke fest",
+        "Art": "Festbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Kaiser",
+        "BierName": "Urtrunk 1783",
+        "Art": "Vollbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Huppendorfer",
+        "BierName": "Weizenbock",
+        "Art": "Bockbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Hummel Br\u00e4u",
+        "BierName": "Spezial (500jahre Reinheit)",
+        "Art": "Spezialbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Hoffmann",
+        "BierName": "Weihnachtsfestbier",
+        "Art": "Festbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "G\u00fcnther Br\u00e4u",
+        "BierName": "Hausbrauer Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Greif",
+        "BierName": "Retro Hell",
+        "Art": "Helles",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Gamperlbr\u00e4u",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Friedmann",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Frauendorfer",
+        "BierName": "landbier premium",
+        "Art": "Landbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Felsen",
+        "BierName": "Keller M\u00e4rzen",
+        "Art": "Kellerbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Elch Br\u00e4u",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Drummer",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Dreykorn",
+        "BierName": "Jubil\u00e4um Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Birra Moretti",
+        "BierName": "La rossa",
+        "Art": "Rotbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Becher",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Hebendanz",
+        "BierName": "Dunkel 79",
+        "Art": "Dunkel",
+        "Bewertung": "82.5"
+    },
+    {
+        "Brauerei": "Gr\u00fcner",
+        "BierName": "Festm\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "82.5"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Bock weizen",
+        "Art": "Bockbier",
+        "Bewertung": "82.6823"
+    },
+    {
+        "Brauerei": "Zirndorfer",
+        "BierName": "Landbier",
+        "Art": "Landbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Keller-Pils",
+        "Art": "Pils",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Pyraser",
+        "BierName": "Rotbier",
+        "Art": "Rotbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Neder",
+        "BierName": "Klassik 1554",
+        "Art": "Helles",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Neder",
+        "BierName": "Export",
+        "Art": "Helles",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Leikeim",
+        "BierName": "Steinbier",
+        "Art": "Vollbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Klosterbrauerei Kemnath",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "H\u00f6nig",
+        "BierName": "Zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "H\u00f6nicka Br\u00e4u",
+        "BierName": "Wonnesud",
+        "Art": "Dunkel",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Hoffmann",
+        "BierName": "K\u00e4rwabier",
+        "Art": "Festbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Hebendanz",
+        "BierName": "Posthalter Lagerbier",
+        "Art": "Lagerbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Greif Br\u00e4u",
+        "BierName": "Bock",
+        "Art": "Bockbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Greif",
+        "BierName": "AnnaFestbier",
+        "Art": "Festbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Eichhorn",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Dorn Br\u00e4u",
+        "BierName": "Dornr\u00f6schen",
+        "Art": "Vollbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Budweiser (cz)",
+        "BierName": "budvar",
+        "Art": "Helles",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Becher",
+        "BierName": "Zwickl",
+        "Art": "Dunkel",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Ah\u00f6rnla",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Zwickerla hell",
+        "Art": "Helles",
+        "Bewertung": "83.5"
+    },
+    {
+        "Brauerei": "St georgenbr\u00e4u",
+        "BierName": "AnnaFestbier",
+        "Art": "Festbier",
+        "Bewertung": "83.5"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Keller",
+        "Art": "Kellerbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Gr\u00fcnhopfen pils",
+        "Art": "Pils",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Trunk",
+        "BierName": "Npthelfer Trunk Export",
+        "Art": "Dunkel",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Trunk",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Roter Bock",
+        "Art": "Bockbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Roppelt",
+        "BierName": "Weizenbier",
+        "Art": "Weizen",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "G\u00fcnther Br\u00e4u",
+        "BierName": "landbier Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "G\u00fcnther Br\u00e4u",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Greif Br\u00e4u",
+        "BierName": "Weihnachtsbier",
+        "Art": "Festbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Grasser",
+        "BierName": "Huppendorfer Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Felsen",
+        "BierName": "Eisbier",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Dorn Br\u00e4u",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Dinkel Acker",
+        "BierName": "Privat Export",
+        "Art": "Helles",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Becher",
+        "BierName": "Stadtbier",
+        "Art": "Vollbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Becher",
+        "BierName": "Kr\u00e4usen",
+        "Art": "Kr\u00e4usen",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Zum L\u00f6wen Br\u00e4u",
+        "BierName": "M\u00e4rzenL\u00f6we",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Zum L\u00f6wen Br\u00e4u",
+        "BierName": "Frischhopfen Pils",
+        "Art": "Frischhopfen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "1498er",
+        "Art": "Lagerbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Weissenoher",
+        "BierName": "Bonifatius Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Weissennoher",
+        "BierName": "Klostersud",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Weizenbock",
+        "Art": "Bockbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Weiherer",
+        "BierName": "Hopfenweizen",
+        "Art": "Weizen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Tucher",
+        "BierName": "Lager hell",
+        "Art": "Helles",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Stiegl",
+        "BierName": "Weisse",
+        "Art": "Weizen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Roppelt",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Ritter Br\u00e4u",
+        "BierName": "Schwarzbier",
+        "Art": "Schwarzbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "M\u00f6nchshof",
+        "BierName": "Schwarzbier",
+        "Art": "Schwarzbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Mahrs Br\u00e4u",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Lindenbr\u00e4u",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Kuchlbauer",
+        "BierName": "Gillamoos",
+        "Art": "Festbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Krug Br\u00e4u",
+        "BierName": "Lager Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "K\u00f6nig Ludwig",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Kapuziner",
+        "BierName": "Dunkles Weizen",
+        "Art": "Dunkles Weizen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Jacob",
+        "BierName": "Winterweizen",
+        "Art": "Weizen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Ikea",
+        "BierName": "Lagerbier \u00f6LJUS LAGER",
+        "Art": "Lagerbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "H\u00f6nig",
+        "BierName": "H\u00f6nig",
+        "Art": "Helles",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Hetzelsdorfer Penning",
+        "BierName": "Kr\u00e4usen",
+        "Art": "Kr\u00e4usen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Hebendanz",
+        "BierName": "Bock",
+        "Art": "Bockbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Gutmann",
+        "BierName": "Dunkel alkoholfrei",
+        "Art": "Alkoholfrei",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Greif Br\u00e4u",
+        "BierName": "Greifla",
+        "Art": "Schwarzbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Greif Br\u00e4u",
+        "BierName": "Capitulare",
+        "Art": "Festbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Grasser",
+        "BierName": "Huppendorfer Zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Gans Br\u00e4u",
+        "BierName": "Rot",
+        "Art": "Rotbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Franziskaner",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Falkenfelser",
+        "BierName": "Export",
+        "Art": "Helles",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Erl Br\u00e4u",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Binkert",
+        "BierName": "Amber Spezial",
+        "Art": "Lagerbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Bayreuther",
+        "BierName": "Bock",
+        "Art": "Bockbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "Spezial",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "lager urtyp feinherb",
+        "Art": "Helles",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "Hefeweizen",
+        "Art": "Weizen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Stern Br\u00e4u",
+        "BierName": "Vollbier",
+        "Art": "Helles",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Scheyern",
+        "BierName": "klosterweisse dunkles Weizen",
+        "Art": "Dunkles Weizen",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Nikl Br\u00e4u",
+        "BierName": "Weisse Eule",
+        "Art": "Weizen",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Nikl Br\u00e4u",
+        "BierName": "Michala dunkles kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Nankendorf Schroll",
+        "BierName": "Landbier",
+        "Art": "Landbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Hebendanz",
+        "BierName": "Winterzauber Festbier",
+        "Art": "Festbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Gamperlbr\u00e4u",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Friedmann",
+        "BierName": "Weizen",
+        "Art": "Weizen",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Dinkel",
+        "BierName": "Stublanger Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Ah\u00f6rnla",
+        "BierName": "Rot",
+        "Art": "Rotbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Zum L\u00f6wen Br\u00e4u",
+        "BierName": "Dunkles",
+        "Art": "Dunkel",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Weckendorfer",
+        "BierName": "Alt hausbrauer",
+        "Art": "Vollbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "St\u00f6rtebecker",
+        "BierName": "Bernstein Weizen",
+        "Art": "Weizen",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Schuhmann zur Sonne",
+        "BierName": "Urtyp hell",
+        "Art": "Helles",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Schuhmann zur Sonne",
+        "BierName": "Bock",
+        "Art": "Bockbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Kanone",
+        "BierName": "12,5 Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Huppendorfer",
+        "BierName": "Winterweizen",
+        "Art": "Weizen",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Friedmann",
+        "BierName": "Siggis Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "F\u00f6rst",
+        "BierName": "Dr\u00fcgendorf Ludwig Samuel Bock",
+        "Art": "Bockbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Brauerei Weller",
+        "BierName": "Genossenschaft Jean Paul",
+        "Art": "Dunkel",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Auer Br\u00e4u",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Kilkenny",
+        "BierName": "Red ale",
+        "Art": "Rotbier",
+        "Bewertung": "87.5"
+    },
+    {
+        "Brauerei": "Greif-Br\u00e4u",
+        "BierName": "Bernstein Weizen",
+        "Art": "Weizen",
+        "Bewertung": "87.5",
+        "marked": true
+    },
+    {
+        "Brauerei": "Eller",
+        "BierName": "Bock",
+        "Art": "Bockbier",
+        "Bewertung": "87.5"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "Keller Trunk naturtr\u00fcb",
+        "Art": "Dunkel",
+        "Bewertung": "87.5"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Weizen",
+        "Art": "Weizen",
+        "Bewertung": "88"
+    },
+    {
+        "Brauerei": "Stiegl",
+        "BierName": "Goldbr\u00e4u",
+        "Art": "Vollbier",
+        "Bewertung": "88",
+        "marked": true
+    },
+    {
+        "Brauerei": "Eichhorn",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "88"
+    },
+    {
+        "Brauerei": "St georgenbr\u00e4u",
+        "BierName": "Ritterbier winterstofff",
+        "Art": "Festbier",
+        "Bewertung": "89"
+    },
+    {
+        "Brauerei": "Hebendanz",
+        "BierName": "Jubil\u00e4um Festbier 1200 Jahre Forch",
+        "Art": "Festbier",
+        "Bewertung": "89"
+    },
+    {
+        "Brauerei": "Gutmann",
+        "BierName": "Weizenbock",
+        "Art": "Bockbier",
+        "Bewertung": "89"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Granat Premium Barley",
+        "Art": "Craftbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "WisenFestbier",
+        "Art": "Festbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Weihnachtsbier",
+        "Art": "Dunkel",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Weihenstephaner",
+        "BierName": "Hefe weiss",
+        "Art": "Weizen",
+        "Bewertung": "90",
+        "marked": true
+    },
+    {
+        "Brauerei": "Weihenstephaner",
+        "BierName": "Hefe dunkel",
+        "Art": "Dunkles Weizen",
+        "Bewertung": "90",
+        "marked": true
+    },
+    {
+        "Brauerei": "Tucher",
+        "BierName": "Rotbier",
+        "Art": "Rotbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Trunk",
+        "BierName": "Nothelfer Ernte Bier",
+        "Art": "Erntebier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "St georgenbr\u00e4u",
+        "BierName": "Hopfenzupfer",
+        "Art": "Frischhopfen",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Schaller",
+        "BierName": "Weizeb",
+        "Art": "Weizen",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Riedenburger",
+        "BierName": "Ur-Weizen Bernstein",
+        "Art": "Weizen",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Meister",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Grasser",
+        "BierName": "Huppendorfer Weihnachtsfestbier",
+        "Art": "Festbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Gans Br\u00e4u",
+        "BierName": "Keller Hell",
+        "Art": "Kellerbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Felsen",
+        "BierName": "Bernsteinweizen",
+        "Art": "Weizen",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "Bock",
+        "Art": "Bockbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "Dunkel Landbier",
+        "Art": "Dunkel",
+        "Bewertung": "90",
+        "marked": true
+    },
+    {
+        "Brauerei": "Gans Br\u00e4u",
+        "BierName": "Winter Festbier",
+        "Art": "Festbier",
+        "Bewertung": "91"
+    },
+    {
+        "Brauerei": "St georgenbr\u00e4u",
+        "BierName": "Winterbier",
+        "Art": "Festbier",
+        "Bewertung": "92"
+    },
+    {
+        "Brauerei": "Kanone",
+        "BierName": "Schneekanone",
+        "Art": "Festbier",
+        "Bewertung": "92"
+    },
+    {
+        "Brauerei": "Hetzelsdorfer Penning",
+        "BierName": "Weihnachtsbier",
+        "Art": "Festbier",
+        "Bewertung": "92"
+    },
+    {
+        "Brauerei": "Herold",
+        "BierName": "B\u00fcchenbacher Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "92.5"
+    },
+    {
+        "Brauerei": "Manns Br\u00e4u",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "93"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Dunkles hefeweizen",
+        "Art": "Dunkles Weizen",
+        "Bewertung": "95"
+    },
+    {
+        "Brauerei": "Mahrs Br\u00e4u",
+        "BierName": "ETA",
+        "Art": "Dunkel",
+        "Bewertung": "95"
+    },
+    {
+        "Brauerei": "F\u00e4ssla",
+        "BierName": "Zwergla",
+        "Art": "Helles",
+        "Bewertung": "95"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "Jubil\u00e4umsbier",
+        "Art": "Lagerbier",
+        "Bewertung": "100"
+    },
+    {
+        "Brauerei": "Zum L\u00f6wen Br\u00e4u",
+        "BierName": "Karpfenweisse",
+        "Art": "Weizen",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Zirndorfer",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Zipfer",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Windsheimer",
+        "BierName": "Aischgr\u00fcnder Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "4"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Weihnachtsbier",
+        "Art": "Festbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Pils alt",
+        "Art": "Pils",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "K\u00e4rwabier",
+        "Art": "Festbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Jubil\u00e4um weisse",
+        "Art": "Dunkles Weizen",
+        "Bewertung": "1+"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Hefe Weissbier Bock",
+        "Art": "Bockbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Goldstoff",
+        "Art": "Helles",
+        "Bewertung": "1",
+        "marked": true
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Bockbier",
+        "Art": "Bockbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Black Moon",
+        "Art": "Schwarzbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Wagner Merkendorf",
+        "BierName": "Kupferstich Rotbier",
+        "Art": "Rotbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Wagner Merkendorf",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "4"
+    },
+    {
+        "Brauerei": "Wagner Merkendorf",
+        "BierName": "Lager ungespundet",
+        "Art": "Lagerbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Wagner Br\u00e4u Kemmern",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Wagner",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Veldensteiner",
+        "BierName": "Mandarina Weissbier",
+        "Art": "Weizen",
+        "Bewertung": "4"
+    },
+    {
+        "Brauerei": "Ustersbach",
+        "BierName": "Hopfenseer Hell",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Tucher",
+        "BierName": "Weizen",
+        "Art": "Weizen",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Tucher",
+        "BierName": "Rotes Weizen",
+        "Art": "Weizen",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Tucher",
+        "BierName": "Doppelbock",
+        "Art": "Bockbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Staffelberg Br\u00e4u",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Staffelberg Br\u00e4u",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Spaten",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Simon",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Schwanenbr\u00e4u",
+        "BierName": "Adam Riese Urtrunk",
+        "Art": "Dunkel",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Schultenbr\u00e4u",
+        "BierName": "Winter Bock dunkel starkbier",
+        "Art": "Bockbier",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Sch\u00fcbel",
+        "BierName": "Drachenseidla",
+        "Art": "Kellerbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Kehlengold",
+        "Art": "Lagerbier",
+        "Bewertung": "6",
+        "marked": true
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Rittmayer",
+        "BierName": "1422",
+        "Art": "Hell",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Raab",
+        "BierName": "Frangn Seidla",
+        "Art": "Vollbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "P\u00fcttner Br\u00e4u",
+        "BierName": "Basaltner dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Penning",
+        "BierName": "Hetzelsdorfer",
+        "Art": "Vollbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Paulaner",
+        "BierName": "Weisse",
+        "Art": "Weizen",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Paulaner",
+        "BierName": "Oktoberfestbier",
+        "Art": "Festbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Paulaner",
+        "BierName": "M\u00fcnchner hell alkfrei",
+        "Art": "Akloholfrei",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Paulaner",
+        "BierName": "M\u00fcnchner hell",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Nikl Br\u00e4u",
+        "BierName": "Lager",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Neder",
+        "BierName": "Schwarze Anna",
+        "Art": "Schwarzbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Neder",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Neder",
+        "BierName": "Keller",
+        "Art": "Kellerbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Murmann",
+        "BierName": "Weisse leicht",
+        "Art": "Leichtes Weizen",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Murmann",
+        "BierName": "Weisse",
+        "Art": "Weizen",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Murmann",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Murmann",
+        "BierName": "Keller",
+        "Art": "Kellerbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "M\u00f6nchshof",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Meister",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Meinel Br\u00e4u",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "5"
+    },
+    {
+        "Brauerei": "Meinel Br\u00e4u",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Maxlrain",
+        "BierName": "Maxlrainer Leo weisse",
+        "Art": "Weizen",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Maxlrain",
+        "BierName": "Maxlrainer ernte weisse leicht",
+        "Art": "Leichtes Weizen",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Maisel",
+        "BierName": "Maisel weisse",
+        "Art": "Weizen",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Mager",
+        "BierName": "Pottenstein Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "L\u00f6wen Br\u00e4u",
+        "BierName": "Buttenheimer Bockbier Hell",
+        "Art": "Bockbier",
+        "Bewertung": "4"
+    },
+    {
+        "Brauerei": "Lang Br\u00e4u",
+        "BierName": "ErotikBier",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Kuchlbauer",
+        "BierName": "Weissbier",
+        "Art": "Weizen",
+        "Bewertung": "4"
+    },
+    {
+        "Brauerei": "Krug Br\u00e4u",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Krug Br\u00e4u",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Kraus",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Kozel",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "K\u00f6nig Ludwig",
+        "BierName": "Weissbier",
+        "Art": "Weizen",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Knoblach",
+        "BierName": "Schammelsdorf hell",
+        "Art": "Helles",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Knoblach",
+        "BierName": "Lagerbier ungespundet",
+        "Art": "Lagerbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Kitzmann",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Kauzen Br\u00e4u",
+        "BierName": "Frankonia Laurentius",
+        "Art": "Kellerbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Kanone",
+        "BierName": "Weizen",
+        "Art": "Weizen",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Kaiserkrone",
+        "BierName": "Gold",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "H\u00fctten Br\u00e4u",
+        "BierName": "Fichtelgold",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "1-"
+    },
+    {
+        "Brauerei": "H\u00fctten Br\u00e4u",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Hummel Br\u00e4u",
+        "BierName": "Keller",
+        "Art": "Kellerbier",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Humbser",
+        "BierName": "Lager naturtr\u00fcb",
+        "Art": "Lagerbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "H\u00fcbner Br\u00e4u",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "H\u00f6sl",
+        "BierName": "Edelhell",
+        "Art": "Helles",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "H\u00f6lzlein",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Hols (cz)",
+        "BierName": "Argus 11 Premium Original",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Hols (cz)",
+        "BierName": "Argus 11 Granat",
+        "Art": "Dunkel",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Hofmann",
+        "BierName": "Helles landbier",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Hertl",
+        "BierName": "Opas Liebling",
+        "Art": "Kellerbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Herrnbr\u00e4u",
+        "BierName": "Grantler Helles",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Heineken",
+        "BierName": "Heineken",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Hebendanz",
+        "BierName": "Export Hell",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Hasen Br\u00e4u",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Gr\u00fcner",
+        "BierName": "Gr\u00fcnerhell",
+        "Art": "Hell",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Griess",
+        "BierName": "Keller",
+        "Art": "Kellerbier",
+        "Bewertung": "4"
+    },
+    {
+        "Brauerei": "Greifenklau",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Greif Br\u00e4u",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Grasser",
+        "BierName": "Huppendorfer Hefeweizen",
+        "Art": "Weizen",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Gradl",
+        "BierName": "Leutselig dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "G\u00f6sser",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Gaffel Br\u00e4u",
+        "BierName": "Weiss",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Friedel Br\u00e4u",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "F\u00f6rst",
+        "BierName": "Premium",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "F\u00f6rst",
+        "BierName": "Lagerbier",
+        "Art": "Lagerbier",
+        "Bewertung": "1-"
+    },
+    {
+        "Brauerei": "Felsen",
+        "BierName": "Felsator",
+        "Art": "Bockbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Emmer",
+        "BierName": "lager",
+        "Art": "Lagerbier",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Eller",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Eller",
+        "BierName": "Rotbier",
+        "Art": "Rotbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Eller",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Eichhorn",
+        "BierName": "Schwarzer Adler",
+        "Art": "Schwarzbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Egger",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Dremel",
+        "BierName": "Dunkles",
+        "Art": "Dunkel",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Dorn Br\u00e4u",
+        "BierName": "Karpfenl\u00fcstling",
+        "Art": "Dunkel",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "D\u00f6rfer",
+        "BierName": "Landbier",
+        "Art": "Landbier",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "DMAX",
+        "BierName": "Alaska Black",
+        "Art": "Schwarzbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Debringer",
+        "BierName": "Micherla",
+        "Art": "Kellerbier",
+        "Bewertung": "5"
+    },
+    {
+        "Brauerei": "Debringer",
+        "BierName": "Dunkles weizen",
+        "Art": "Dunkles Weizen",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Debringer",
+        "BierName": "Dunkles",
+        "Art": "Dunkel",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Damm",
+        "BierName": "Estrella",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Coral",
+        "BierName": "Stout",
+        "Art": "Dunkel",
+        "Bewertung": "1-"
+    },
+    {
+        "Brauerei": "Coral",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Burgkrone",
+        "BierName": "Burgkrone",
+        "Art": "Helles",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Bruckm\u00fcller",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Blauer L\u00f6we",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Birra Moretti",
+        "BierName": "autentica",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Binkert",
+        "BierName": "Keller",
+        "Art": "Kellerbier",
+        "Bewertung": "4"
+    },
+    {
+        "Brauerei": "Beck Br\u00e4u",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Bayreuther",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Bayreuther",
+        "BierName": "Hefeweizen",
+        "Art": "Weizen",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Bayreuther",
+        "BierName": "Aktien Landbier",
+        "Art": "Dunkel",
+        "Bewertung": "1-"
+    },
+    {
+        "Brauerei": "Bayer",
+        "BierName": "Landbier",
+        "Art": "Landbier",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Bayer",
+        "BierName": "Kn\u00f6rzla",
+        "Art": "Rotbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Barre",
+        "BierName": "1842 Barre Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Altenm\u00fcnster",
+        "BierName": "Urig w\u00fcrzig",
+        "Art": "Lagerbier",
+        "Bewertung": "2"
+    },
+    {
+        "Brauerei": "Ahorntaler",
+        "BierName": "landbier St\u00f6ckel",
+        "Art": "Landbier",
+        "Bewertung": "1-"
+    },
+    {
+        "Brauerei": "Adler Br\u00e4u",
+        "BierName": "Zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "1"
+    },
+    {
+        "Brauerei": "Adler Br\u00e4u",
+        "BierName": "stettfelder weisse",
+        "Art": "Weizen",
+        "Bewertung": "3"
+    },
+    {
+        "Brauerei": "Fl\u00f6tzinger",
+        "BierName": "Weihnachtsbier",
+        "Art": "Festbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Nikl Br\u00e4u",
+        "BierName": "K\u00e4rwabier",
+        "Art": "Festbier",
+        "Bewertung": "81.5"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Rotes Weizen",
+        "Art": "Weizen",
+        "Bewertung": "96"
+    },
+    {
+        "Brauerei": "Bruckm\u00fcller",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Kronenbourg",
+        "BierName": "1664 blanc",
+        "Art": "Unrein",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Elch Br\u00e4u",
+        "BierName": "Nix Amore",
+        "Art": "Kellerbier",
+        "Bewertung": "77"
+    },
+    {
+        "Brauerei": "Leinburger",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "M\u00f6nchshof",
+        "BierName": "weihnachsbier",
+        "Art": "Festbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Leinburger",
+        "BierName": "Goldm\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Nordbr\u00e4u",
+        "BierName": "Weizen",
+        "Art": "Weizen",
+        "Bewertung": "89"
+    },
+    {
+        "Brauerei": "Bamberger Klosterbr\u00e4u",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Kapuziner",
+        "BierName": "Winter-Weissbier Narturtr\u00fcb",
+        "Art": "Weizen",
+        "Bewertung": "92"
+    },
+    {
+        "Brauerei": "Rittmayer",
+        "BierName": "Winterweizen",
+        "Art": "Weizen",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Lammsbr\u00e4u",
+        "BierName": "Winter Festbier",
+        "Art": "Festbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Hertl",
+        "BierName": "Fankenhanf",
+        "Art": "Hanfbier?",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Brauhaus Faust",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Brauhaus Faust",
+        "BierName": "Export",
+        "Art": "Hell",
+        "Bewertung": "76"
+    },
+    {
+        "Brauerei": "Brauhaus Faust",
+        "BierName": "Kr\u00e4usen",
+        "Art": "Kr\u00e4usen",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Brauhaus Faust",
+        "BierName": "Doppelbock",
+        "Art": "Bockbier",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Brauhaus Faust",
+        "BierName": "Winter Bier?",
+        "Art": "Festbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Langbr\u00e4u",
+        "BierName": "Winter Festbier",
+        "Art": "Festbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Hennemann",
+        "BierName": "Zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Fl\u00f6tzinger",
+        "BierName": "Weihnachts-Bock",
+        "Art": "Bockbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Tucher",
+        "BierName": "Urfr\u00e4nkisch Dunkel",
+        "Art": "Dunkles",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Zum L\u00f6wen Br\u00e4u",
+        "BierName": "Festl\u00f6we",
+        "Art": "Festbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Spalter",
+        "BierName": "Wei\u00dfbier",
+        "Art": "Weizen",
+        "Bewertung": "76"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "B.o.N. Bier ohne Namen",
+        "Art": "Helles",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Krug Br\u00e4u",
+        "BierName": "Breitenlesauer Festbier",
+        "Art": "Festbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Brauerei Ott",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Staffelberg Br\u00e4u",
+        "BierName": "\u00c4hrengold Festbier",
+        "Art": "Festbier",
+        "Bewertung": "86.5"
+    },
+    {
+        "Brauerei": "Lindner",
+        "BierName": "kaitersberg export",
+        "Art": "Export",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Sch\u00e4ffler Br\u00e4u",
+        "BierName": "Winter Zauber",
+        "Art": "Festbier",
+        "Bewertung": "88"
+    },
+    {
+        "Brauerei": "Engel Br\u00e4u",
+        "BierName": "Winterzauber",
+        "Art": "Festbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "BernardiBr\u00e4u",
+        "BierName": "Allg\u00e4uer Hirtenbier",
+        "Art": "Vollbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Krug Br\u00e4u",
+        "BierName": "Breitenlesauer Ur-Stoff",
+        "Art": "Lager",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Hertl",
+        "BierName": "Hopfige Zukunft",
+        "Art": "Kellerbier",
+        "Bewertung": "30",
+        "marked": true
+    },
+    {
+        "Brauerei": "Weltenburger Kloster",
+        "BierName": "Keller ",
+        "Art": "Kellerbier ",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Asahi",
+        "BierName": "Karakuchi",
+        "Art": "Helles",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Sapporo",
+        "BierName": "Premium Beer",
+        "Art": "Lager",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Maisel & Friends",
+        "BierName": "Hazy IPA",
+        "Art": "IPA",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Tiger",
+        "BierName": "Asian Lager",
+        "Art": "Lager",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "K\u00f6ssel Br\u00e4u",
+        "BierName": "Schwarze Madonna Stout",
+        "Art": "Schwarzbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Orca Br\u00e4u",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Hoffmann",
+        "BierName": "Pils",
+        "Art": "Pils",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Fondat",
+        "BierName": "Ursus Premium",
+        "Art": "Helles",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Dreykorn",
+        "BierName": "Das Helle",
+        "Art": "Helles",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Dreykorn",
+        "BierName": "Wintertraum",
+        "Art": "Festbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Landwehr Br\u00e4u",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Landwehr Br\u00e4u",
+        "BierName": "Altfr\u00e4nkisch Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Schneider Weisse",
+        "BierName": "Hopfenweisse Doppelbock",
+        "Art": "Weizenbock",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "F\u00fcrst Carl",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Reh Br\u00e4u",
+        "BierName": "Reh Bock dunkel",
+        "Art": "Bockbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Hersbrucker",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Ozujsko",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Reh Br\u00e4u",
+        "BierName": "Landbier",
+        "Art": "Landbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Hirsch Br\u00e4u",
+        "BierName": "Holzar Bier Export",
+        "Art": "Helles",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Starkenberger",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Starkenberger",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Starkenberger",
+        "BierName": "Gold Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Stiegl",
+        "BierName": "Paracelsus Bio-Zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "83",
+        "marked": true
+    },
+    {
+        "Brauerei": "Hertl",
+        "BierName": "Papa's Wei\u00dfheit Der Wei\u00dfe",
+        "Art": "Weizen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Hertl & Zwanzger",
+        "BierName": "Duschbier hopfengestopftes Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Winkler",
+        "BierName": "Hefe Pils",
+        "Art": "Pils",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Winkler",
+        "BierName": "Export",
+        "Art": "Helles",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Brauerei Ott",
+        "BierName": "Ladara Bock",
+        "Art": "Bockbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "K\u00f6ssel Br\u00e4u",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "K\u00f6ssel Br\u00e4u",
+        "BierName": "Erleuchtung",
+        "Art": "Helles",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Lammbr\u00e4u",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "K\u00f6ssel Br\u00e4u",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Guiness",
+        "BierName": "Guiness",
+        "Art": "Guiness",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Hetzelsdorfer Penning",
+        "BierName": "Hetzelsdorfer",
+        "Art": "Vollbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "K\u00f6ssel Br\u00e4u",
+        "BierName": "Weizen Hell",
+        "Art": "Weizen",
+        "Bewertung": "80.5"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Whiskymesse Edition Dunkles Bier im Whiskyfass",
+        "Art": "Dunkel",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Mahrs Br\u00e4u ",
+        "BierName": "U",
+        "Art": "Lagerbier",
+        "Bewertung": "87.5"
+    },
+    {
+        "Brauerei": "Dreykorn",
+        "BierName": "Laufer Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Felsen",
+        "BierName": "Kirchweihbier",
+        "Art": "Festbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Veldensteiner",
+        "BierName": "Hell Vollbier",
+        "Art": "Helles",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Faschingsfestbier",
+        "Art": "Festbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Wiethaler",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Zillertal",
+        "BierName": "Dunkles",
+        "Art": "Dunkel",
+        "Bewertung": "97"
+    },
+    {
+        "Brauerei": "Hausbrauerei N\u00fcrnberg",
+        "BierName": "Rotbier",
+        "Art": "Rotbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Zum L\u00f6wen Br\u00e4u",
+        "BierName": "Roter L\u00f6we",
+        "Art": "Rotbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u ",
+        "BierName": "Rotbier",
+        "Art": "Rotbier",
+        "Bewertung": "89"
+    },
+    {
+        "Brauerei": "Zipfer",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Wieselburger",
+        "BierName": "Zwickl Jubil\u00e4um",
+        "Art": "Zwickl",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Schlappe Seppel",
+        "BierName": "Seppelsche",
+        "Art": "Helles",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Rapp ",
+        "BierName": "Dunkle Weisse",
+        "Art": "Dunkles Weizen",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Rapp",
+        "BierName": "Spezial No.125",
+        "Art": "Kellerbier",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Hersbrucker",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Tegernsee",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Allg\u00e4uer Brauhaus",
+        "BierName": "Dunkle Weisse",
+        "Art": "Dunkles Weizen",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Hopf",
+        "BierName": "Helle Wei\u00dfe",
+        "Art": "Weizen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Leinburger",
+        "BierName": "Rotbier (fass)",
+        "Art": "Rotbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Leinburger",
+        "BierName": "Dunkles",
+        "Art": "Dunkel",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Friedel Br\u00e4u",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Friedel Br\u00e4u",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Kraus",
+        "BierName": "Krausen Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Strecks Brauhaus",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "A",
+        "BierName": "Alpha",
+        "Art": "Lagerbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Mythos",
+        "BierName": "Premium",
+        "Art": "Helles",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Fix",
+        "BierName": "Bier",
+        "Art": "Helles",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Fix",
+        "BierName": "Bier alkoholfrei",
+        "Art": "Alkoholfrei",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Baumburger",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "88"
+    },
+    {
+        "Brauerei": "Inselbr\u00e4u",
+        "BierName": "Wei\u00dfbier (exklusiv Fraueninsel)",
+        "Art": "Weizen",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Inselbr\u00e4u",
+        "BierName": "Zwickl (exklusiv Fraueninsel)",
+        "Art": "Zwickl",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Simseer Braumanufaktur",
+        "BierName": "Stephanskitchner Zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Wieninger",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Herber Br\u00e4u",
+        "BierName": "Hell (Bierfest)",
+        "Art": "Helles",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Herber Br\u00e4u",
+        "BierName": "Landbier (Bierfest)",
+        "Art": "Landbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Lindenbr\u00e4u",
+        "BierName": "Vollbier (Bierfest)",
+        "Art": "Vollbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Lindenbr\u00e4u",
+        "BierName": "Hell (Bierfest)",
+        "Art": "Helles",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Hertl",
+        "BierName": "Mr. Gin (Bierfest)",
+        "Art": "Kellerbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Hertl",
+        "BierName": "Ur-Ur-Ur Opa (Bierfest)",
+        "Art": "Vollbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Hertl",
+        "BierName": "Gurkengose (Bierfest)",
+        "Art": "Craftbier",
+        "Bewertung": "75"
+    },
+    {
+        "Brauerei": "Reh Br\u00e4u",
+        "BierName": "Hell (Bierfest)",
+        "Art": "Helles",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Boeheim",
+        "BierName": "Dunkel (Bierfest)",
+        "Art": "Dunkel",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "B\u00e4hr Br\u00e4u",
+        "BierName": "Kellerbier (nur im B\u00e4hr Keller)",
+        "Art": "Kellerbier",
+        "Bewertung": "88"
+    },
+    {
+        "Brauerei": "Auer Br\u00e4u",
+        "BierName": "Herbstfest-M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "88"
+    },
+    {
+        "Brauerei": "Ayinger",
+        "BierName": "Urweisse",
+        "Art": "Weizen",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Shepherd Neame",
+        "BierName": "Bishops Finger",
+        "Art": "Kentish Strong Ale",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Jelen",
+        "BierName": "Svetlo Pivo 1756",
+        "Art": "Helles",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "HoppeBr\u00e4u",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Maxlrain",
+        "BierName": "Ernte Hell",
+        "Art": "Erntebier",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "Camba",
+        "BierName": "Murphies Red",
+        "Art": "Red Irish Ale",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Camba",
+        "BierName": "Amber",
+        "Art": "Craftbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Auer Br\u00e4u",
+        "BierName": "Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Camba",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Scherdel",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "70"
+    },
+    {
+        "Brauerei": "Rittmayer",
+        "BierName": "Annafestbier",
+        "Art": "Festbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Hebendanz",
+        "BierName": "Annafestbier",
+        "Art": "Festbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Weihenstephaner",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "Camba",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Camba",
+        "BierName": "Weisse",
+        "Art": "Weizen",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Camba",
+        "BierName": "J\u00e4ger Weisse",
+        "Art": "Weizen",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Camba",
+        "BierName": "Wilderer Weisse",
+        "Art": "Weizen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Brauerei Ott",
+        "BierName": "Annafestbier (aufm Annafest)",
+        "Art": "Festbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Waismainer",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Camba",
+        "BierName": "Chiemsee Black Lager",
+        "Art": "Schwarzbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Camba",
+        "BierName": "Achilles",
+        "Art": "Emmerbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Kaiserdom",
+        "BierName": "Lager",
+        "Art": "Lagerbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Eggenberg",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Schladminger",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "G\u00f6sser",
+        "BierName": "Stiftsbr\u00e4u",
+        "Art": "Dunkel",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "G\u00f6sser",
+        "BierName": "Biostoff",
+        "Art": "Lagerbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Schladminger",
+        "BierName": "Bio Zwickl",
+        "Art": "Zwickl",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Stiegl",
+        "BierName": "Herbstgold",
+        "Art": "Vollbier",
+        "Bewertung": "92"
+    },
+    {
+        "Brauerei": "Samuel Smith",
+        "BierName": "Organic Chocolate Stout",
+        "Art": "Craftbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Roppelt Trossenfurt",
+        "BierName": "Dunkel ",
+        "Art": "Dunkel",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Auer Br\u00e4u",
+        "BierName": "Hefe Wei\u00dfbier",
+        "Art": "Weizen",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Raab",
+        "BierName": "Helles",
+        "Art": "Helles",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Riedenburger",
+        "BierName": "Emmerbier",
+        "Art": "Emmerbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Sch\u00fcbel",
+        "BierName": "Hell Kellerbier unfiltriert",
+        "Art": "Kellerbier",
+        "Bewertung": "79"
+    },
+    {
+        "Brauerei": "Schladminger",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Schladminger",
+        "BierName": "Schneewei\u00dfe",
+        "Art": "Weizen",
+        "Bewertung": "91"
+    },
+    {
+        "Brauerei": "Gans Br\u00e4u",
+        "BierName": "Festbier",
+        "Art": "Festbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Obertrumer",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "G\u00f6sser",
+        "BierName": "Zwickl-Hell",
+        "Art": "Zwickl",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "G\u00f6sser",
+        "BierName": "Zwickl-Dunkel",
+        "Art": "Zwickl",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Brauhaus Gussberg",
+        "BierName": "Steinbier Bio-M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "89"
+    },
+    {
+        "Brauerei": "Hennemann",
+        "BierName": "Lagerbier",
+        "Art": "Lagerbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Landwehr Br\u00e4u",
+        "BierName": "fr\u00e4nkisches Rotbier",
+        "Art": "Rotbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Gampertbr\u00e4u",
+        "BierName": "Sch\u00fctzenfestbier",
+        "Art": "Festbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "G\u00fcnther Br\u00e4u",
+        "BierName": "Bernstein",
+        "Art": "Vollbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Hersbrucker",
+        "BierName": "Dampfsud dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Kanone",
+        "BierName": "Hopfenkanone",
+        "Art": "Gr\u00fcnhopfenbier",
+        "Bewertung": "80"
+    },
+    {
+        "Brauerei": "Nothhaft Rawetzer",
+        "BierName": "Zoigl",
+        "Art": "Zwickl",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Wagner Br\u00e4u Kemmern",
+        "BierName": "Vollbier",
+        "Art": "Vollbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "P\u00fcttner Br\u00e4u",
+        "BierName": "Zoigl",
+        "Art": "Zwickl",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Peggy Nitz",
+        "Art": "Craftbier",
+        "Bewertung": "73"
+    },
+    {
+        "Brauerei": "Friedmann",
+        "BierName": "1875 Festbier",
+        "Art": "Festbier",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Gans Br\u00e4u",
+        "BierName": "Altbayrisch Dunkel",
+        "Art": "Dunkel",
+        "Bewertung": "87"
+    },
+    {
+        "Brauerei": "Neder ",
+        "BierName": "Weihnachtsfestbier",
+        "Art": "Festbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Hell",
+        "Art": "Helles",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Wolfsh\u00f6her",
+        "BierName": "Wintertraum",
+        "Art": "Festbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Knoblach",
+        "BierName": "Weihnachtsfestbier",
+        "Art": "Festbier",
+        "Bewertung": "89"
+    },
+    {
+        "Brauerei": "Krug Br\u00e4u",
+        "BierName": "Breitenlesauer Weihnachtsfestbier",
+        "Art": "Festbier",
+        "Bewertung": "88"
+    },
+    {
+        "Brauerei": "Kesselring ",
+        "BierName": "Urfr\u00e4nkisches Winterbier",
+        "Art": "Festbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "F\u00f6rst",
+        "BierName": "Dr\u00fcgendorf 1525 Festbier",
+        "Art": "Festbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Landwehr Br\u00e4u",
+        "BierName": "Fr\u00e4nkisch Hell",
+        "Art": "Hell",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Hersbrucker",
+        "BierName": "Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Fohrenburger",
+        "BierName": "Oberl\u00e4nder Ur Spezial",
+        "Art": "Vollbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Egger",
+        "BierName": "Jokl",
+        "Art": "Kellerbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Leinburger",
+        "BierName": "Jubil\u00e4um 1617",
+        "Art": "Festbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Egger",
+        "BierName": "Keller unfiltriert",
+        "Art": "Kellerbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Fohrenburger ",
+        "BierName": "Jubil\u00e4um",
+        "Art": "Vollbier",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "H\u00f6sl Br\u00e4u",
+        "BierName": "Mein Helles",
+        "Art": "Hell",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Pottensteiner",
+        "BierName": "Schl\u00fcggla",
+        "Art": "Hell",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Schanzenbr\u00e4u",
+        "BierName": "Whiskybock slyrs edition",
+        "Art": "Bockbier",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Brohmer",
+        "BierName": "Landbr\u00e4u Weizen",
+        "Art": "Weizen",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Wolf",
+        "BierName": "Wolf Bier",
+        "Art": "Helles",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "G\u00f6ller",
+        "BierName": "Winterfestbier",
+        "Art": "Craftbier",
+        "Bewertung": "81"
+    },
+    {
+        "Brauerei": "Schwechater",
+        "BierName": "M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "Minisud Red Ale",
+        "Art": "Red Ale",
+        "Bewertung": "78"
+    },
+    {
+        "Brauerei": "Ammerndorfer",
+        "BierName": "Minisud altfr\u00e4nkisches Kellerbier",
+        "Art": "Kellerbier",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Greif Br\u00e4u",
+        "BierName": " M\u00e4rzen",
+        "Art": "M\u00e4rzen",
+        "Bewertung": "84"
+    },
+    {
+        "Brauerei": "Kuchlbauer",
+        "BierName": "Alte Liebe Dunkles Wei\u00dfes",
+        "Art": "Dunkles Weizen",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Kuchlbauer",
+        "BierName": "Weisse",
+        "Art": "Weizen",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Kuchlbauer",
+        "BierName": "Turmweisse",
+        "Art": "Weizen",
+        "Bewertung": "90"
+    },
+    {
+        "Brauerei": "Biere du nord",
+        "BierName": "ambr\u00e9e",
+        "Art": "Helles",
+        "Bewertung": "83"
+    },
+    {
+        "Brauerei": "Braumanufaktur Alt Bamberg",
+        "BierName": "Urstoff",
+        "Art": "Vollbier",
+        "Bewertung": "82"
+    },
+    {
+        "Brauerei": "Weissenoher",
+        "BierName": "Klostersud",
+        "Art": "Spezialbier",
+        "Bewertung": "86"
+    },
+    {
+        "Brauerei": "Weissenoher",
+        "BierName": "altfr\u00e4nkisch Klosterbier",
+        "Art": "Vollbier",
+        "Bewertung": "85"
+    },
+    {
+        "Brauerei": "Kuchlbauer",
+        "BierName": "Aloysius Weizenbock",
+        "Art": "Dunkler Weizenbock",
+        "Bewertung": "84"
+    }
+]

@@ -1,0 +1,104 @@
+<div class="page-shell">
+  <section class="latest-overview" aria-label="Sammlung im Überblick" aria-live="polite">
+    <div class="latest-overview-copy">
+      <p class="eyebrow">Zuletzt hinzugefügt</p>
+      <ng-container *ngIf="latestBeer as latest; else noLatest">
+        <h2>{{ latest.BierName }}</h2>
+        <p class="latest-details">
+          <span>{{ latest.Brauerei }}</span>
+          <span aria-hidden="true">·</span>
+          <span>{{ latest.Art }}</span>
+          <span aria-hidden="true">·</span>
+          <strong>{{ rating(latest.Bewertung) }} Punkte</strong>
+        </p>
+      </ng-container>
+      <ng-template #noLatest>
+        <h2>{{ loading ? 'Bierliste wird geladen …' : 'Noch keine Biere eingetragen' }}</h2>
+      </ng-template>
+    </div>
+    <div class="collection-count" aria-label="Anzahl der Biere in der Sammlung">
+      <strong>{{ beers.length }}</strong>
+      <span>{{ beers.length === 1 ? 'Bier in der Liste' : 'Biere in der Liste' }}</span>
+    </div>
+  </section>
+
+  <section class="catalog" aria-labelledby="catalog-title">
+    <div class="catalog-heading">
+      <div class="catalog-title-group">
+        <h2 id="catalog-title">Bierliste</h2>
+        <p class="result-count" aria-live="polite">
+          {{ visibleBeers.length }} <span>{{ visibleBeers.length === 1 ? 'Ergebnis' : 'Ergebnisse' }}</span>
+        </p>
+      </div>
+      <button class="button button-quiet" type="button" (click)="loadBeers()" [disabled]="loading">
+        <span aria-hidden="true" class="refresh-icon">↻</span>
+        {{ loading ? 'Lädt …' : 'Aktualisieren' }}
+      </button>
+    </div>
+
+    <label class="search-box">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="10.8" cy="10.8" r="6.8" />
+        <path d="m16 16 5 5" />
+      </svg>
+      <input
+        type="search"
+        [(ngModel)]="searchTerm"
+        placeholder="Brauerei, Bier oder Sorte suchen …"
+        aria-label="Brauerei, Bier oder Sorte suchen"
+      >
+    </label>
+
+    <div *ngIf="errorMessage" class="status-message error-message" role="alert">
+      <span>{{ errorMessage }}</span>
+      <button type="button" (click)="loadBeers()">Erneut versuchen</button>
+    </div>
+    <div *ngIf="loading && beers.length === 0 && !errorMessage" class="status-message" role="status">
+      Die Bierliste wird geladen …
+    </div>
+
+    <div class="table-wrap" *ngIf="beers.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">
+              <button type="button" (click)="sortBy('Brauerei')" [attr.aria-label]="'Nach Brauerei sortieren ' + sortIndicator('Brauerei')">
+                Brauerei <span class="sort-indicator">{{ sortIndicator('Brauerei') }}</span>
+              </button>
+            </th>
+            <th scope="col">
+              <button type="button" (click)="sortBy('BierName')" [attr.aria-label]="'Nach Biername sortieren ' + sortIndicator('BierName')">
+                Bier <span class="sort-indicator">{{ sortIndicator('BierName') }}</span>
+              </button>
+            </th>
+            <th scope="col">
+              <button type="button" (click)="sortBy('Art')" [attr.aria-label]="'Nach Biersorte sortieren ' + sortIndicator('Art')">
+                Sorte <span class="sort-indicator">{{ sortIndicator('Art') }}</span>
+              </button>
+            </th>
+            <th scope="col" class="rating-column">
+              <button type="button" (click)="sortBy('Bewertung')" [attr.aria-label]="'Nach Bewertung sortieren ' + sortIndicator('Bewertung')">
+                Bewertung <span class="sort-indicator">{{ sortIndicator('Bewertung') }}</span>
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let beer of visibleBeers" [class.marked]="beer.marked === true">
+            <td>
+              <a [href]="imageSearchUrl(beer)" target="_blank" rel="noopener noreferrer" (click)="provideHapticFeedback()">{{ beer.Brauerei }}</a>
+            </td>
+            <td class="beer-name">{{ beer.BierName }}</td>
+            <td><span class="style-tag">{{ beer.Art }}</span></td>
+            <td class="rating-cell">
+              <span class="rating">{{ rating(beer.Bewertung) }}</span>
+            </td>
+          </tr>
+          <tr *ngIf="visibleBeers.length === 0 && !loading">
+            <td class="empty-state" colspan="4">Keine Biere zu „{{ searchTerm }}“ gefunden.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

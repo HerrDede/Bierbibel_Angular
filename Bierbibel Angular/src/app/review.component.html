@@ -1,0 +1,62 @@
+<section class="page-card">
+  <div class="page-title-row">
+    <div>
+      <p class="eyebrow">Geschützter Bereich</p>
+      <h1>Biere zur Neubewertung</h1>
+      <p class="page-description">Markiere Biere, die erneut bewertet werden sollen. Bereits markierte Einträge kannst du hier wieder abmelden.</p>
+    </div>
+    <span class="count-pill" *ngIf="authenticated">{{ beers.length }} Biere</span>
+  </div>
+
+  <app-login-panel (authenticatedChange)="setAuthenticated($event)" />
+
+  <ng-container *ngIf="authenticated">
+    <p *ngIf="message" class="status-message success-message" role="status">{{ message }}</p>
+    <p *ngIf="errorMessage" class="status-message error-message" role="alert">{{ errorMessage }}</p>
+    <p *ngIf="loading && beers.length === 0 && !errorMessage" class="status-message" role="status">Bierliste wird geladen …</p>
+
+    <label class="search-box">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="10.8" cy="10.8" r="6.8" />
+        <path d="m16 16 5 5" />
+      </svg>
+      <input type="search" [(ngModel)]="searchTerm" placeholder="Brauerei, Bier oder Sorte suchen …" aria-label="Bierliste durchsuchen">
+    </label>
+
+    <div class="table-wrap" *ngIf="beers.length">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"><button type="button" (click)="sortBy('Brauerei')">Brauerei <span>{{ sortIndicator('Brauerei') }}</span></button></th>
+            <th scope="col"><button type="button" (click)="sortBy('BierName')">Bier <span>{{ sortIndicator('BierName') }}</span></button></th>
+            <th scope="col"><button type="button" (click)="sortBy('Art')">Sorte <span>{{ sortIndicator('Art') }}</span></button></th>
+            <th scope="col"><button type="button" (click)="sortBy('Bewertung')">Bewertung <span>{{ sortIndicator('Bewertung') }}</span></button></th>
+            <th scope="col">Aktion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let beer of visibleBeers" [class.marked]="beer.marked === true">
+            <td>{{ beer.Brauerei }}</td>
+            <td class="beer-name">{{ beer.BierName }}</td>
+            <td>{{ beer.Art }}</td>
+            <td>{{ beer.Bewertung }}</td>
+            <td>
+              <button
+                class="table-action"
+                [class.table-action-muted]="beer.marked"
+                type="button"
+                (click)="changeMark(beer)"
+                [disabled]="pendingIndex !== null"
+              >
+                {{ pendingIndex === beer.index ? 'Wird gespeichert …' : beer.marked ? 'Abmelden' : 'Anmelden' }}
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="visibleBeers.length === 0">
+            <td class="empty-state" colspan="5">Keine Biere zu „{{ searchTerm }}“ gefunden.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+</section>
