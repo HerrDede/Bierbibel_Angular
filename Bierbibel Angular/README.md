@@ -25,3 +25,5 @@ Open the local URL printed by Angular CLI. `npm run build` creates the deployabl
 The first launch imports the bundled JSON list into this browser's `localStorage`. Changes to ratings/review marks and new/deleted entries persist in that browser, including after restarting Angular. They do not sync across browsers/devices and are not written back into the bundled JSON. Clear this site's local storage to restore the bundled starting list.
 
 The old login flow is reproduced as a browser-only convenience gate using the existing access code. A frontend-only app cannot securely protect admin features: the code and list are downloadable and users can bypass the gate. Use a server-side API with authentication if the app will be public or shared.
+
+This is a test to push to GitHub
