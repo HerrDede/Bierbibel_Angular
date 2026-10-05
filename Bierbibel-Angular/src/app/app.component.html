@@ -16,6 +16,16 @@
 
     <div class="header-tools">
       <button
+        class="music-button theme-button"
+        type="button"
+        (click)="toggleTheme()"
+        [attr.aria-pressed]="isDarkMode"
+        [attr.aria-label]="isDarkMode ? 'Hellmodus aktivieren' : 'Dunkelmodus aktivieren'"
+        [title]="isDarkMode ? 'Hellmodus aktivieren' : 'Dunkelmodus aktivieren'"
+      >
+        <span aria-hidden="true">{{ isDarkMode ? '☀' : '☾' }}</span>
+      </button>
+      <button
         class="music-button"
         type="button"
         (click)="toggleMusic()"

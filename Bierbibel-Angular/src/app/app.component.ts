@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, ElementRef, inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -9,11 +9,38 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('musicPlayer') private musicPlayer?: ElementRef<HTMLAudioElement>;
 
   isPlaying = false;
   musicError = '';
+  isDarkMode = true;
+
+  private readonly document = inject(DOCUMENT);
+  private readonly platformId = inject(PLATFORM_ID);
+
+  ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    const savedTheme = this.document.defaultView?.localStorage.getItem('bierbibel-dark-mode');
+    this.isDarkMode = savedTheme === null || savedTheme === 'true';
+    this.applyTheme();
+  }
+
+  toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
+    this.applyTheme();
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.document.defaultView?.localStorage.setItem('bierbibel-dark-mode', String(this.isDarkMode));
+    }
+  }
+
+  private applyTheme(): void {
+    this.document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
+  }
 
   async toggleMusic(): Promise<void> {
     const player = this.musicPlayer?.nativeElement;
