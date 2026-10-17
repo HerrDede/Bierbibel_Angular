@@ -566,7 +566,7 @@ td a:hover {
 
   th:nth-child(1),
   td:nth-child(1) {
-    width: 23%;
+    width: 25%;
   }
 
   th:nth-child(2),
@@ -576,12 +576,18 @@ td a:hover {
 
   th:nth-child(3),
   td:nth-child(3) {
-    width: 28%;
+    width: 24%;
   }
 
   th:nth-child(4),
   td:nth-child(4) {
-    width: 21%;
+    width: 23%;
+  }
+
+  th:nth-child(4) button {
+    flex-wrap: nowrap;
+    letter-spacing: 0;
+    white-space: nowrap;
   }
 
   th:first-child,
