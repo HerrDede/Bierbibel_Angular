@@ -3,10 +3,11 @@
     <div class="latest-overview-copy">
       <p class="eyebrow">Zuletzt hinzugefügt</p>
       <ng-container *ngIf="latestBeer as latest; else noLatest">
-        <h2>{{ latest.BierName }}</h2>
-        <p class="latest-details">
+        <h2>
           <span>{{ latest.Brauerei }}</span>
-          <span aria-hidden="true">·</span>
+          <span>{{ latest.BierName }}</span>
+        </h2>
+        <p class="latest-details">
           <span>{{ latest.Art }}</span>
           <span aria-hidden="true">·</span>
           <strong>{{ rating(latest.Bewertung) }} Punkte</strong>
