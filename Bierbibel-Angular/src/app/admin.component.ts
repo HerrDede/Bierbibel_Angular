@@ -24,7 +24,8 @@ export class AdminComponent {
   sortDirection = 1;
   loading = false;
   saving = false;
-  pendingDeleteIndex: number | null = null;
+  pendingDeleteId: number | null = null;
+  importing = false;
   message = '';
   errorMessage = '';
 
@@ -96,22 +97,43 @@ export class AdminComponent {
     });
   }
 
-  deleteBeer(beer: IndexedBeer): void {
-    if (this.pendingDeleteIndex !== null || !window.confirm(`„${beer.BierName}“ wirklich löschen?`)) {
+  importStartingList(): void {
+    if (this.importing || this.loading || this.beers.length > 0) {
       return;
     }
 
-    this.pendingDeleteIndex = beer.index;
+    this.importing = true;
     this.message = '';
     this.errorMessage = '';
-    this.beerService.deleteBeer(beer.index).subscribe({
+    this.beerService.importBundledList().subscribe({
       next: () => {
-        this.pendingDeleteIndex = null;
+        this.importing = false;
+        this.message = 'Die Startliste wurde in die gemeinsame Datenbank importiert.';
+        this.loadBeers();
+      },
+      error: (error: unknown) => {
+        this.importing = false;
+        this.errorMessage = this.errorText('Die Startliste konnte nicht importiert werden.', error);
+      }
+    });
+  }
+
+  deleteBeer(beer: IndexedBeer): void {
+    if (this.pendingDeleteId !== null || !window.confirm(`„${beer.BierName}“ wirklich löschen?`)) {
+      return;
+    }
+
+    this.pendingDeleteId = beer.id;
+    this.message = '';
+    this.errorMessage = '';
+    this.beerService.deleteBeer(beer.id).subscribe({
+      next: () => {
+        this.pendingDeleteId = null;
         this.message = 'Bier wurde gelöscht.';
         this.loadBeers();
       },
       error: (error: unknown) => {
-        this.pendingDeleteIndex = null;
+        this.pendingDeleteId = null;
         this.errorMessage = this.errorText('Das Bier konnte nicht gelöscht werden.', error);
       }
     });

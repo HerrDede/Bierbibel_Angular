@@ -46,9 +46,9 @@
                 [class.table-action-muted]="beer.marked"
                 type="button"
                 (click)="changeMark(beer)"
-                [disabled]="pendingIndex !== null"
+                [disabled]="pendingBeerId !== null"
               >
-                {{ pendingIndex === beer.index ? 'Wird gespeichert …' : beer.marked ? 'Abmelden' : 'Anmelden' }}
+                {{ pendingBeerId === beer.id ? 'Wird gespeichert …' : beer.marked ? 'Abmelden' : 'Anmelden' }}
               </button>
             </td>
           </tr>

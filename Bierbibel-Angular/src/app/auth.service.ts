@@ -1,37 +1,42 @@
-import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
-const SESSION_KEY = 'bierbibel.local-session';
-const LOCAL_ACCESS_CODE = 'Doscht';
+function serverError(error: unknown): Error {
+  if (error instanceof HttpErrorResponse) {
+    if (typeof error.error === 'object' && error.error !== null
+      && 'error' in error.error && typeof error.error.error === 'string') {
+      return new Error(error.error.error);
+    }
+
+    return new Error(`Die Serveranfrage ist fehlgeschlagen (HTTP ${error.status}).`);
+  }
+
+  return error instanceof Error ? error : new Error('Die Serveranfrage ist fehlgeschlagen.');
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private readonly http = inject(HttpClient);
+
   checkSession(): Observable<boolean> {
-    try {
-      return of(sessionStorage.getItem(SESSION_KEY) === 'authenticated');
-    } catch {
-      return throwError(() => new Error('Der Browser-Sitzungsspeicher ist nicht verfügbar.'));
-    }
+    return this.http.get<{ authenticated: boolean }>('/api/auth/session').pipe(
+      map((response) => response.authenticated),
+      catchError((error: unknown) => throwError(() => serverError(error)))
+    );
   }
 
   login(password: string): Observable<void> {
-    if (password !== LOCAL_ACCESS_CODE) {
-      return throwError(() => new Error('Falsches Passwort.'));
-    }
-
-    try {
-      sessionStorage.setItem(SESSION_KEY, 'authenticated');
-      return of(void 0);
-    } catch {
-      return throwError(() => new Error('Die Anmeldung konnte nicht in diesem Browser gespeichert werden.'));
-    }
+    return this.http.post('/api/auth/login', { password }).pipe(
+      map(() => undefined),
+      catchError((error: unknown) => throwError(() => serverError(error)))
+    );
   }
 
-  logout(): void {
-    try {
-      sessionStorage.removeItem(SESSION_KEY);
-    } catch {
-      throw new Error('Die lokale Sitzung konnte nicht beendet werden.');
-    }
+  logout(): Observable<void> {
+    return this.http.post('/api/auth/logout', {}).pipe(
+      map(() => undefined),
+      catchError((error: unknown) => throwError(() => serverError(error)))
+    );
   }
 }

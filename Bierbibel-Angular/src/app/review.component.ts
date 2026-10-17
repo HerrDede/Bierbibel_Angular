@@ -21,7 +21,7 @@ export class ReviewComponent {
   sortKey: ReviewSortKey = 'BierName';
   sortDirection = 1;
   loading = false;
-  pendingIndex: number | null = null;
+  pendingBeerId: number | null = null;
   message = '';
   errorMessage = '';
 
@@ -61,25 +61,25 @@ export class ReviewComponent {
   }
 
   changeMark(beer: IndexedBeer): void {
-    if (this.pendingIndex !== null) {
+    if (this.pendingBeerId !== null) {
       return;
     }
 
-    this.pendingIndex = beer.index;
+    this.pendingBeerId = beer.id;
     this.message = '';
     this.errorMessage = '';
     const request = beer.marked
-      ? this.beerService.unmarkBeer(beer.index)
-      : this.beerService.markBeer(beer.index);
+      ? this.beerService.unmarkBeer(beer.id)
+      : this.beerService.markBeer(beer.id);
 
     request.subscribe({
       next: () => {
-        this.pendingIndex = null;
+        this.pendingBeerId = null;
         this.message = beer.marked ? 'Markierung entfernt.' : 'Bier zur Neubewertung angemeldet.';
         this.loadBeers();
       },
       error: (error: unknown) => {
-        this.pendingIndex = null;
+        this.pendingBeerId = null;
         this.errorMessage = this.errorText('Die Markierung konnte nicht geändert werden.', error);
       }
     });

@@ -14,6 +14,15 @@ import { AuthService } from './auth.service';
       <p class="page-description">Melde dich an, um diese BierBibel-Funktion zu verwenden.</p>
       <p *ngIf="checking" class="status-message" role="status">Anmeldestatus wird geprüft …</p>
       <p *ngIf="authenticated" class="status-message success-message" role="status">Du bist angemeldet.</p>
+      <button
+        *ngIf="authenticated"
+        class="button button-quiet"
+        type="button"
+        (click)="logout()"
+        [disabled]="submitting"
+      >
+        {{ submitting ? 'Wird abgemeldet …' : 'Abmelden' }}
+      </button>
       <form *ngIf="!checking && !authenticated" (ngSubmit)="login()" #loginForm="ngForm">
         <label for="admin-password">Passwort</label>
         <input
@@ -75,6 +84,26 @@ export class LoginPanelComponent implements OnInit {
       error: (error: unknown) => {
         this.submitting = false;
         this.errorMessage = this.errorText('Anmeldung fehlgeschlagen.', error);
+      }
+    });
+  }
+
+  logout(): void {
+    if (this.submitting) {
+      return;
+    }
+
+    this.submitting = true;
+    this.errorMessage = '';
+    this.auth.logout().subscribe({
+      next: () => {
+        this.submitting = false;
+        this.authenticated = false;
+        this.authenticatedChange.emit(false);
+      },
+      error: (error: unknown) => {
+        this.submitting = false;
+        this.errorMessage = this.errorText('Abmeldung fehlgeschlagen.', error);
       }
     });
   }

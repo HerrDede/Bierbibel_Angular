@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, switchMap, throwError } from 'rxjs';
 
 export interface BeerEntry {
   Brauerei: string;
@@ -11,7 +11,7 @@ export interface BeerEntry {
 }
 
 export interface IndexedBeer extends BeerEntry {
-  index: number;
+  id: number;
 }
 
 export interface BeerInput {
@@ -23,7 +23,9 @@ export interface BeerInput {
 
 export type BeerField = 'Brauerei' | 'BierName' | 'Art' | 'Bewertung';
 
-const STORAGE_KEY = 'bierbibel.beers.v1';
+interface ApiBeer extends BeerEntry {
+  id: number;
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null;
@@ -42,8 +44,75 @@ function isBeerEntry(value: unknown): value is BeerEntry {
     && (value['marked'] === undefined || typeof value['marked'] === 'boolean');
 }
 
-function isBeerList(value: unknown): value is BeerEntry[] {
-  return Array.isArray(value) && value.every(isBeerEntry);
+function errorFromResponse(error: unknown): Error {
+  if (error instanceof HttpErrorResponse) {
+    if (isRecord(error.error) && typeof error.error['error'] === 'string') {
+      return new Error(error.error['error']);
+    }
+
+    if (typeof error.error === 'string' && error.error) {
+      return new Error(error.error);
+    }
+
+    return new Error(`Die Serveranfrage ist fehlgeschlagen (HTTP ${error.status}).`);
+  }
+
+  return error instanceof Error ? error : new Error('Die Serveranfrage ist fehlgeschlagen.');
+}
+
+@Injectable({ providedIn: 'root' })
+export class BeerService {
+  private readonly http = inject(HttpClient);
+
+  loadBeers(): Observable<IndexedBeer[]> {
+    return this.http.get<ApiBeer[]>('/api/beers').pipe(
+      map((beers) => beers.map((beer) => ({ ...beer, marked: Boolean(beer.marked) }))),
+      catchError((error: unknown) => throwError(() => errorFromResponse(error)))
+    );
+  }
+
+  addBeer(beer: BeerInput): Observable<void> {
+    return this.http.post('/api/beers', beer).pipe(
+      map(() => undefined),
+      catchError((error: unknown) => throwError(() => errorFromResponse(error)))
+    );
+  }
+
+  deleteBeer(id: number): Observable<void> {
+    return this.http.delete(`/api/beers/${id}`).pipe(
+      map(() => undefined),
+      catchError((error: unknown) => throwError(() => errorFromResponse(error)))
+    );
+  }
+
+  markBeer(id: number): Observable<void> {
+    return this.setMarked(id, true);
+  }
+
+  unmarkBeer(id: number): Observable<void> {
+    return this.setMarked(id, false);
+  }
+
+  importBundledList(): Observable<void> {
+    return this.http.get<unknown>('assets/biere.json').pipe(
+      switchMap((payload) => {
+        if (!Array.isArray(payload) || !payload.every(isBeerEntry) || payload.length === 0) {
+          return throwError(() => new Error('Die mitgelieferte Bierliste hat ein unerwartetes Datenformat.'));
+        }
+
+        return this.http.post('/api/admin/import', payload);
+      }),
+      map(() => undefined),
+      catchError((error: unknown) => throwError(() => errorFromResponse(error)))
+    );
+  }
+
+  private setMarked(id: number, marked: boolean): Observable<void> {
+    return this.http.patch(`/api/beers/${id}`, { marked }).pipe(
+      map(() => undefined),
+      catchError((error: unknown) => throwError(() => errorFromResponse(error)))
+    );
+  }
 }
 
 export function compareBeerField(first: BeerEntry, second: BeerEntry, key: BeerField): number {
@@ -59,156 +128,4 @@ export function compareBeerField(first: BeerEntry, second: BeerEntry, key: BeerF
   }
 
   return String(firstValue).localeCompare(String(secondValue), 'de');
-}
-
-@Injectable({ providedIn: 'root' })
-export class BeerService {
-  private readonly http = inject(HttpClient);
-  private beers: BeerEntry[] = [];
-  private initialized = false;
-
-  loadBeers(): Observable<IndexedBeer[]> {
-    if (this.initialized) {
-      try {
-        const storedBeers = this.readStoredBeers();
-        if (storedBeers) {
-          this.beers = storedBeers;
-        }
-        return of(this.indexedBeers());
-      } catch (error: unknown) {
-        return throwError(() => error instanceof Error
-          ? error
-          : new Error('Gespeicherte Bierdaten konnten nicht gelesen werden.')
-        );
-      }
-    }
-
-    let storedBeers: BeerEntry[] | null;
-    try {
-      storedBeers = this.readStoredBeers();
-    } catch (error: unknown) {
-      return throwError(() => error instanceof Error
-        ? error
-        : new Error('Gespeicherte Bierdaten konnten nicht gelesen werden.')
-      );
-    }
-
-    if (storedBeers) {
-      this.beers = storedBeers;
-      this.initialized = true;
-      return of(this.indexedBeers());
-    }
-
-    return this.http.get<unknown>('assets/biere.json').pipe(
-      map((payload) => {
-        if (!isBeerList(payload)) {
-          throw new Error('Die mitgelieferte Bierliste hat ein unerwartetes Datenformat.');
-        }
-
-        return payload;
-      }),
-      tap((beers) => {
-        this.persistBeers(beers);
-        this.beers = beers;
-        this.initialized = true;
-      }),
-      map(() => this.indexedBeers()),
-      catchError((error: unknown) => throwError(() =>
-        error instanceof Error ? error : new Error('Die Bierliste konnte nicht geladen werden.')
-      ))
-    );
-  }
-
-  addBeer(beer: BeerInput): Observable<void> {
-    return this.mutate(() => {
-      this.beers.push({
-        Brauerei: beer.brauerei,
-        BierName: beer.bierName,
-        Art: beer.art,
-        Bewertung: beer.bewertung
-      });
-    });
-  }
-
-  deleteBeer(index: number): Observable<void> {
-    return this.mutate(() => {
-      this.assertIndex(index);
-      this.beers.splice(index, 1);
-    });
-  }
-
-  markBeer(index: number): Observable<void> {
-    return this.mutate(() => {
-      this.assertIndex(index);
-      this.beers[index].marked = true;
-    });
-  }
-
-  unmarkBeer(index: number): Observable<void> {
-    return this.mutate(() => {
-      this.assertIndex(index);
-      delete this.beers[index].marked;
-    });
-  }
-
-  private mutate(change: () => void): Observable<void> {
-    const previousBeers = this.beers.map((beer) => ({ ...beer }));
-    try {
-      if (!this.initialized) {
-        throw new Error('Die Bierliste ist noch nicht geladen.');
-      }
-
-      change();
-      this.persistBeers();
-      return of(void 0);
-    } catch (error: unknown) {
-      this.beers = previousBeers;
-      return throwError(() => error instanceof Error
-        ? error
-        : new Error('Die Änderung konnte nicht gespeichert werden.')
-      );
-    }
-  }
-
-  private assertIndex(index: number): void {
-    if (!Number.isInteger(index) || index < 0 || index >= this.beers.length) {
-      throw new Error('Der ausgewählte Biereintrag ist nicht mehr vorhanden.');
-    }
-  }
-
-  private readStoredBeers(): BeerEntry[] | null {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored === null) {
-        return null;
-      }
-
-      const parsed: unknown = JSON.parse(stored);
-      if (!isBeerList(parsed)) {
-        throw new Error('Gespeicherte Bierdaten sind ungültig. Leere den Website-Speicher, um die Ausgangsliste neu zu laden.');
-      }
-
-      return parsed;
-    } catch (error: unknown) {
-      if (error instanceof SyntaxError) {
-        throw new Error('Gespeicherte Bierdaten konnten nicht gelesen werden. Leere den Website-Speicher, um die Ausgangsliste neu zu laden.');
-      }
-
-      throw error instanceof Error
-        ? error
-        : new Error('Der Website-Speicher ist nicht verfügbar.');
-    }
-  }
-
-  private persistBeers(beers: BeerEntry[] = this.beers): void {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(beers));
-    } catch {
-      throw new Error('Änderungen konnten nicht im Browser gespeichert werden. Prüfe, ob der Website-Speicher verfügbar ist.');
-    }
-  }
-
-  private indexedBeers(): IndexedBeer[] {
-    return this.beers.map((beer, index) => ({ ...beer, index }));
-  }
 }
