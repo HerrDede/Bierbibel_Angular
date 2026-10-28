@@ -51,12 +51,12 @@ function isApiBrewery(value: unknown): value is ApiBrewery {
 export class BreweryLookupService {
   private readonly http = inject(HttpClient);
 
-  search(name: string): Observable<BrewerySuggestion[]> {
+  search(query: string): Observable<BrewerySuggestion[]> {
     const params = new HttpParams()
-      .set('by_name', name)
+      .set('query', query)
       .set('per_page', '5');
 
-    return this.http.get<unknown>('https://api.openbrewerydb.org/v1/breweries', { params }).pipe(
+    return this.http.get<unknown>('https://api.openbrewerydb.org/v1/breweries/search', { params }).pipe(
       map((payload) => {
         if (!Array.isArray(payload) || !payload.every(isApiBrewery)) {
           throw new Error('Die Brauereisuche hat ein unerwartetes Datenformat zurückgegeben.');
