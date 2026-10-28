@@ -39,23 +39,23 @@
             autocomplete="off"
             required
             aria-autocomplete="list"
-            [attr.aria-expanded]="brewerySuggestions.length > 0"
-            aria-controls="brewery-suggestions"
+            [attr.aria-expanded]="brewerySearch.suggestions.length > 0"
+            aria-controls="new-brewery-suggestions"
           >
           <div
-            *ngIf="brewerySearchQuery.length >= 3 && (brewerySearchLoading || brewerySearchError || brewerySuggestionQuery === brewerySearchQuery)"
+            *ngIf="brewerySearch.query.length >= 3 && (brewerySearch.loading || brewerySearch.error || brewerySearch.suggestionQuery === brewerySearch.query)"
             class="brewery-suggestions"
           >
-            <p *ngIf="brewerySearchLoading" class="brewery-suggestion-status" role="status">
+            <p *ngIf="brewerySearch.loading" class="brewery-suggestion-status" role="status">
               Suche nach passenden Brauereien …
             </p>
-            <p *ngIf="brewerySearchError" class="brewery-suggestion-status brewery-suggestion-error" role="alert">
-              {{ brewerySearchError }}
+            <p *ngIf="brewerySearch.error" class="brewery-suggestion-status brewery-suggestion-error" role="alert">
+              {{ brewerySearch.error }}
             </p>
-            <ng-container *ngIf="!brewerySearchLoading && !brewerySearchError">
-              <ul *ngIf="brewerySuggestions.length > 0; else noBrewerySuggestions" id="brewery-suggestions" role="listbox">
-                <li *ngFor="let suggestion of brewerySuggestions">
-                  <button type="button" role="option" (click)="selectBrewery(suggestion)">
+            <ng-container *ngIf="!brewerySearch.loading && !brewerySearch.error">
+              <ul *ngIf="brewerySearch.suggestions.length > 0; else noBrewerySuggestions" id="new-brewery-suggestions" role="listbox">
+                <li *ngFor="let suggestion of brewerySearch.suggestions">
+                  <button type="button" role="option" (click)="selectBrewery(suggestion, 'add')">
                     <strong>{{ suggestion.name }}</strong>
                     <span *ngIf="suggestion.city || suggestion.state || suggestion.country">
                       {{ breweryLocation(suggestion) }}
@@ -139,10 +139,53 @@
             <tr *ngIf="editingBeerId === beer.id" class="edit-row">
               <td colspan="5">
                 <form class="inline-edit-form" (ngSubmit)="saveEdit(beer)" #editBeerForm="ngForm">
-                  <label>
-                    Brauerei
-                    <input name="editBrauerei" type="text" [(ngModel)]="editForm.brauerei" required maxlength="200">
-                  </label>
+                  <div class="brewery-field">
+                    <label for="edit-beer-brewery-{{ beer.id }}">Brauerei</label>
+                    <input
+                      id="edit-beer-brewery-{{ beer.id }}"
+                      name="editBrauerei"
+                      type="text"
+                      role="combobox"
+                      [ngModel]="editForm.brauerei"
+                      (ngModelChange)="searchBreweries($event, 'edit')"
+                      autocomplete="off"
+                      required
+                      maxlength="200"
+                      aria-autocomplete="list"
+                      [attr.aria-expanded]="editBrewerySearch.suggestions.length > 0"
+                      [attr.aria-controls]="'edit-brewery-suggestions-' + beer.id"
+                    >
+                    <div
+                      *ngIf="editBrewerySearch.query.length >= 3 && (editBrewerySearch.loading || editBrewerySearch.error || editBrewerySearch.suggestionQuery === editBrewerySearch.query)"
+                      class="brewery-suggestions"
+                    >
+                      <p *ngIf="editBrewerySearch.loading" class="brewery-suggestion-status" role="status">
+                        Suche nach passenden Brauereien …
+                      </p>
+                      <p *ngIf="editBrewerySearch.error" class="brewery-suggestion-status brewery-suggestion-error" role="alert">
+                        {{ editBrewerySearch.error }}
+                      </p>
+                      <ng-container *ngIf="!editBrewerySearch.loading && !editBrewerySearch.error">
+                        <ul *ngIf="editBrewerySearch.suggestions.length > 0; else noEditBrewerySuggestions" [id]="'edit-brewery-suggestions-' + beer.id" role="listbox">
+                          <li *ngFor="let suggestion of editBrewerySearch.suggestions">
+                            <button type="button" role="option" (click)="selectBrewery(suggestion, 'edit')">
+                              <strong>{{ suggestion.name }}</strong>
+                              <span *ngIf="suggestion.city || suggestion.state || suggestion.country">
+                                {{ breweryLocation(suggestion) }}
+                              </span>
+                              <small *ngIf="suggestion.breweryType">{{ suggestion.breweryType }}</small>
+                            </button>
+                          </li>
+                        </ul>
+                        <ng-template #noEditBrewerySuggestions>
+                          <p class="brewery-suggestion-status" role="status">Keine passenden Vorschläge. Du kannst den Namen manuell eintragen.</p>
+                        </ng-template>
+                        <a class="brewery-suggestion-source" href="https://www.openbrewerydb.org/" target="_blank" rel="noopener noreferrer">
+                          Vorschläge von Open Brewery DB
+                        </a>
+                      </ng-container>
+                    </div>
+                  </div>
                   <label>
                     Biername
                     <input name="editBierName" type="text" [(ngModel)]="editForm.bierName" required maxlength="200">

@@ -3,13 +3,21 @@ import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, debounceTime, distinctUntilChanged, map, of, Subject, switchMap, tap } from 'rxjs';
+import { catchError, debounceTime, map, of, Subject, switchMap, tap } from 'rxjs';
 import { BeerField, BeerInput, BeerService, compareBeerField, IndexedBeer } from './beer.service';
 import { BreweryLookupService, BrewerySuggestion } from './brewery-lookup.service';
 import { LoginPanelComponent } from './login-panel.component';
 
 type AdminSortKey = BeerField;
 type BeerFormState = Omit<BeerInput, 'bewertung'> & { bewertung: number | null };
+
+interface BrewerySearchState {
+  suggestions: BrewerySuggestion[];
+  query: string;
+  suggestionQuery: string;
+  loading: boolean;
+  error: string;
+}
 
 @Component({
   selector: 'app-admin',
@@ -22,6 +30,7 @@ export class AdminComponent {
   private readonly breweryLookup = inject(BreweryLookupService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly brewerySearchTerms = new Subject<string>();
+  private readonly editBrewerySearchTerms = new Subject<string>();
 
   authenticated = false;
   beers: IndexedBeer[] = [];
@@ -38,47 +47,46 @@ export class AdminComponent {
   importing = false;
   message = '';
   errorMessage = '';
-  brewerySuggestions: BrewerySuggestion[] = [];
-  brewerySearchQuery = '';
-  brewerySuggestionQuery = '';
-  brewerySearchLoading = false;
-  brewerySearchError = '';
+  readonly brewerySearch: BrewerySearchState = this.createBrewerySearchState();
+  readonly editBrewerySearch: BrewerySearchState = this.createBrewerySearchState();
 
   constructor() {
-    this.brewerySearchTerms.pipe(
+    this.connectBrewerySearch(this.brewerySearchTerms, this.brewerySearch);
+    this.connectBrewerySearch(this.editBrewerySearchTerms, this.editBrewerySearch);
+  }
+
+  private connectBrewerySearch(terms: Subject<string>, state: BrewerySearchState): void {
+    terms.pipe(
       debounceTime(350),
       map((term) => term.trim()),
-      distinctUntilChanged((first, second) =>
-        first.toLocaleLowerCase('de') === second.toLocaleLowerCase('de')
-      ),
       switchMap((term) => {
         if (term.length < 3) {
-          this.brewerySearchLoading = false;
+          state.loading = false;
           return of({ term, suggestions: [] as BrewerySuggestion[] });
         }
 
-        this.brewerySearchLoading = true;
-        this.brewerySearchError = '';
+        state.loading = true;
+        state.error = '';
         return this.breweryLookup.search(term).pipe(
           tap(() => {
-            this.brewerySearchLoading = false;
+            state.loading = false;
           }),
           map((suggestions) => ({ term, suggestions })),
           catchError((error: unknown) => {
-            this.brewerySearchLoading = false;
-            this.brewerySearchError = this.brewerySearchErrorText(error);
+            state.loading = false;
+            state.error = this.brewerySearchErrorText(error);
             return of({ term, suggestions: [] as BrewerySuggestion[] });
           })
         );
       }),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe(({ term, suggestions }) => {
-      if (term.toLocaleLowerCase('de') !== this.brewerySearchQuery.toLocaleLowerCase('de')) {
+      if (term.toLocaleLowerCase('de') !== state.query.toLocaleLowerCase('de')) {
         return;
       }
 
-      this.brewerySuggestionQuery = term;
-      this.brewerySuggestions = suggestions;
+      state.suggestionQuery = term;
+      state.suggestions = suggestions;
     });
   }
 
@@ -123,23 +131,37 @@ export class AdminComponent {
     return key === this.sortKey ? (this.sortDirection > 0 ? '↑' : '↓') : '';
   }
 
-  searchBreweries(name: string): void {
-    this.form.brauerei = name;
-    this.brewerySearchQuery = name.trim();
-    this.brewerySuggestions = [];
-    this.brewerySuggestionQuery = '';
-    this.brewerySearchError = '';
-    this.brewerySearchTerms.next(name);
+  searchBreweries(name: string, target: 'add' | 'edit' = 'add'): void {
+    const state = target === 'add' ? this.brewerySearch : this.editBrewerySearch;
+    const terms = target === 'add' ? this.brewerySearchTerms : this.editBrewerySearchTerms;
+    if (target === 'edit') {
+      this.editForm.brauerei = name;
+    } else {
+      this.form.brauerei = name;
+    }
+
+    state.query = name.trim();
+    state.suggestions = [];
+    state.suggestionQuery = '';
+    state.error = '';
+    terms.next(name);
   }
 
-  selectBrewery(suggestion: BrewerySuggestion): void {
-    this.form.brauerei = suggestion.name;
-    this.brewerySearchQuery = '';
-    this.brewerySuggestionQuery = '';
-    this.brewerySuggestions = [];
-    this.brewerySearchError = '';
-    this.brewerySearchLoading = false;
-    this.brewerySearchTerms.next('');
+  selectBrewery(suggestion: BrewerySuggestion, target: 'add' | 'edit' = 'add'): void {
+    const state = target === 'add' ? this.brewerySearch : this.editBrewerySearch;
+    const terms = target === 'add' ? this.brewerySearchTerms : this.editBrewerySearchTerms;
+    if (target === 'add') {
+      this.form.brauerei = suggestion.name;
+    } else {
+      this.editForm.brauerei = suggestion.name;
+    }
+
+    state.query = '';
+    state.suggestionQuery = '';
+    state.suggestions = [];
+    state.error = '';
+    state.loading = false;
+    terms.next('');
   }
 
   breweryLocation(suggestion: BrewerySuggestion): string {
@@ -187,6 +209,7 @@ export class AdminComponent {
       art: beer.Art,
       bewertung: Number(beer.Bewertung)
     };
+    this.resetBrewerySearch(this.editBrewerySearch, this.editBrewerySearchTerms);
     this.message = '';
     this.errorMessage = '';
   }
@@ -198,6 +221,7 @@ export class AdminComponent {
 
     this.editingBeerId = null;
     this.editForm = { brauerei: '', bierName: '', art: '', bewertung: null };
+    this.resetBrewerySearch(this.editBrewerySearch, this.editBrewerySearchTerms);
   }
 
   saveEdit(beer: IndexedBeer): void {
@@ -226,6 +250,7 @@ export class AdminComponent {
         this.savingEdit = false;
         this.editingBeerId = null;
         this.editForm = { brauerei: '', bierName: '', art: '', bewertung: null };
+        this.resetBrewerySearch(this.editBrewerySearch, this.editBrewerySearchTerms);
         this.message = 'Biereintrag wurde aktualisiert.';
         this.loadBeers();
       },
@@ -296,6 +321,19 @@ export class AdminComponent {
 
   private errorText(message: string, error: unknown): string {
     return error instanceof Error ? error.message : message;
+  }
+
+  private createBrewerySearchState(): BrewerySearchState {
+    return { suggestions: [], query: '', suggestionQuery: '', loading: false, error: '' };
+  }
+
+  private resetBrewerySearch(state: BrewerySearchState, terms: Subject<string>): void {
+    state.query = '';
+    state.suggestionQuery = '';
+    state.suggestions = [];
+    state.loading = false;
+    state.error = '';
+    terms.next('');
   }
 
   private brewerySearchErrorText(error: unknown): string {
