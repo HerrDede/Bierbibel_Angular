@@ -1,0 +1,102 @@
+<section class="page-card statistics-page">
+  <div class="page-title-row">
+    <div>
+      <p class="eyebrow">Die Sammlung in Zahlen</p>
+      <h1>Statistiken</h1>
+      <p class="page-description">Ein Überblick über Bewertungen, Biersorten und die bestbewerteten Brauereien.</p>
+    </div>
+    <button class="button button-quiet" type="button" (click)="loadBeers()" [disabled]="loading">
+      <span aria-hidden="true" class="refresh-icon">↻</span>
+      {{ loading ? 'Lädt …' : 'Aktualisieren' }}
+    </button>
+  </div>
+
+  <p *ngIf="errorMessage" class="status-message error-message" role="alert">
+    {{ errorMessage }}
+    <button type="button" (click)="loadBeers()">Erneut versuchen</button>
+  </p>
+  <p *ngIf="loading && beers.length === 0 && !errorMessage" class="status-message" role="status">
+    Statistiken werden geladen …
+  </p>
+
+  <ng-container *ngIf="!errorMessage || beers.length > 0">
+    <div class="statistics-summary" aria-label="Sammlung im Überblick">
+      <article class="summary-card">
+        <span class="summary-label">Biere in der Liste</span>
+        <strong>{{ beers.length }}</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Durchschnitt</span>
+        <strong>{{ formatScore(averageScore) }} <small *ngIf="averageScore !== null">Punkte</small></strong>
+      </article>
+      <article class="summary-card best-beer-card">
+        <span class="summary-label">Höchste Bewertung</span>
+        <ng-container *ngIf="topRatedBeer as topBeer; else noRatedBeer">
+          <strong>{{ formatScore(topBeer.score) }} <small>Punkte</small></strong>
+          <span class="summary-detail">{{ topBeer.beer.BierName }} · {{ topBeer.beer.Brauerei }}</span>
+        </ng-container>
+        <ng-template #noRatedBeer><strong>–</strong></ng-template>
+      </article>
+    </div>
+
+    <div class="statistics-grid">
+      <section class="statistics-panel" aria-labelledby="score-distribution-heading">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Bewertungen</p>
+            <h2 id="score-distribution-heading">Punkteverteilung</h2>
+          </div>
+          <span class="count-pill">{{ ratedBeers.length }} bewertet</span>
+        </div>
+
+        <div class="score-bands" *ngIf="ratedBeers.length > 0; else noScores">
+          <div class="score-band" *ngFor="let band of scoreBands">
+            <span class="band-label">{{ band.label }}</span>
+            <div class="band-track" role="img" [attr.aria-label]="band.label + ': ' + band.count + ' Biere'">
+              <span class="band-fill" [style.width]="barWidth(band.count, maxScoreBandCount)"></span>
+            </div>
+            <strong>{{ band.count }}</strong>
+          </div>
+        </div>
+        <ng-template #noScores><p class="empty-statistic">Noch keine bewerteten Biere vorhanden.</p></ng-template>
+      </section>
+
+      <section class="statistics-panel" aria-labelledby="brewery-leaderboard-heading">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Durchschnitt pro Brauerei</p>
+            <h2 id="brewery-leaderboard-heading">Brauerei-Rangliste</h2>
+          </div>
+          <span class="count-pill">Top {{ breweries.length }}</span>
+        </div>
+
+        <ol class="leaderboard" *ngIf="breweries.length > 0; else noBreweries">
+          <li *ngFor="let brewery of breweries; let index = index">
+            <span class="rank-number">{{ index + 1 }}</span>
+            <span class="leader-name">{{ brewery.name }}<small>{{ brewery.count }} {{ brewery.count === 1 ? 'Bier' : 'Biere' }}</small></span>
+            <strong>{{ formatScore(brewery.average) }}</strong>
+          </li>
+        </ol>
+        <ng-template #noBreweries><p class="empty-statistic">Noch keine Brauereien vorhanden.</p></ng-template>
+      </section>
+    </div>
+
+    <section class="statistics-panel category-panel" aria-labelledby="category-averages-heading">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Durchschnitt pro Biersorte</p>
+          <h2 id="category-averages-heading">Sorten im Vergleich</h2>
+        </div>
+        <span class="count-pill">{{ categories.length }} Sorten</span>
+      </div>
+      <div class="category-grid" *ngIf="categories.length > 0; else noCategories">
+        <div class="category-card" *ngFor="let category of categories">
+          <span>{{ category.name }}</span>
+          <strong>{{ formatScore(category.average) }}</strong>
+          <small>{{ category.count }} {{ category.count === 1 ? 'Bier' : 'Biere' }}</small>
+        </div>
+      </div>
+      <ng-template #noCategories><p class="empty-statistic">Noch keine Sorten vorhanden.</p></ng-template>
+    </section>
+  </ng-container>
+</section>
