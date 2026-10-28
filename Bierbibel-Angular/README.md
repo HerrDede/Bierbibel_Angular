@@ -17,7 +17,7 @@ npm start
 
 - `/` — browse all beers, search and sort every column, see the latest entry and total, and open brewery image search.
 - `/anmeldung` — sign in and mark or unmark beers for review.
-- `/admin` — sign in, add, edit, and delete beers. When the database is empty, the admin can import the bundled starting list once.
+- `/admin` — sign in, add, edit, and delete beers. The new-beer form suggests matching brewery names from Open Brewery DB. When the database is empty, the admin can import the bundled starting list once.
 
 ## Cloudflare Pages setup
 

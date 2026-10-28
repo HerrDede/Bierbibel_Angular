@@ -205,7 +205,8 @@ input:focus-visible {
 }
 
 .login-card label,
-.beer-form label {
+.beer-form label,
+.brewery-field > label {
   display: grid;
   gap: 7px;
   color: var(--label-text);
@@ -214,7 +215,8 @@ input:focus-visible {
 }
 
 .login-card input,
-.beer-form input {
+.beer-form input,
+.brewery-field > input {
   width: 100%;
   min-height: 43px;
   padding: 9px 11px;
@@ -224,6 +226,96 @@ input:focus-visible {
   color: var(--ink);
   font: inherit;
   font-weight: 400;
+}
+
+.brewery-field {
+  position: relative;
+  min-width: 0;
+}
+
+.brewery-field:focus-within {
+  z-index: 5;
+}
+
+.brewery-suggestions {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 5px);
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  box-shadow: 0 10px 24px rgb(20 35 33 / 18%);
+}
+
+.brewery-suggestions ul {
+  max-height: 260px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+}
+
+.brewery-suggestions li + li {
+  border-top: 1px solid var(--line-subtle);
+}
+
+.brewery-suggestions li button {
+  display: grid;
+  width: 100%;
+  gap: 3px;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+.brewery-suggestions li button:hover,
+.brewery-suggestions li button:focus-visible {
+  background: var(--surface-tint);
+}
+
+.brewery-suggestions li button strong {
+  color: var(--pine);
+  font-size: 0.79rem;
+}
+
+.brewery-suggestions li button span,
+.brewery-suggestions li button small {
+  color: var(--muted);
+  font-size: 0.69rem;
+}
+
+.brewery-suggestion-status {
+  margin: 0;
+  padding: 11px;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.brewery-suggestion-error {
+  color: var(--error-text);
+}
+
+.brewery-suggestion-source {
+  display: block;
+  padding: 7px 10px;
+  border-top: 1px solid var(--line-subtle);
+  color: var(--muted);
+  font-size: 0.66rem;
+  text-align: right;
+  text-decoration: none;
+}
+
+.brewery-suggestion-source:hover {
+  color: var(--pine);
+  text-decoration: underline;
 }
 
 .login-card .button {

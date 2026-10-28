@@ -1,7 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { catchError, debounceTime, distinctUntilChanged, map, of, Subject, switchMap, tap } from 'rxjs';
 import { BeerField, BeerInput, BeerService, compareBeerField, IndexedBeer } from './beer.service';
+import { BreweryLookupService, BrewerySuggestion } from './brewery-lookup.service';
 import { LoginPanelComponent } from './login-panel.component';
 
 type AdminSortKey = BeerField;
@@ -15,6 +19,9 @@ type BeerFormState = Omit<BeerInput, 'bewertung'> & { bewertung: number | null }
 })
 export class AdminComponent {
   private readonly beerService = inject(BeerService);
+  private readonly breweryLookup = inject(BreweryLookupService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly brewerySearchTerms = new Subject<string>();
 
   authenticated = false;
   beers: IndexedBeer[] = [];
@@ -31,6 +38,49 @@ export class AdminComponent {
   importing = false;
   message = '';
   errorMessage = '';
+  brewerySuggestions: BrewerySuggestion[] = [];
+  brewerySearchQuery = '';
+  brewerySuggestionQuery = '';
+  brewerySearchLoading = false;
+  brewerySearchError = '';
+
+  constructor() {
+    this.brewerySearchTerms.pipe(
+      debounceTime(350),
+      map((term) => term.trim()),
+      distinctUntilChanged((first, second) =>
+        first.toLocaleLowerCase('de') === second.toLocaleLowerCase('de')
+      ),
+      switchMap((term) => {
+        if (term.length < 3) {
+          this.brewerySearchLoading = false;
+          return of({ term, suggestions: [] as BrewerySuggestion[] });
+        }
+
+        this.brewerySearchLoading = true;
+        this.brewerySearchError = '';
+        return this.breweryLookup.search(term).pipe(
+          tap(() => {
+            this.brewerySearchLoading = false;
+          }),
+          map((suggestions) => ({ term, suggestions })),
+          catchError((error: unknown) => {
+            this.brewerySearchLoading = false;
+            this.brewerySearchError = this.brewerySearchErrorText(error);
+            return of({ term, suggestions: [] as BrewerySuggestion[] });
+          })
+        );
+      }),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(({ term, suggestions }) => {
+      if (term.toLocaleLowerCase('de') !== this.brewerySearchQuery.toLocaleLowerCase('de')) {
+        return;
+      }
+
+      this.brewerySuggestionQuery = term;
+      this.brewerySuggestions = suggestions;
+    });
+  }
 
   get visibleBeers(): IndexedBeer[] {
     const query = this.searchTerm.trim().toLocaleLowerCase('de');
@@ -71,6 +121,31 @@ export class AdminComponent {
 
   sortIndicator(key: AdminSortKey): string {
     return key === this.sortKey ? (this.sortDirection > 0 ? '↑' : '↓') : '';
+  }
+
+  searchBreweries(name: string): void {
+    this.form.brauerei = name;
+    this.brewerySearchQuery = name.trim();
+    this.brewerySuggestions = [];
+    this.brewerySuggestionQuery = '';
+    this.brewerySearchError = '';
+    this.brewerySearchTerms.next(name);
+  }
+
+  selectBrewery(suggestion: BrewerySuggestion): void {
+    this.form.brauerei = suggestion.name;
+    this.brewerySearchQuery = '';
+    this.brewerySuggestionQuery = '';
+    this.brewerySuggestions = [];
+    this.brewerySearchError = '';
+    this.brewerySearchLoading = false;
+    this.brewerySearchTerms.next('');
+  }
+
+  breweryLocation(suggestion: BrewerySuggestion): string {
+    return [suggestion.city, suggestion.state, suggestion.country]
+      .filter((part): part is string => part !== null && part.length > 0)
+      .join(', ');
   }
 
   addBeer(): void {
@@ -221,5 +296,15 @@ export class AdminComponent {
 
   private errorText(message: string, error: unknown): string {
     return error instanceof Error ? error.message : message;
+  }
+
+  private brewerySearchErrorText(error: unknown): string {
+    if (error instanceof HttpErrorResponse) {
+      return `Brauereivorschläge sind gerade nicht verfügbar (HTTP ${error.status}).`;
+    }
+
+    return error instanceof Error
+      ? error.message
+      : 'Brauereivorschläge sind gerade nicht verfügbar.';
   }
 }
