@@ -72,7 +72,8 @@ export class MapComponent implements AfterViewInit, OnDestroy {
     }
 
     try {
-      const leaflet = await import('leaflet');
+      const leafletModule = await import('leaflet');
+      const leaflet = leafletModule.default;
       if (this.destroyed || !this.mapElement) {
         return;
       }
