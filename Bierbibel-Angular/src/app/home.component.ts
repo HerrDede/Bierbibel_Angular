@@ -86,18 +86,13 @@ export class HomeComponent {
     return `https://www.google.com/search?tbm=isch&q=${query}`;
   }
 
-  googleMapsUrl(beer: IndexedBeer): string {
-    const query = encodeURIComponent(this.breweryMapQuery(beer));
-    return `https://www.google.com/maps/search/?api=1&query=${query}`;
-  }
-
   appleMapsUrl(beer: IndexedBeer): string {
     const query = encodeURIComponent(this.breweryMapQuery(beer));
     return `https://maps.apple.com/?q=${query}`;
   }
 
   private breweryMapQuery(beer: IndexedBeer): string {
-    return beer.Adresse ? `${beer.Brauerei}, ${beer.Adresse}` : beer.Brauerei;
+    return beer.Adresse ? `${beer.Brauerei}, ${beer.Adresse}` : `Brauerei ${beer.Brauerei}`;
   }
 
   rating(value: string | number): string | number {
