@@ -1,10 +1,6 @@
 <section class="page-card statistics-page">
   <div class="page-title-row">
-    <div>
-      <p class="eyebrow">Die Sammlung in Zahlen</p>
-      <h1>Statistiken</h1>
-      <p class="page-description">Ein Überblick über gültige Bewertungen, beliebte Biersorten und die meistbewerteten Brauereien.</p>
-    </div>
+    <h1>Statistiken</h1>
     <button class="button button-quiet" type="button" (click)="loadBeers()" [disabled]="loading">
       <span aria-hidden="true" class="refresh-icon">↻</span>
       {{ loading ? 'Lädt …' : 'Aktualisieren' }}
@@ -65,7 +61,10 @@
         <ol class="leaderboard" *ngIf="breweries.length > 0; else noBreweries">
           <li *ngFor="let brewery of breweries; let index = index">
             <span class="rank-number">{{ index + 1 }}</span>
-            <span class="leader-name">{{ brewery.name }}<small>Ø {{ formatScore(brewery.average) }} Punkte</small></span>
+            <span class="leader-name">
+              {{ brewery.name }}
+              <small>Ø {{ formatScore(brewery.average) }} · Höchstwert {{ formatScore(brewery.highest) }}</small>
+            </span>
             <strong>{{ brewery.count }} <small>{{ brewery.count === 1 ? 'Bier' : 'Biere' }}</small></strong>
           </li>
         </ol>

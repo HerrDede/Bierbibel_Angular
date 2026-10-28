@@ -16,6 +16,7 @@ interface ScoreBand {
 interface AverageEntry {
   name: string;
   average: number;
+  highest: number;
   count: number;
 }
 
@@ -120,12 +121,13 @@ export class StatisticsComponent {
   }
 
   private averagesBy(getGroup: (beer: IndexedBeer) => string): AverageEntry[] {
-    const groups = new Map<string, { total: number; count: number }>();
+    const groups = new Map<string, { total: number; highest: number; count: number }>();
 
     for (const { beer, score } of this.ratedBeers) {
       const name = getGroup(beer).trim() || 'Ohne Angabe';
-      const group = groups.get(name) ?? { total: 0, count: 0 };
+      const group = groups.get(name) ?? { total: 0, highest: Number.NEGATIVE_INFINITY, count: 0 };
       group.total += score;
+      group.highest = Math.max(group.highest, score);
       group.count += 1;
       groups.set(name, group);
     }
@@ -133,6 +135,7 @@ export class StatisticsComponent {
     return Array.from(groups, ([name, group]) => ({
       name,
       average: group.total / group.count,
+      highest: group.highest,
       count: group.count
     }));
   }

@@ -8,7 +8,12 @@
 }
 
 .statistics-page > .page-title-row {
+  align-items: center;
   margin-bottom: 0;
+}
+
+.statistics-page > .page-title-row h1 {
+  margin: 0;
 }
 
 .statistics-summary {
@@ -254,6 +259,16 @@
 @media (max-width: 560px) {
   .statistics-page {
     gap: 14px;
+  }
+
+  .statistics-page > .page-title-row {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .statistics-page > .page-title-row h1 {
+    font-size: 1.8rem;
   }
 
   .statistics-summary {
