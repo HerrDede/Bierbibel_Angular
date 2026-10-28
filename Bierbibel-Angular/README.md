@@ -16,9 +16,8 @@ npm start
 ## Pages and features
 
 - `/` — browse all beers, search and sort every column, see the latest entry and total, and open brewery image search.
-- `/karte` — view brewery locations on an OpenStreetMap map. New brewery names are geocoded once and locations are stored in D1.
 - `/anmeldung` — sign in and mark or unmark beers for review.
-- `/admin` — sign in, add, edit, and delete beers; geocode existing brewery names for the map. When the database is empty, the admin can import the bundled starting list once.
+- `/admin` — sign in, add, edit, and delete beers. When the database is empty, the admin can import the bundled starting list once.
 
 ## Cloudflare Pages setup
 
@@ -32,10 +31,9 @@ The Pages project should use:
 Add these as **Secrets** in Pages project **Settings → Variables and Secrets** for the production environment (and preview too, if you use previews):
 
 - `ADMIN_PASSWORD` — a unique, randomly generated password of at least 16 characters.
-- `GEOAPIFY_API_KEY` — the API key for server-side brewery geocoding.
 - `SESSION_SECRET` — a separate random secret of at least 32 characters, used to sign sessions. Generate one with `openssl rand -hex 32`.
 
-Do not put these secrets in Angular source, Git, or ordinary client-visible variables. Redeploy Pages after changing bindings or secrets so the Functions receive them.
+Do not put either secret in Angular source, Git, or ordinary client-visible variables. Redeploy Pages after changing bindings or secrets so the Functions receive them.
 
 ## D1 setup and initial import
 
@@ -45,8 +43,6 @@ The Functions expect the table `Bierliste` to have the columns `Brauerei`, `Bier
 ALTER TABLE "Bierliste"
 ADD COLUMN "marked" INTEGER NOT NULL DEFAULT 0;
 ```
-
-The brewery map also needs the `BrauereiStandorte` table. Run [migration 0002](./migrations/0002_brewery_locations.sql) once against the same D1 database. After deployment, the existing breweries are geocoded in small batches when an administrator first signs in at `/admin`; the **Unbearbeitete Standorte suchen** button can retry after a provider failure. When a new beer is added, the server geocodes its brewery if no location is stored yet. Successful matches and no-result responses are cached in D1 to avoid repeat API calls. The Geoapify key stays server-side; map tiles are provided by OpenStreetMap with attribution.
 
 After deploying the Functions and configuring the secrets:
 

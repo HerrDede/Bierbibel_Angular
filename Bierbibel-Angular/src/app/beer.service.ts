@@ -21,32 +21,6 @@ export interface BeerInput {
   bewertung: number;
 }
 
-export interface BeerWriteResult {
-  locationStatus: 'found' | 'not_found' | 'unavailable';
-}
-
-export interface BreweryMapEntry {
-  name: string;
-  address: string | null;
-  latitude: number | null;
-  longitude: number | null;
-  locationStatus: 'found' | 'not_found' | 'pending';
-  beerCount: number;
-}
-
-export interface BreweryMapResponse {
-  breweries: BreweryMapEntry[];
-  locatedCount: number;
-  missingCount: number;
-}
-
-export interface GeocodeBatchResult {
-  processed: number;
-  remaining: number;
-  found: number;
-  notFound: number;
-}
-
 export type BeerField = 'Brauerei' | 'BierName' | 'Art' | 'Bewertung';
 
 interface ApiBeer extends BeerEntry {
@@ -97,26 +71,16 @@ export class BeerService {
     );
   }
 
-  addBeer(beer: BeerInput): Observable<BeerWriteResult> {
-    return this.http.post<BeerWriteResult>('/api/beers', beer).pipe(
+  addBeer(beer: BeerInput): Observable<void> {
+    return this.http.post('/api/beers', beer).pipe(
+      map(() => undefined),
       catchError((error: unknown) => throwError(() => errorFromResponse(error)))
     );
   }
 
-  updateBeer(id: number, beer: BeerInput): Observable<BeerWriteResult> {
-    return this.http.put<BeerWriteResult>(`/api/beers/${id}`, beer).pipe(
-      catchError((error: unknown) => throwError(() => errorFromResponse(error)))
-    );
-  }
-
-  loadBreweryLocations(): Observable<BreweryMapResponse> {
-    return this.http.get<BreweryMapResponse>('/api/map/breweries').pipe(
-      catchError((error: unknown) => throwError(() => errorFromResponse(error)))
-    );
-  }
-
-  geocodeMissingBreweries(): Observable<GeocodeBatchResult> {
-    return this.http.post<GeocodeBatchResult>('/api/admin/geocode', {}).pipe(
+  updateBeer(id: number, beer: BeerInput): Observable<void> {
+    return this.http.put(`/api/beers/${id}`, beer).pipe(
+      map(() => undefined),
       catchError((error: unknown) => throwError(() => errorFromResponse(error)))
     );
   }

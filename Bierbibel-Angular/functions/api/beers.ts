@@ -1,4 +1,3 @@
-import { ensureBreweryLocation } from '../_geocoding';
 import {
   errorResponse,
   isRecord,
@@ -56,17 +55,9 @@ export async function onRequestPost({ request, env }: PagesContext): Promise<Res
     await env.Bierliste.prepare(
       'INSERT INTO "Bierliste" ("Brauerei", "Biername", "Sorte", "Bewertung", "marked") VALUES (?, ?, ?, ?, 0)'
     ).bind(beer.Brauerei.trim(), beer.BierName.trim(), beer.Art.trim(), beer.Bewertung).run();
+    return jsonResponse({ ok: true }, 201);
   } catch (error: unknown) {
     console.error('Could not add a beer to D1.', error);
     return errorResponse('Das Bier konnte nicht in der Datenbank gespeichert werden.', 500);
   }
-
-  let locationStatus: 'found' | 'not_found' | 'unavailable' = 'unavailable';
-  try {
-    locationStatus = await ensureBreweryLocation(env, beer.Brauerei.trim());
-  } catch (error: unknown) {
-    console.error('Beer was saved but its brewery location could not be stored.', error);
-  }
-
-  return jsonResponse({ ok: true, locationStatus }, 201);
 }

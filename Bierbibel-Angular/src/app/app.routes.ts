@@ -1,13 +1,11 @@
 import { Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { HomeComponent } from './home.component';
-import { MapComponent } from './map.component';
 import { ReviewComponent } from './review.component';
 import { StatisticsComponent } from './statistics.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'BierBibel — Bierliste' },
-  { path: 'karte', component: MapComponent, title: 'BierBibel — Brauereikarte' },
   { path: 'statistiken', component: StatisticsComponent, title: 'BierBibel — Statistiken' },
   { path: 'anmeldung', component: ReviewComponent, title: 'BierBibel — Neubewertung' },
   { path: 'admin', component: AdminComponent, title: 'BierBibel — Verwaltung' },
