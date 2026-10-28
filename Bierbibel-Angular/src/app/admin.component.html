@@ -86,7 +86,7 @@
           Bewertung
           <input name="bewertung" type="number" step="0.1" inputmode="decimal" [(ngModel)]="form.bewertung" required>
         </label>
-        <button class="button button-gold submit-button" type="submit" [disabled]="beerForm.invalid || saving || savingEdit || pendingDeleteId !== null">
+        <button class="button button-gold submit-button" type="submit" [disabled]="beerForm.invalid || saving || savingEdit || savingBulk || pendingDeleteId !== null">
           {{ saving ? 'Wird gespeichert …' : 'Eintrag hinzufügen' }}
         </button>
       </form>
@@ -108,10 +108,96 @@
     </label>
     <p *ngIf="loading && beers.length === 0 && !errorMessage" class="status-message" role="status">Bierliste wird geladen …</p>
 
+    <section *ngIf="selectedBeerIds.size > 0" class="bulk-edit-section" aria-labelledby="bulk-edit-heading">
+      <div class="bulk-edit-heading">
+        <div>
+          <p class="eyebrow">Mehrfachbearbeitung</p>
+          <h2 id="bulk-edit-heading">{{ selectedBeerIds.size }} {{ selectedBeerIds.size === 1 ? 'Eintrag ausgewählt' : 'Einträge ausgewählt' }}</h2>
+        </div>
+        <button class="button button-quiet" type="button" (click)="clearBeerSelection()" [disabled]="savingBulk">
+          Auswahl aufheben
+        </button>
+      </div>
+      <p class="page-description">Wähle einen Brauereivorschlag aus, um Brauereiname und Adresse für alle markierten Einträge zu übernehmen.</p>
+      <div class="bulk-edit-controls">
+        <div class="brewery-field">
+          <label for="bulk-brewery">Brauerei suchen</label>
+          <input
+            id="bulk-brewery"
+            name="bulkBrewery"
+            type="text"
+            role="combobox"
+            [ngModel]="bulkBrewery.name"
+            (ngModelChange)="searchBreweries($event, 'bulk')"
+            [ngModelOptions]="{ standalone: true }"
+            autocomplete="off"
+            aria-autocomplete="list"
+            [attr.aria-expanded]="bulkBrewerySearch.suggestions.length > 0"
+            aria-controls="bulk-brewery-suggestions"
+            placeholder="Name, Stadt oder Straße eingeben …"
+          >
+          <div
+            *ngIf="bulkBrewerySearch.query.length >= 3 && (bulkBrewerySearch.loading || bulkBrewerySearch.error || bulkBrewerySearch.suggestionQuery === bulkBrewerySearch.query)"
+            class="brewery-suggestions"
+          >
+            <p *ngIf="bulkBrewerySearch.loading" class="brewery-suggestion-status" role="status">
+              Suche nach passenden Brauereien …
+            </p>
+            <p *ngIf="bulkBrewerySearch.error" class="brewery-suggestion-status brewery-suggestion-error" role="alert">
+              {{ bulkBrewerySearch.error }}
+            </p>
+            <ng-container *ngIf="!bulkBrewerySearch.loading && !bulkBrewerySearch.error">
+              <ul *ngIf="bulkBrewerySearch.suggestions.length > 0; else noBulkBrewerySuggestions" id="bulk-brewery-suggestions" role="listbox">
+                <li *ngFor="let suggestion of bulkBrewerySearch.suggestions">
+                  <button type="button" role="option" (click)="selectBrewery(suggestion, 'bulk')">
+                    <strong>{{ suggestion.name }}</strong>
+                    <span *ngIf="suggestion.city || suggestion.state || suggestion.country">
+                      {{ breweryLocation(suggestion) }}
+                    </span>
+                    <small *ngIf="suggestion.address">{{ suggestion.address }}</small>
+                  </button>
+                </li>
+              </ul>
+              <ng-template #noBulkBrewerySuggestions>
+                <p class="brewery-suggestion-status" role="status">Keine passenden Vorschläge gefunden.</p>
+              </ng-template>
+              <a class="brewery-suggestion-source" href="https://www.openbrewerydb.org/" target="_blank" rel="noopener noreferrer">
+                Vorschläge von Open Brewery DB
+              </a>
+            </ng-container>
+          </div>
+        </div>
+        <p *ngIf="bulkBrewerySelected" class="bulk-address-preview">
+          {{ bulkBrewery.address || 'Für diesen Vorschlag ist keine Adresse hinterlegt.' }}
+        </p>
+        <button
+          class="button button-gold"
+          type="button"
+          (click)="applyBreweryToSelection()"
+          [disabled]="!bulkBrewerySelected || selectedBeerIds.size > 500 || savingBulk || saving || savingEdit || pendingDeleteId !== null"
+        >
+          {{ savingBulk ? 'Wird aktualisiert …' : 'Ausgewählte Einträge aktualisieren' }}
+        </button>
+      </div>
+      <p *ngIf="selectedBeerIds.size > 500" class="bulk-selection-warning" role="alert">
+        Für eine Aktion können höchstens 500 Einträge ausgewählt werden.
+      </p>
+    </section>
+
     <div class="table-wrap" *ngIf="beers.length">
       <table>
         <thead>
           <tr>
+            <th scope="col" class="selection-column">
+              <input
+                type="checkbox"
+                aria-label="Alle sichtbaren Einträge auswählen"
+                [ngModel]="allVisibleBeersSelected"
+                (ngModelChange)="setVisibleBeerSelection($event)"
+                [ngModelOptions]="{ standalone: true }"
+                [disabled]="savingBulk"
+              >
+            </th>
             <th scope="col"><button type="button" (click)="sortBy('Brauerei')">Brauerei <span>{{ sortIndicator('Brauerei') }}</span></button></th>
             <th scope="col"><button type="button" (click)="sortBy('BierName')">Bier <span>{{ sortIndicator('BierName') }}</span></button></th>
             <th scope="col"><button type="button" (click)="sortBy('Art')">Sorte <span>{{ sortIndicator('Art') }}</span></button></th>
@@ -122,23 +208,33 @@
         <tbody>
           <ng-container *ngFor="let beer of visibleBeers">
             <tr [class.marked]="beer.marked === true">
+              <td class="selection-column">
+                <input
+                  type="checkbox"
+                  [attr.aria-label]="'Eintrag ' + beer.BierName + ' auswählen'"
+                  [ngModel]="selectedBeerIds.has(beer.id)"
+                  (ngModelChange)="toggleBeerSelection(beer.id, $event)"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="savingBulk"
+                >
+              </td>
               <td>{{ beer.Brauerei }}</td>
               <td class="beer-name">{{ beer.BierName }}</td>
               <td>{{ beer.Art }}</td>
               <td>{{ beer.Bewertung }}</td>
               <td>
                 <div class="table-actions">
-                  <button class="table-action table-action-edit" type="button" (click)="editingBeerId === beer.id ? cancelEditing() : startEditing(beer)" [disabled]="saving || savingEdit || pendingDeleteId !== null">
+                  <button class="table-action table-action-edit" type="button" (click)="editingBeerId === beer.id ? cancelEditing() : startEditing(beer)" [disabled]="saving || savingEdit || savingBulk || pendingDeleteId !== null">
                     {{ editingBeerId === beer.id ? 'Abbrechen' : 'Bearbeiten' }}
                   </button>
-                  <button class="table-action table-action-danger" type="button" (click)="deleteBeer(beer)" [disabled]="pendingDeleteId !== null || saving || savingEdit">
+                  <button class="table-action table-action-danger" type="button" (click)="deleteBeer(beer)" [disabled]="pendingDeleteId !== null || saving || savingEdit || savingBulk">
                     {{ pendingDeleteId === beer.id ? 'Wird gelöscht …' : 'Löschen' }}
                   </button>
                 </div>
               </td>
             </tr>
             <tr *ngIf="editingBeerId === beer.id" class="edit-row">
-              <td colspan="5">
+              <td colspan="6">
                 <form class="inline-edit-form" (ngSubmit)="saveEdit(beer)" #editBeerForm="ngForm">
                   <div class="brewery-field">
                     <label for="edit-beer-brewery-{{ beer.id }}">Brauerei</label>
@@ -201,7 +297,7 @@
                     <input name="editBewertung" type="number" step="0.1" inputmode="decimal" [(ngModel)]="editForm.bewertung" required>
                   </label>
                   <div class="inline-edit-actions">
-                    <button class="button button-gold" type="submit" [disabled]="editBeerForm.invalid || savingEdit || saving || pendingDeleteId !== null">
+                    <button class="button button-gold" type="submit" [disabled]="editBeerForm.invalid || savingEdit || saving || savingBulk || pendingDeleteId !== null">
                       {{ savingEdit ? 'Wird gespeichert …' : 'Änderungen speichern' }}
                     </button>
                     <button class="button button-quiet" type="button" (click)="cancelEditing()" [disabled]="savingEdit">Abbrechen</button>
@@ -211,7 +307,7 @@
             </tr>
           </ng-container>
           <tr *ngIf="visibleBeers.length === 0">
-            <td class="empty-state" colspan="5">Keine Biere zu „{{ searchTerm }}“ gefunden.</td>
+            <td class="empty-state" colspan="6">Keine Biere zu „{{ searchTerm }}“ gefunden.</td>
           </tr>
         </tbody>
       </table>

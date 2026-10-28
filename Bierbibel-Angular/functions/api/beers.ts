@@ -21,6 +21,55 @@ export async function onRequestGet({ env }: PagesContext): Promise<Response> {
   }
 }
 
+export async function onRequestPut({ request, env }: PagesContext): Promise<Response> {
+  const originError = requireSameOrigin(request);
+  if (originError) {
+    return originError;
+  }
+
+  const authError = await requireAdmin(request, env);
+  if (authError) {
+    return authError;
+  }
+
+  const payload = await readJson(request);
+  if (payload instanceof Response) {
+    return payload;
+  }
+
+  if (!isRecord(payload)) {
+    return errorResponse('Die Brauereiänderung ist ungültig.', 400);
+  }
+
+  const ids = payload['ids'];
+  const brauerei = payload['brauerei'];
+  const adresse = payload['adresse'];
+  if (!Array.isArray(ids) || ids.length === 0 || ids.length > 500
+    || !ids.every((id) => typeof id === 'number' && Number.isSafeInteger(id) && id > 0)
+    || new Set(ids).size !== ids.length
+    || typeof brauerei !== 'string' || brauerei.trim().length === 0 || brauerei.length > 200
+    || !(adresse === null || (typeof adresse === 'string' && adresse.trim().length > 0 && adresse.length <= 500))) {
+    return errorResponse('Bitte wähle bis zu 500 gültige Einträge und eine gültige Brauerei aus.', 400);
+  }
+
+  const idsJson = JSON.stringify(ids);
+  try {
+    const result = await env.Bierliste.prepare(
+      `UPDATE "Bierliste"
+       SET "Brauerei" = ?, "Adresse" = ?
+       WHERE rowid IN (SELECT value FROM json_each(?))
+         AND (SELECT COUNT(*) FROM "Bierliste" WHERE rowid IN (SELECT value FROM json_each(?))) = ?`
+    ).bind(brauerei.trim(), adresse?.trim() || null, idsJson, idsJson, ids.length).run();
+
+    return result.meta.changes === ids.length
+      ? jsonResponse({ ok: true, updated: result.meta.changes })
+      : errorResponse('Mindestens ein ausgewählter Eintrag wurde nicht gefunden. Bitte lade die Liste neu.', 409);
+  } catch (error: unknown) {
+    console.error('Could not update selected brewery entries in D1.', error);
+    return errorResponse('Die ausgewählten Einträge konnten nicht aktualisiert werden.', 500);
+  }
+}
+
 export async function onRequestPost({ request, env }: PagesContext): Promise<Response> {
   const originError = requireSameOrigin(request);
   if (originError) {

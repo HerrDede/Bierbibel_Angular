@@ -87,6 +87,13 @@ export class BeerService {
     );
   }
 
+  updateBrewery(ids: number[], brauerei: string, adresse: string | null): Observable<void> {
+    return this.http.put('/api/beers', { ids, brauerei, adresse }).pipe(
+      map(() => undefined),
+      catchError((error: unknown) => throwError(() => errorFromResponse(error)))
+    );
+  }
+
   deleteBeer(id: number): Observable<void> {
     return this.http.delete(`/api/beers/${id}`).pipe(
       map(() => undefined),

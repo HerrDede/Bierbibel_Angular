@@ -31,28 +31,35 @@ export class AdminComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly brewerySearchTerms = new Subject<string>();
   private readonly editBrewerySearchTerms = new Subject<string>();
+  private readonly bulkBrewerySearchTerms = new Subject<string>();
 
   authenticated = false;
   beers: IndexedBeer[] = [];
+  readonly selectedBeerIds = new Set<number>();
   searchTerm = '';
   form: BeerFormState = { brauerei: '', bierName: '', art: '', bewertung: null, adresse: null };
   editingBeerId: number | null = null;
   editForm: BeerFormState = { brauerei: '', bierName: '', art: '', bewertung: null, adresse: null };
+  bulkBrewery = { name: '', address: null as string | null };
+  bulkBrewerySelected = false;
   sortKey: AdminSortKey | null = null;
   sortDirection = 1;
   loading = false;
   saving = false;
   savingEdit = false;
+  savingBulk = false;
   pendingDeleteId: number | null = null;
   importing = false;
   message = '';
   errorMessage = '';
   readonly brewerySearch: BrewerySearchState = this.createBrewerySearchState();
   readonly editBrewerySearch: BrewerySearchState = this.createBrewerySearchState();
+  readonly bulkBrewerySearch: BrewerySearchState = this.createBrewerySearchState();
 
   constructor() {
     this.connectBrewerySearch(this.brewerySearchTerms, this.brewerySearch);
     this.connectBrewerySearch(this.editBrewerySearchTerms, this.editBrewerySearch);
+    this.connectBrewerySearch(this.bulkBrewerySearchTerms, this.bulkBrewerySearch);
   }
 
   private connectBrewerySearch(terms: Subject<string>, state: BrewerySearchState): void {
@@ -110,6 +117,11 @@ export class AdminComponent {
     );
   }
 
+  get allVisibleBeersSelected(): boolean {
+    return this.visibleBeers.length > 0
+      && this.visibleBeers.every((beer) => this.selectedBeerIds.has(beer.id));
+  }
+
   setAuthenticated(authenticated: boolean): void {
     this.authenticated = authenticated;
     if (authenticated) {
@@ -131,19 +143,29 @@ export class AdminComponent {
     return key === this.sortKey ? (this.sortDirection > 0 ? '↑' : '↓') : '';
   }
 
-  searchBreweries(name: string, target: 'add' | 'edit' = 'add'): void {
-    const state = target === 'add' ? this.brewerySearch : this.editBrewerySearch;
-    const terms = target === 'add' ? this.brewerySearchTerms : this.editBrewerySearchTerms;
+  searchBreweries(name: string, target: 'add' | 'edit' | 'bulk' = 'add'): void {
+    const state = target === 'add'
+      ? this.brewerySearch
+      : target === 'edit' ? this.editBrewerySearch : this.bulkBrewerySearch;
+    const terms = target === 'add'
+      ? this.brewerySearchTerms
+      : target === 'edit' ? this.editBrewerySearchTerms : this.bulkBrewerySearchTerms;
     if (target === 'edit') {
       if (this.editForm.brauerei !== name) {
         this.editForm.adresse = null;
       }
       this.editForm.brauerei = name;
-    } else {
+    } else if (target === 'add') {
       if (this.form.brauerei !== name) {
         this.form.adresse = null;
       }
       this.form.brauerei = name;
+    } else {
+      if (this.bulkBrewery.name !== name) {
+        this.bulkBrewery.address = null;
+        this.bulkBrewerySelected = false;
+      }
+      this.bulkBrewery.name = name;
     }
 
     state.query = name.trim();
@@ -153,15 +175,22 @@ export class AdminComponent {
     terms.next(name);
   }
 
-  selectBrewery(suggestion: BrewerySuggestion, target: 'add' | 'edit' = 'add'): void {
-    const state = target === 'add' ? this.brewerySearch : this.editBrewerySearch;
-    const terms = target === 'add' ? this.brewerySearchTerms : this.editBrewerySearchTerms;
+  selectBrewery(suggestion: BrewerySuggestion, target: 'add' | 'edit' | 'bulk' = 'add'): void {
+    const state = target === 'add'
+      ? this.brewerySearch
+      : target === 'edit' ? this.editBrewerySearch : this.bulkBrewerySearch;
+    const terms = target === 'add'
+      ? this.brewerySearchTerms
+      : target === 'edit' ? this.editBrewerySearchTerms : this.bulkBrewerySearchTerms;
     if (target === 'add') {
       this.form.brauerei = suggestion.name;
       this.form.adresse = suggestion.address;
-    } else {
+    } else if (target === 'edit') {
       this.editForm.brauerei = suggestion.name;
       this.editForm.adresse = suggestion.address;
+    } else {
+      this.bulkBrewery = { name: suggestion.name, address: suggestion.address };
+      this.bulkBrewerySelected = true;
     }
 
     state.query = '';
@@ -172,6 +201,60 @@ export class AdminComponent {
     terms.next('');
   }
 
+  toggleBeerSelection(id: number, selected: boolean): void {
+    if (selected) {
+      this.selectedBeerIds.add(id);
+    } else {
+      this.selectedBeerIds.delete(id);
+    }
+  }
+
+  setVisibleBeerSelection(selected: boolean): void {
+    for (const beer of this.visibleBeers) {
+      this.toggleBeerSelection(beer.id, selected);
+    }
+  }
+
+  clearBeerSelection(): void {
+    this.selectedBeerIds.clear();
+    this.bulkBrewery = { name: '', address: null };
+    this.bulkBrewerySelected = false;
+    this.resetBrewerySearch(this.bulkBrewerySearch, this.bulkBrewerySearchTerms);
+  }
+
+  applyBreweryToSelection(): void {
+    if (this.savingBulk || this.saving || this.savingEdit || this.pendingDeleteId !== null) {
+      return;
+    }
+
+    const ids = Array.from(this.selectedBeerIds);
+    if (ids.length === 0 || ids.length > 500) {
+      this.errorMessage = 'Wähle mindestens einen und höchstens 500 Einträge aus.';
+      return;
+    }
+
+    if (!this.bulkBrewerySelected || !this.bulkBrewery.name.trim()) {
+      this.errorMessage = 'Bitte wähle zuerst einen Brauereivorschlag aus.';
+      return;
+    }
+
+    this.savingBulk = true;
+    this.message = '';
+    this.errorMessage = '';
+    this.beerService.updateBrewery(ids, this.bulkBrewery.name, this.bulkBrewery.address).subscribe({
+      next: () => {
+        this.savingBulk = false;
+        this.clearBeerSelection();
+        this.message = `Brauerei und Adresse für ${ids.length} ${ids.length === 1 ? 'Eintrag' : 'Einträge'} aktualisiert.`;
+        this.loadBeers();
+      },
+      error: (error: unknown) => {
+        this.savingBulk = false;
+        this.errorMessage = this.errorText('Die ausgewählten Einträge konnten nicht aktualisiert werden.', error);
+      }
+    });
+  }
+
   breweryLocation(suggestion: BrewerySuggestion): string {
     return [suggestion.city, suggestion.state, suggestion.country]
       .filter((part): part is string => part !== null && part.length > 0)
@@ -179,7 +262,7 @@ export class AdminComponent {
   }
 
   addBeer(): void {
-    if (this.saving || this.savingEdit || this.pendingDeleteId !== null || this.form.bewertung === null) {
+    if (this.saving || this.savingEdit || this.savingBulk || this.pendingDeleteId !== null || this.form.bewertung === null) {
       return;
     }
 
@@ -208,7 +291,7 @@ export class AdminComponent {
   }
 
   startEditing(beer: IndexedBeer): void {
-    if (this.saving || this.savingEdit || this.pendingDeleteId !== null) {
+    if (this.saving || this.savingEdit || this.savingBulk || this.pendingDeleteId !== null) {
       return;
     }
 
@@ -236,7 +319,7 @@ export class AdminComponent {
   }
 
   saveEdit(beer: IndexedBeer): void {
-    if (this.savingEdit || this.saving || this.pendingDeleteId !== null || this.editForm.bewertung === null) {
+    if (this.savingEdit || this.saving || this.savingBulk || this.pendingDeleteId !== null || this.editForm.bewertung === null) {
       return;
     }
 
@@ -295,7 +378,7 @@ export class AdminComponent {
   }
 
   deleteBeer(beer: IndexedBeer): void {
-    if (this.pendingDeleteId !== null || this.saving || this.savingEdit
+    if (this.pendingDeleteId !== null || this.saving || this.savingEdit || this.savingBulk
       || !window.confirm(`„${beer.BierName}“ wirklich löschen?`)) {
       return;
     }
@@ -306,6 +389,10 @@ export class AdminComponent {
     this.beerService.deleteBeer(beer.id).subscribe({
       next: () => {
         this.pendingDeleteId = null;
+        this.selectedBeerIds.delete(beer.id);
+        if (this.selectedBeerIds.size === 0) {
+          this.clearBeerSelection();
+        }
         this.message = 'Bier wurde gelöscht.';
         this.loadBeers();
       },
@@ -322,6 +409,16 @@ export class AdminComponent {
     this.beerService.loadBeers().subscribe({
       next: (beers) => {
         this.beers = beers;
+        const hadSelection = this.selectedBeerIds.size > 0;
+        const currentIds = new Set(beers.map((beer) => beer.id));
+        for (const id of this.selectedBeerIds) {
+          if (!currentIds.has(id)) {
+            this.selectedBeerIds.delete(id);
+          }
+        }
+        if (hadSelection && this.selectedBeerIds.size === 0) {
+          this.clearBeerSelection();
+        }
         this.loading = false;
       },
       error: (error: unknown) => {
