@@ -35,9 +35,9 @@ export class AdminComponent {
   authenticated = false;
   beers: IndexedBeer[] = [];
   searchTerm = '';
-  form: BeerFormState = { brauerei: '', bierName: '', art: '', bewertung: null };
+  form: BeerFormState = { brauerei: '', bierName: '', art: '', bewertung: null, adresse: null };
   editingBeerId: number | null = null;
-  editForm: BeerFormState = { brauerei: '', bierName: '', art: '', bewertung: null };
+  editForm: BeerFormState = { brauerei: '', bierName: '', art: '', bewertung: null, adresse: null };
   sortKey: AdminSortKey | null = null;
   sortDirection = 1;
   loading = false;
@@ -135,8 +135,14 @@ export class AdminComponent {
     const state = target === 'add' ? this.brewerySearch : this.editBrewerySearch;
     const terms = target === 'add' ? this.brewerySearchTerms : this.editBrewerySearchTerms;
     if (target === 'edit') {
+      if (this.editForm.brauerei !== name) {
+        this.editForm.adresse = null;
+      }
       this.editForm.brauerei = name;
     } else {
+      if (this.form.brauerei !== name) {
+        this.form.adresse = null;
+      }
       this.form.brauerei = name;
     }
 
@@ -152,8 +158,10 @@ export class AdminComponent {
     const terms = target === 'add' ? this.brewerySearchTerms : this.editBrewerySearchTerms;
     if (target === 'add') {
       this.form.brauerei = suggestion.name;
+      this.form.adresse = suggestion.address;
     } else {
       this.editForm.brauerei = suggestion.name;
+      this.editForm.adresse = suggestion.address;
     }
 
     state.query = '';
@@ -182,11 +190,13 @@ export class AdminComponent {
       brauerei: this.form.brauerei.trim(),
       bierName: this.form.bierName.trim(),
       art: this.form.art.trim(),
-      bewertung: this.form.bewertung
+      bewertung: this.form.bewertung,
+      adresse: this.form.adresse
     }).subscribe({
       next: () => {
         this.saving = false;
-        this.form = { brauerei: '', bierName: '', art: '', bewertung: null };
+        this.form = { brauerei: '', bierName: '', art: '', bewertung: null, adresse: null };
+        this.resetBrewerySearch(this.brewerySearch, this.brewerySearchTerms);
         this.message = 'Bier wurde hinzugefügt.';
         this.loadBeers();
       },
@@ -207,7 +217,8 @@ export class AdminComponent {
       brauerei: beer.Brauerei,
       bierName: beer.BierName,
       art: beer.Art,
-      bewertung: Number(beer.Bewertung)
+      bewertung: Number(beer.Bewertung),
+      adresse: beer.Adresse ?? null
     };
     this.resetBrewerySearch(this.editBrewerySearch, this.editBrewerySearchTerms);
     this.message = '';
@@ -220,7 +231,7 @@ export class AdminComponent {
     }
 
     this.editingBeerId = null;
-    this.editForm = { brauerei: '', bierName: '', art: '', bewertung: null };
+    this.editForm = { brauerei: '', bierName: '', art: '', bewertung: null, adresse: null };
     this.resetBrewerySearch(this.editBrewerySearch, this.editBrewerySearchTerms);
   }
 
@@ -244,12 +255,13 @@ export class AdminComponent {
       brauerei,
       bierName,
       art,
-      bewertung: this.editForm.bewertung
+      bewertung: this.editForm.bewertung,
+      adresse: this.editForm.adresse
     }).subscribe({
       next: () => {
         this.savingEdit = false;
         this.editingBeerId = null;
-        this.editForm = { brauerei: '', bierName: '', art: '', bewertung: null };
+        this.editForm = { brauerei: '', bierName: '', art: '', bewertung: null, adresse: null };
         this.resetBrewerySearch(this.editBrewerySearch, this.editBrewerySearchTerms);
         this.message = 'Biereintrag wurde aktualisiert.';
         this.loadBeers();

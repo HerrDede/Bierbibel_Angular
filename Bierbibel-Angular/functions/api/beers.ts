@@ -12,7 +12,7 @@ import {
 export async function onRequestGet({ env }: PagesContext): Promise<Response> {
   try {
     const { results } = await env.Bierliste.prepare(
-      'SELECT rowid AS id, "Brauerei", "Biername" AS "BierName", "Sorte" AS "Art", "Bewertung", "marked" FROM "Bierliste" ORDER BY rowid'
+      'SELECT rowid AS id, "Brauerei", "Biername" AS "BierName", "Sorte" AS "Art", "Bewertung", "Adresse", "marked" FROM "Bierliste" ORDER BY rowid'
     ).all();
     return jsonResponse(results);
   } catch (error: unknown) {
@@ -45,7 +45,8 @@ export async function onRequestPost({ request, env }: PagesContext): Promise<Res
     Brauerei: payload['brauerei'],
     BierName: payload['bierName'],
     Art: payload['art'],
-    Bewertung: payload['bewertung']
+    Bewertung: payload['bewertung'],
+    Adresse: payload['adresse']
   };
   if (!validBeer(beer) || typeof beer.Bewertung !== 'number') {
     return errorResponse('Bitte gib eine gültige Brauerei, einen Biernamen, eine Sorte und eine endliche Bewertung ein.', 400);
@@ -53,8 +54,14 @@ export async function onRequestPost({ request, env }: PagesContext): Promise<Res
 
   try {
     await env.Bierliste.prepare(
-      'INSERT INTO "Bierliste" ("Brauerei", "Biername", "Sorte", "Bewertung", "marked") VALUES (?, ?, ?, ?, 0)'
-    ).bind(beer.Brauerei.trim(), beer.BierName.trim(), beer.Art.trim(), beer.Bewertung).run();
+      'INSERT INTO "Bierliste" ("Brauerei", "Biername", "Sorte", "Bewertung", "Adresse", "marked") VALUES (?, ?, ?, ?, ?, 0)'
+    ).bind(
+      beer.Brauerei.trim(),
+      beer.BierName.trim(),
+      beer.Art.trim(),
+      beer.Bewertung,
+      beer.Adresse?.trim() || null
+    ).run();
     return jsonResponse({ ok: true }, 201);
   } catch (error: unknown) {
     console.error('Could not add a beer to D1.', error);

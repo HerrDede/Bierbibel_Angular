@@ -380,6 +380,19 @@ td a:hover {
   text-decoration-color: currentColor;
 }
 
+.alternate-map-link {
+  display: inline-block;
+  margin-left: 7px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.alternate-map-link:hover {
+  color: var(--pine);
+}
+
 .beer-name {
   color: var(--ink);
   font-weight: 600;

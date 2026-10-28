@@ -87,9 +87,14 @@
         <tbody>
           <tr *ngFor="let beer of visibleBeers" [class.marked]="beer.marked === true">
             <td>
-              <a [href]="imageSearchUrl(beer)" target="_blank" rel="noopener noreferrer" (click)="provideHapticFeedback()">{{ beer.Brauerei }}</a>
+              <a [href]="appleMapsUrl(beer)" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Brauerei ' + beer.Brauerei + ' in Apple Karten öffnen'" (click)="provideHapticFeedback()">{{ beer.Brauerei }}</a>
+              <ng-container *ngIf="beer.Adresse">
+                <a class="alternate-map-link" [href]="googleMapsUrl(beer)" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Adresse von ' + beer.Brauerei + ' in Google Maps öffnen'">Google Maps</a>
+              </ng-container>
             </td>
-            <td class="beer-name">{{ beer.BierName }}</td>
+            <td class="beer-name">
+              <a [href]="imageSearchUrl(beer)" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Bildersuche für ' + beer.BierName + ' öffnen'" (click)="provideHapticFeedback()">{{ beer.BierName }}</a>
+            </td>
             <td><span class="style-tag">{{ beer.Art }}</span></td>
             <td class="rating-cell">
               <span class="rating">{{ rating(beer.Bewertung) }}</span>

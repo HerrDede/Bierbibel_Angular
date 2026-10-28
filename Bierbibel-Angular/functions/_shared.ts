@@ -176,12 +176,14 @@ export function validBeer(value: unknown): value is {
   BierName: string;
   Art: string;
   Bewertung: string | number;
+  Adresse?: string | null;
 } {
   if (!isRecord(value)) {
     return false;
   }
 
   const rating = value['Bewertung'];
+  const address = value['Adresse'];
   return typeof value['Brauerei'] === 'string'
     && value['Brauerei'].trim().length > 0
     && value['Brauerei'].length <= 200
@@ -193,5 +195,7 @@ export function validBeer(value: unknown): value is {
     && value['Art'].length <= 200
     && (typeof rating === 'string'
       ? rating.trim().length > 0 && rating.length <= 16
-      : typeof rating === 'number' && Number.isFinite(rating));
+      : typeof rating === 'number' && Number.isFinite(rating))
+    && (address === undefined || address === null
+      || (typeof address === 'string' && address.trim().length > 0 && address.length <= 500));
 }

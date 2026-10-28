@@ -318,6 +318,15 @@ input:focus-visible {
   text-decoration: underline;
 }
 
+.brewery-address-note {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
 .login-card .button {
   margin-top: 7px;
 }

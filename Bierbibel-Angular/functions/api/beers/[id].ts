@@ -47,7 +47,8 @@ export async function onRequestPut({ request, env, params }: PagesContext): Prom
     Brauerei: payload['brauerei'],
     BierName: payload['bierName'],
     Art: payload['art'],
-    Bewertung: payload['bewertung']
+    Bewertung: payload['bewertung'],
+    Adresse: payload['adresse']
   };
   if (!validBeer(beer) || typeof beer.Bewertung !== 'number') {
     return errorResponse('Bitte gib eine gültige Brauerei, einen Biernamen, eine Sorte und eine endliche Bewertung ein.', 400);
@@ -55,8 +56,15 @@ export async function onRequestPut({ request, env, params }: PagesContext): Prom
 
   try {
     const result = await env.Bierliste.prepare(
-      'UPDATE "Bierliste" SET "Brauerei" = ?, "Biername" = ?, "Sorte" = ?, "Bewertung" = ? WHERE rowid = ?'
-    ).bind(beer.Brauerei.trim(), beer.BierName.trim(), beer.Art.trim(), beer.Bewertung, id).run();
+      'UPDATE "Bierliste" SET "Brauerei" = ?, "Biername" = ?, "Sorte" = ?, "Bewertung" = ?, "Adresse" = ? WHERE rowid = ?'
+    ).bind(
+      beer.Brauerei.trim(),
+      beer.BierName.trim(),
+      beer.Art.trim(),
+      beer.Bewertung,
+      beer.Adresse?.trim() || null,
+      id
+    ).run();
     return result.meta.changes === 0
       ? errorResponse('Der Biereintrag wurde nicht gefunden.', 404)
       : jsonResponse({ ok: true });

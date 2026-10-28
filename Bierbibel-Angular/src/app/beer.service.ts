@@ -7,6 +7,7 @@ export interface BeerEntry {
   BierName: string;
   Art: string;
   Bewertung: string | number;
+  Adresse?: string | null;
   marked?: boolean;
 }
 
@@ -19,6 +20,7 @@ export interface BeerInput {
   bierName: string;
   art: string;
   bewertung: number;
+  adresse: string | null;
 }
 
 export type BeerField = 'Brauerei' | 'BierName' | 'Art' | 'Bewertung';

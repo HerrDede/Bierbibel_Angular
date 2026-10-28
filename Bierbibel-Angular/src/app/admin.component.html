@@ -72,6 +72,7 @@
               </a>
             </ng-container>
           </div>
+          <small *ngIf="form.adresse" class="brewery-address-note">Gespeicherte Adresse: {{ form.adresse }}</small>
         </div>
         <label>
           Biername
@@ -185,6 +186,7 @@
                         </a>
                       </ng-container>
                     </div>
+                    <small *ngIf="editForm.adresse" class="brewery-address-note">Gespeicherte Adresse: {{ editForm.adresse }}</small>
                   </div>
                   <label>
                     Biername

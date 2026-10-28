@@ -15,7 +15,7 @@ npm start
 
 ## Pages and features
 
-- `/` — browse all beers, search and sort every column, see the latest entry and total, and open brewery image search.
+- `/` — browse all beers, search and sort every column, see the latest entry and total, search beer images from a beer name, and open saved brewery addresses in Google Maps or Apple Maps.
 - `/anmeldung` — sign in and mark or unmark beers for review.
 - `/admin` — sign in, add, edit, and delete beers. The new-beer form suggests matching brewery names from Open Brewery DB. When the database is empty, the admin can import the bundled starting list once.
 
@@ -37,18 +37,18 @@ Do not put either secret in Angular source, Git, or ordinary client-visible vari
 
 ## D1 setup and initial import
 
-The Functions expect the table `Bierliste` to have the columns `Brauerei`, `Biername`, `Sorte`, and `Bewertung`, plus a SQLite `rowid`. The `rowid` is used as a stable API identifier. The supplied migration adds the shared review marker; run its SQL once in the Cloudflare D1 Console against `bierbibel-db`:
+The Functions expect the table `Bierliste` to have the columns `Brauerei`, `Biername`, `Sorte`, `Bewertung`, `marked`, and `Adresse`, plus a SQLite `rowid`. The `rowid` is used as a stable API identifier. Apply the migrations in order in the Cloudflare D1 Console against `bierbibel-db` before deploying code that uses them. For the existing database, which already has `marked`, run the new address migration:
 
 ```sql
 ALTER TABLE "Bierliste"
-ADD COLUMN "marked" INTEGER NOT NULL DEFAULT 0;
+ADD COLUMN "Adresse" TEXT;
 ```
 
 After deploying the Functions and configuring the secrets:
 
 1. Open `/admin` and sign in with `ADMIN_PASSWORD`.
 2. If the table is empty, click **Startliste importieren**. The server accepts this operation only while the table is empty, so it cannot overwrite an existing list.
-3. The public home page reads the list from D1. Adding, deleting, or marking a beer then updates the shared database and is visible to other visitors.
+3. The public home page reads the list from D1. Adding, editing, deleting, or marking a beer then updates the shared database and is visible to other visitors. Selecting an Open Brewery DB suggestion saves its address; the brewery name then links to Google Maps, with Apple Maps available as an alternative. Existing entries have no address until one is selected while adding or editing.
 
 The import reads the public bundled file `src/assets/biere.json`. It does not import data that existed only in a browser's old `localStorage`.
 
