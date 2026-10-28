@@ -400,9 +400,69 @@ input:focus-visible {
   color: #9b3d2d;
 }
 
+.table-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.table-action-edit {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--pine);
+}
+
 .table-action:disabled {
   cursor: wait;
   opacity: 0.6;
+}
+
+.edit-row td {
+  padding: 14px !important;
+  background: var(--surface-hover);
+}
+
+.inline-edit-form {
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr 1fr 0.7fr auto;
+  align-items: end;
+  gap: 10px;
+  min-width: 720px;
+}
+
+.inline-edit-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--label-text);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.inline-edit-form input {
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+.inline-edit-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.inline-edit-actions .button {
+  min-height: 38px;
+  padding: 0 11px;
+  font-size: 0.72rem;
+  white-space: nowrap;
 }
 
 .form-section {
@@ -494,7 +554,8 @@ input:focus-visible {
 :root[data-theme='dark'] .table-wrap,
 :root[data-theme='dark'] .page-card,
 :root[data-theme='dark'] .login-card input,
-:root[data-theme='dark'] .beer-form input {
+:root[data-theme='dark'] .beer-form input,
+:root[data-theme='dark'] .inline-edit-form input {
   background: var(--surface);
 }
 
@@ -572,6 +633,11 @@ input:focus-visible {
   border-color: #754d43;
   background: #482f2a;
   color: #ffc0a6;
+}
+
+:root[data-theme='dark'] .table-action-edit {
+  background: var(--surface);
+  color: var(--pine);
 }
 
 :root[data-theme='dark'] .table-action:not(.table-action-muted):not(.table-action-danger) {

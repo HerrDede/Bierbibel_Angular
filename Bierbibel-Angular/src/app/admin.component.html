@@ -3,7 +3,7 @@
     <div>
       <p class="eyebrow">Verwaltung</p>
       <h1>Bierliste verwalten</h1>
-      <p class="page-description">Füge Biere hinzu oder entferne vorhandene Einträge aus der Sammlung.</p>
+      <p class="page-description">Füge Biere hinzu, bearbeite vorhandene Einträge oder entferne sie aus der Sammlung.</p>
     </div>
     <span class="count-pill" *ngIf="authenticated">{{ beers.length }} Biere</span>
   </div>
@@ -43,7 +43,7 @@
           Bewertung
           <input name="bewertung" type="number" step="0.1" inputmode="decimal" [(ngModel)]="form.bewertung" required>
         </label>
-        <button class="button button-gold submit-button" type="submit" [disabled]="beerForm.invalid || saving">
+        <button class="button button-gold submit-button" type="submit" [disabled]="beerForm.invalid || saving || savingEdit || pendingDeleteId !== null">
           {{ saving ? 'Wird gespeichert …' : 'Eintrag hinzufügen' }}
         </button>
       </form>
@@ -77,17 +77,52 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let beer of visibleBeers" [class.marked]="beer.marked === true">
-            <td>{{ beer.Brauerei }}</td>
-            <td class="beer-name">{{ beer.BierName }}</td>
-            <td>{{ beer.Art }}</td>
-            <td>{{ beer.Bewertung }}</td>
-            <td>
-              <button class="table-action table-action-danger" type="button" (click)="deleteBeer(beer)" [disabled]="pendingDeleteId !== null">
-                {{ pendingDeleteId === beer.id ? 'Wird gelöscht …' : 'Löschen' }}
-              </button>
-            </td>
-          </tr>
+          <ng-container *ngFor="let beer of visibleBeers">
+            <tr [class.marked]="beer.marked === true">
+              <td>{{ beer.Brauerei }}</td>
+              <td class="beer-name">{{ beer.BierName }}</td>
+              <td>{{ beer.Art }}</td>
+              <td>{{ beer.Bewertung }}</td>
+              <td>
+                <div class="table-actions">
+                  <button class="table-action table-action-edit" type="button" (click)="editingBeerId === beer.id ? cancelEditing() : startEditing(beer)" [disabled]="saving || savingEdit || pendingDeleteId !== null">
+                    {{ editingBeerId === beer.id ? 'Abbrechen' : 'Bearbeiten' }}
+                  </button>
+                  <button class="table-action table-action-danger" type="button" (click)="deleteBeer(beer)" [disabled]="pendingDeleteId !== null || saving || savingEdit">
+                    {{ pendingDeleteId === beer.id ? 'Wird gelöscht …' : 'Löschen' }}
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="editingBeerId === beer.id" class="edit-row">
+              <td colspan="5">
+                <form class="inline-edit-form" (ngSubmit)="saveEdit(beer)" #editBeerForm="ngForm">
+                  <label>
+                    Brauerei
+                    <input name="editBrauerei" type="text" [(ngModel)]="editForm.brauerei" required maxlength="200">
+                  </label>
+                  <label>
+                    Biername
+                    <input name="editBierName" type="text" [(ngModel)]="editForm.bierName" required maxlength="200">
+                  </label>
+                  <label>
+                    Sorte
+                    <input name="editArt" type="text" [(ngModel)]="editForm.art" required maxlength="200">
+                  </label>
+                  <label>
+                    Bewertung
+                    <input name="editBewertung" type="number" step="0.1" inputmode="decimal" [(ngModel)]="editForm.bewertung" required>
+                  </label>
+                  <div class="inline-edit-actions">
+                    <button class="button button-gold" type="submit" [disabled]="editBeerForm.invalid || savingEdit || saving || pendingDeleteId !== null">
+                      {{ savingEdit ? 'Wird gespeichert …' : 'Änderungen speichern' }}
+                    </button>
+                    <button class="button button-quiet" type="button" (click)="cancelEditing()" [disabled]="savingEdit">Abbrechen</button>
+                  </div>
+                </form>
+              </td>
+            </tr>
+          </ng-container>
           <tr *ngIf="visibleBeers.length === 0">
             <td class="empty-state" colspan="5">Keine Biere zu „{{ searchTerm }}“ gefunden.</td>
           </tr>

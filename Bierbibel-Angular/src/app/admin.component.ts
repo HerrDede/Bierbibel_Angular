@@ -20,10 +20,13 @@ export class AdminComponent {
   beers: IndexedBeer[] = [];
   searchTerm = '';
   form: BeerFormState = { brauerei: '', bierName: '', art: '', bewertung: null };
+  editingBeerId: number | null = null;
+  editForm: BeerFormState = { brauerei: '', bierName: '', art: '', bewertung: null };
   sortKey: AdminSortKey | null = null;
   sortDirection = 1;
   loading = false;
   saving = false;
+  savingEdit = false;
   pendingDeleteId: number | null = null;
   importing = false;
   message = '';
@@ -71,7 +74,7 @@ export class AdminComponent {
   }
 
   addBeer(): void {
-    if (this.saving || this.form.bewertung === null) {
+    if (this.saving || this.savingEdit || this.pendingDeleteId !== null || this.form.bewertung === null) {
       return;
     }
 
@@ -93,6 +96,67 @@ export class AdminComponent {
       error: (error: unknown) => {
         this.saving = false;
         this.errorMessage = this.errorText('Das Bier konnte nicht hinzugefügt werden.', error);
+      }
+    });
+  }
+
+  startEditing(beer: IndexedBeer): void {
+    if (this.saving || this.savingEdit || this.pendingDeleteId !== null) {
+      return;
+    }
+
+    this.editingBeerId = beer.id;
+    this.editForm = {
+      brauerei: beer.Brauerei,
+      bierName: beer.BierName,
+      art: beer.Art,
+      bewertung: Number(beer.Bewertung)
+    };
+    this.message = '';
+    this.errorMessage = '';
+  }
+
+  cancelEditing(): void {
+    if (this.savingEdit) {
+      return;
+    }
+
+    this.editingBeerId = null;
+    this.editForm = { brauerei: '', bierName: '', art: '', bewertung: null };
+  }
+
+  saveEdit(beer: IndexedBeer): void {
+    if (this.savingEdit || this.saving || this.pendingDeleteId !== null || this.editForm.bewertung === null) {
+      return;
+    }
+
+    const brauerei = this.editForm.brauerei.trim();
+    const bierName = this.editForm.bierName.trim();
+    const art = this.editForm.art.trim();
+    if (!brauerei || !bierName || !art || !Number.isFinite(this.editForm.bewertung)) {
+      this.errorMessage = 'Bitte fülle alle Felder mit gültigen Werten aus.';
+      return;
+    }
+
+    this.savingEdit = true;
+    this.message = '';
+    this.errorMessage = '';
+    this.beerService.updateBeer(beer.id, {
+      brauerei,
+      bierName,
+      art,
+      bewertung: this.editForm.bewertung
+    }).subscribe({
+      next: () => {
+        this.savingEdit = false;
+        this.editingBeerId = null;
+        this.editForm = { brauerei: '', bierName: '', art: '', bewertung: null };
+        this.message = 'Biereintrag wurde aktualisiert.';
+        this.loadBeers();
+      },
+      error: (error: unknown) => {
+        this.savingEdit = false;
+        this.errorMessage = this.errorText('Der Biereintrag konnte nicht aktualisiert werden.', error);
       }
     });
   }
@@ -119,7 +183,8 @@ export class AdminComponent {
   }
 
   deleteBeer(beer: IndexedBeer): void {
-    if (this.pendingDeleteId !== null || !window.confirm(`„${beer.BierName}“ wirklich löschen?`)) {
+    if (this.pendingDeleteId !== null || this.saving || this.savingEdit
+      || !window.confirm(`„${beer.BierName}“ wirklich löschen?`)) {
       return;
     }
 
