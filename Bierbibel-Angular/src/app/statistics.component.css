@@ -13,7 +13,7 @@
 
 .statistics-summary {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -52,14 +52,6 @@
   font-family: Inter, "Avenir Next", Avenir, "Segoe UI", sans-serif;
   font-size: 0.78rem;
   font-weight: 600;
-}
-
-.summary-detail {
-  overflow: hidden;
-  color: var(--text-secondary);
-  font-size: 0.77rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .statistics-grid {
@@ -186,6 +178,14 @@
 .leaderboard li > strong {
   color: var(--amber-deep);
   font-size: 0.88rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.leaderboard li > strong small {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 500;
 }
 
 .category-panel {
@@ -219,6 +219,7 @@
 .category-card > strong {
   color: var(--pine);
   font-size: 0.82rem;
+  text-align: right;
 }
 
 .category-card > small {
@@ -262,10 +263,6 @@
 
   .summary-card {
     padding: 14px;
-  }
-
-  .best-beer-card {
-    grid-column: 1 / -1;
   }
 
   .statistics-panel {

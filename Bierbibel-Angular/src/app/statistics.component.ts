@@ -34,11 +34,17 @@ export class StatisticsComponent {
   errorMessage = '';
 
   private readonly scoreBandRanges: ReadonlyArray<{ label: string; min: number; max: number }> = [
-    { label: 'Unter 20', min: Number.NEGATIVE_INFINITY, max: 20 },
-    { label: '20–39', min: 20, max: 40 },
-    { label: '40–59', min: 40, max: 60 },
-    { label: '60–79', min: 60, max: 80 },
-    { label: '80 und mehr', min: 80, max: Number.POSITIVE_INFINITY }
+    { label: '10–19', min: 10, max: 20 },
+    { label: '20–29', min: 20, max: 30 },
+    { label: '30–39', min: 30, max: 40 },
+    { label: '40–49', min: 40, max: 50 },
+    { label: '50–59', min: 50, max: 60 },
+    { label: '60–69', min: 60, max: 70 },
+    { label: '70–79', min: 70, max: 80 },
+    { label: '80–84', min: 80, max: 85 },
+    { label: '85–89', min: 85, max: 90 },
+    { label: '90–94', min: 90, max: 95 },
+    { label: '95+', min: 95, max: Number.POSITIVE_INFINITY }
   ];
 
   constructor() {
@@ -53,7 +59,7 @@ export class StatisticsComponent {
       }
 
       const score = Number(rawScore);
-      return Number.isFinite(score) ? [{ beer, score }] : [];
+      return Number.isFinite(score) && score >= 10 ? [{ beer, score }] : [];
     });
   }
 
@@ -62,13 +68,6 @@ export class StatisticsComponent {
     return rated.length
       ? rated.reduce((total, entry) => total + entry.score, 0) / rated.length
       : null;
-  }
-
-  get topRatedBeer(): RatedBeer | null {
-    return this.ratedBeers.reduce<RatedBeer | null>(
-      (top, entry) => top === null || entry.score > top.score ? entry : top,
-      null
-    );
   }
 
   get scoreBands(): ScoreBand[] {
@@ -80,17 +79,11 @@ export class StatisticsComponent {
   }
 
   get categories(): AverageEntry[] {
-    return this.averagesBy((beer) => beer.Art).sort((first, second) =>
-      second.average - first.average || second.count - first.count || first.name.localeCompare(second.name, 'de')
-    );
+    return this.sortByCount(this.averagesBy((beer) => beer.Art));
   }
 
   get breweries(): AverageEntry[] {
-    return this.averagesBy((beer) => beer.Brauerei)
-      .sort((first, second) =>
-        second.average - first.average || second.count - first.count || first.name.localeCompare(second.name, 'de')
-      )
-      .slice(0, 5);
+    return this.sortByCount(this.averagesBy((beer) => beer.Brauerei)).slice(0, 5);
   }
 
   get maxScoreBandCount(): number {
@@ -142,5 +135,11 @@ export class StatisticsComponent {
       average: group.total / group.count,
       count: group.count
     }));
+  }
+
+  private sortByCount(entries: AverageEntry[]): AverageEntry[] {
+    return entries.sort((first, second) =>
+      second.count - first.count || second.average - first.average || first.name.localeCompare(second.name, 'de')
+    );
   }
 }
