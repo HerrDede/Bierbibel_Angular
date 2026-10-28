@@ -1,3 +1,4 @@
+import { ensureBreweryLocation } from '../../_geocoding';
 import {
   errorResponse,
   isRecord,
@@ -57,13 +58,22 @@ export async function onRequestPut({ request, env, params }: PagesContext): Prom
     const result = await env.Bierliste.prepare(
       'UPDATE "Bierliste" SET "Brauerei" = ?, "Biername" = ?, "Sorte" = ?, "Bewertung" = ? WHERE rowid = ?'
     ).bind(beer.Brauerei.trim(), beer.BierName.trim(), beer.Art.trim(), beer.Bewertung, id).run();
-    return result.meta.changes === 0
-      ? errorResponse('Der Biereintrag wurde nicht gefunden.', 404)
-      : jsonResponse({ ok: true });
+    if (result.meta.changes === 0) {
+      return errorResponse('Der Biereintrag wurde nicht gefunden.', 404);
+    }
   } catch (error: unknown) {
     console.error('Could not update beer in D1.', error);
     return errorResponse('Das Bier konnte nicht in der Datenbank aktualisiert werden.', 500);
   }
+
+  let locationStatus: 'found' | 'not_found' | 'unavailable' = 'unavailable';
+  try {
+    locationStatus = await ensureBreweryLocation(env, beer.Brauerei.trim());
+  } catch (error: unknown) {
+    console.error('Beer was updated but its brewery location could not be stored.', error);
+  }
+
+  return jsonResponse({ ok: true, locationStatus });
 }
 
 export async function onRequestPatch({ request, env, params }: PagesContext): Promise<Response> {

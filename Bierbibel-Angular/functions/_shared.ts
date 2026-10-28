@@ -19,6 +19,7 @@ export interface D1Database {
 export interface Env {
   Bierliste: D1Database;
   ADMIN_PASSWORD?: string;
+  GEOAPIFY_API_KEY?: string;
   SESSION_SECRET?: string;
 }
 

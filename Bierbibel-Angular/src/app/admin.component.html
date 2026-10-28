@@ -23,6 +23,15 @@
       </button>
     </section>
 
+    <section *ngIf="beers.length > 0" class="form-section" aria-labelledby="geocode-breweries-heading">
+      <p class="eyebrow">Brauereikarte</p>
+      <h2 id="geocode-breweries-heading">Standorte für bestehende Brauereien suchen</h2>
+      <p class="page-description">Suche noch nicht bearbeitete Brauereinamen und speichere gefundene Standorte für die Karte.</p>
+      <button class="button button-quiet" type="button" (click)="geocodeExistingBreweries()" [disabled]="geocoding || loading || saving || savingEdit || pendingDeleteId !== null">
+        {{ geocoding ? 'Standorte werden gesucht …' : 'Unbearbeitete Standorte suchen' }}
+      </button>
+    </section>
+
     <section class="form-section" aria-labelledby="add-beer-heading">
       <p class="eyebrow">Neuer Eintrag</p>
       <h2 id="add-beer-heading">Bier hinzufügen</h2>

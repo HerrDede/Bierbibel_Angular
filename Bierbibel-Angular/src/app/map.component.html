@@ -1,0 +1,40 @@
+<section class="page-card map-page">
+  <div class="page-title-row map-heading">
+    <div>
+      <p class="eyebrow">Brauereien in der Sammlung</p>
+      <h1>Karte</h1>
+    </div>
+    <button class="button button-quiet" type="button" (click)="loadLocations()" [disabled]="loading">
+      <span aria-hidden="true" class="refresh-icon">↻</span>
+      {{ loading ? 'Lädt …' : 'Aktualisieren' }}
+    </button>
+  </div>
+
+  <p *ngIf="errorMessage" class="status-message error-message" role="alert">
+    {{ errorMessage }}
+    <button type="button" (click)="loadLocations()">Erneut versuchen</button>
+  </p>
+  <p *ngIf="mapErrorMessage" class="status-message error-message" role="alert">{{ mapErrorMessage }}</p>
+  <p *ngIf="loading && breweries.length === 0 && !errorMessage" class="status-message" role="status">
+    Brauereistandorte werden geladen …
+  </p>
+
+  <div class="map-summary" *ngIf="!errorMessage">
+    <span><strong>{{ locatedCount }}</strong> Brauereien auf der Karte</span>
+    <span *ngIf="missingCount > 0"><strong>{{ missingCount }}</strong> ohne gefundenen Standort</span>
+  </div>
+
+  <div class="map-layout">
+    <div #map class="brewery-map" role="region" aria-label="Karte mit Brauereistandorten"></div>
+    <aside class="unlocated-panel" *ngIf="missingCount > 0" aria-labelledby="unlocated-heading">
+      <h2 id="unlocated-heading">Noch ohne Standort</h2>
+      <p>Für diese Brauereien gibt es noch keinen Kartenmarker:</p>
+      <ul>
+        <li *ngFor="let brewery of unlocatedBreweries">
+          {{ brewery.name }}
+          <small>{{ brewery.locationStatus === 'not_found' ? 'Kein Treffer' : 'Noch nicht gesucht' }}</small>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</section>

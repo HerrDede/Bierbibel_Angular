@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BeerField, BeerInput, BeerService, compareBeerField, IndexedBeer } from './beer.service';
+import { BeerField, BeerInput, BeerService, compareBeerField, GeocodeBatchResult, IndexedBeer } from './beer.service';
 import { LoginPanelComponent } from './login-panel.component';
 
 type AdminSortKey = BeerField;
@@ -29,8 +29,14 @@ export class AdminComponent {
   savingEdit = false;
   pendingDeleteId: number | null = null;
   importing = false;
+  geocoding = false;
+  geocodeProcessed = 0;
+  geocodeFound = 0;
+  geocodeNotFound = 0;
   message = '';
   errorMessage = '';
+
+  private geocodeAfterLoad = false;
 
   get visibleBeers(): IndexedBeer[] {
     const query = this.searchTerm.trim().toLocaleLowerCase('de');
@@ -55,6 +61,7 @@ export class AdminComponent {
   setAuthenticated(authenticated: boolean): void {
     this.authenticated = authenticated;
     if (authenticated) {
+      this.geocodeAfterLoad = true;
       this.loadBeers();
     }
   }
@@ -87,10 +94,10 @@ export class AdminComponent {
       art: this.form.art.trim(),
       bewertung: this.form.bewertung
     }).subscribe({
-      next: () => {
+      next: (result) => {
         this.saving = false;
         this.form = { brauerei: '', bierName: '', art: '', bewertung: null };
-        this.message = 'Bier wurde hinzugefügt.';
+        this.message = this.locationMessage('Bier wurde hinzugefügt.', result.locationStatus);
         this.loadBeers();
       },
       error: (error: unknown) => {
@@ -147,11 +154,11 @@ export class AdminComponent {
       art,
       bewertung: this.editForm.bewertung
     }).subscribe({
-      next: () => {
+      next: (result) => {
         this.savingEdit = false;
         this.editingBeerId = null;
         this.editForm = { brauerei: '', bierName: '', art: '', bewertung: null };
-        this.message = 'Biereintrag wurde aktualisiert.';
+        this.message = this.locationMessage('Biereintrag wurde aktualisiert.', result.locationStatus);
         this.loadBeers();
       },
       error: (error: unknown) => {
@@ -173,6 +180,7 @@ export class AdminComponent {
       next: () => {
         this.importing = false;
         this.message = 'Die Startliste wurde in die gemeinsame Datenbank importiert.';
+        this.geocodeAfterLoad = true;
         this.loadBeers();
       },
       error: (error: unknown) => {
@@ -180,6 +188,20 @@ export class AdminComponent {
         this.errorMessage = this.errorText('Die Startliste konnte nicht importiert werden.', error);
       }
     });
+  }
+
+  geocodeExistingBreweries(): void {
+    if (!this.authenticated || this.geocoding || this.loading || this.beers.length === 0) {
+      return;
+    }
+
+    this.geocoding = true;
+    this.geocodeProcessed = 0;
+    this.geocodeFound = 0;
+    this.geocodeNotFound = 0;
+    this.message = '';
+    this.errorMessage = '';
+    this.geocodeNextBatch();
   }
 
   deleteBeer(beer: IndexedBeer): void {
@@ -211,12 +233,52 @@ export class AdminComponent {
       next: (beers) => {
         this.beers = beers;
         this.loading = false;
+        if (this.geocodeAfterLoad) {
+          this.geocodeAfterLoad = false;
+          this.geocodeExistingBreweries();
+        }
       },
       error: (error: unknown) => {
         this.loading = false;
         this.errorMessage = this.errorText('Die Bierliste konnte nicht geladen werden.', error);
       }
     });
+  }
+
+  private geocodeNextBatch(): void {
+    this.beerService.geocodeMissingBreweries().subscribe({
+      next: (result: GeocodeBatchResult) => {
+        this.geocodeProcessed += result.processed;
+        this.geocodeFound += result.found;
+        this.geocodeNotFound += result.notFound;
+
+        if (result.remaining > 0) {
+          this.message = `Standortsuche läuft: ${this.geocodeProcessed} Brauereien bearbeitet, ${result.remaining} noch offen.`;
+          this.geocodeNextBatch();
+          return;
+        }
+
+        this.geocoding = false;
+        this.message = `Standortsuche abgeschlossen: ${this.geocodeFound} gefunden, ${this.geocodeNotFound} ohne Treffer.`;
+      },
+      error: (error: unknown) => {
+        this.geocoding = false;
+        this.errorMessage = this.errorText('Die Standorte konnten nicht vollständig gesucht werden.', error);
+      }
+    });
+  }
+
+  private locationMessage(
+    message: string,
+    status: 'found' | 'not_found' | 'unavailable'
+  ): string {
+    if (status === 'found') {
+      return `${message} Standort ist auf der Karte verfügbar.`;
+    }
+    if (status === 'not_found') {
+      return `${message} Für diese Brauerei wurde keine Adresse gefunden.`;
+    }
+    return `${message} Standortsuche nicht verfügbar; du kannst sie später erneut starten.`;
   }
 
   private errorText(message: string, error: unknown): string {
