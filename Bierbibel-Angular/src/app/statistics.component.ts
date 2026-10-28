@@ -83,7 +83,7 @@ export class StatisticsComponent {
   }
 
   get breweries(): AverageEntry[] {
-    return this.sortByCount(this.averagesBy((beer) => beer.Brauerei)).slice(0, 5);
+    return this.sortByCount(this.averagesBy((beer) => beer.Brauerei)).slice(0, 10);
   }
 
   get maxScoreBandCount(): number {
