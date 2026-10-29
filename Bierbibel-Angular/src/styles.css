@@ -462,6 +462,17 @@ input:focus-visible {
   cursor: wait;
 }
 
+.address-status {
+  color: var(--muted);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.address-status-present {
+  color: var(--success-text);
+  font-weight: 700;
+}
+
 .table-wrap {
   margin-top: 14px;
   overflow-x: auto;

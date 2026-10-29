@@ -202,6 +202,7 @@
             <th scope="col"><button type="button" (click)="sortBy('BierName')">Bier <span>{{ sortIndicator('BierName') }}</span></button></th>
             <th scope="col"><button type="button" (click)="sortBy('Art')">Sorte <span>{{ sortIndicator('Art') }}</span></button></th>
             <th scope="col"><button type="button" (click)="sortBy('Bewertung')">Bewertung <span>{{ sortIndicator('Bewertung') }}</span></button></th>
+            <th scope="col">Adresse</th>
             <th scope="col">Aktion</th>
           </tr>
         </thead>
@@ -223,6 +224,11 @@
               <td>{{ beer.Art }}</td>
               <td>{{ beer.Bewertung }}</td>
               <td>
+                <span class="address-status" [class.address-status-present]="beer.Adresse?.trim()">
+                  {{ beer.Adresse?.trim() ? 'Hinterlegt' : 'Nicht hinterlegt' }}
+                </span>
+              </td>
+              <td>
                 <div class="table-actions">
                   <button class="table-action table-action-edit" type="button" (click)="editingBeerId === beer.id ? cancelEditing() : startEditing(beer)" [disabled]="saving || savingEdit || savingBulk || pendingDeleteId !== null">
                     {{ editingBeerId === beer.id ? 'Abbrechen' : 'Bearbeiten' }}
@@ -234,7 +240,7 @@
               </td>
             </tr>
             <tr *ngIf="editingBeerId === beer.id" class="edit-row">
-              <td colspan="6">
+              <td colspan="7">
                 <form class="inline-edit-form" (ngSubmit)="saveEdit(beer)" #editBeerForm="ngForm">
                   <div class="brewery-field">
                     <label for="edit-beer-brewery-{{ beer.id }}">Brauerei</label>
@@ -307,7 +313,7 @@
             </tr>
           </ng-container>
           <tr *ngIf="visibleBeers.length === 0">
-            <td class="empty-state" colspan="6">Keine Biere zu „{{ searchTerm }}“ gefunden.</td>
+            <td class="empty-state" colspan="7">Keine Biere zu „{{ searchTerm }}“ gefunden.</td>
           </tr>
         </tbody>
       </table>
