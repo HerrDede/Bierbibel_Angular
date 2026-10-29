@@ -20,6 +20,7 @@ export interface Env {
   Bierliste: D1Database;
   ADMIN_PASSWORD?: string;
   SESSION_SECRET?: string;
+  GEOAPIFY_API_KEY?: string;
 }
 
 export interface PagesContext {

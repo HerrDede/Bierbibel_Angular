@@ -1,0 +1,165 @@
+:host {
+  display: block;
+}
+
+.brewery-map-page {
+  display: grid;
+  gap: 18px;
+}
+
+.brewery-map-page > .page-title-row {
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.brewery-map-page h1,
+.brewery-map-page h2 {
+  margin-bottom: 7px;
+}
+
+.map-layout {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+}
+
+.brewery-map {
+  width: 100%;
+  height: min(65vh, 640px);
+  min-height: 360px;
+  background: var(--surface-soft);
+}
+
+.map-attribution {
+  margin: 0;
+  padding: 6px 10px;
+  color: var(--muted);
+  font-size: 0.65rem;
+  text-align: right;
+}
+
+.map-attribution a {
+  color: var(--pine);
+}
+
+.map-warning {
+  padding: 13px 15px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--form-surface);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.map-warning ul {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.brewery-details {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+}
+
+.brewery-details-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 15px;
+}
+
+.brewery-details-heading .eyebrow {
+  margin-bottom: 4px;
+}
+
+.brewery-details-heading h2 {
+  color: var(--pine);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.brewery-address {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.brewery-beer-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-subtle);
+  list-style: none;
+}
+
+.brewery-beer-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-subtle);
+  color: var(--text-secondary);
+}
+
+.brewery-beer-list li > span {
+  display: grid;
+  gap: 3px;
+}
+
+.brewery-beer-list li > span strong {
+  color: var(--ink);
+}
+
+.brewery-beer-list small {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.beer-score {
+  color: var(--pine);
+  white-space: nowrap;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 18px 0 4px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+:host ::ng-deep .leaflet-container {
+  color: #253535;
+  font-family: Inter, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+}
+
+:host ::ng-deep .leaflet-control-attribution {
+  display: none;
+}
+
+:host ::ng-deep .leaflet-control-zoom a {
+  color: #253535;
+}
+
+@media (max-width: 560px) {
+  .brewery-map-page {
+    gap: 14px;
+  }
+
+  .brewery-map {
+    height: 55vh;
+    min-height: 320px;
+  }
+
+  .brewery-details {
+    padding: 16px 13px;
+  }
+}

@@ -16,6 +16,7 @@ npm start
 ## Pages and features
 
 - `/` — browse all beers, search and sort every column, see the latest entry and total, search beer images from a beer name, and open saved brewery addresses in Apple Maps.
+- `/brauereien` — view breweries with saved addresses on a map and select one to see its rated beers.
 - `/anmeldung` — sign in and mark or unmark beers for review.
 - `/admin` — sign in, add, edit, and delete beers; select multiple entries to update their brewery and address from an Open Brewery DB suggestion. Brewery suggestions match brewery names, cities, and addresses. When the database is empty, the admin can import the bundled starting list once.
 
@@ -32,8 +33,9 @@ Add these as **Secrets** in Pages project **Settings → Variables and Secrets**
 
 - `ADMIN_PASSWORD` — a unique, randomly generated password of at least 16 characters.
 - `SESSION_SECRET` — a separate random secret of at least 32 characters, used to sign sessions. Generate one with `openssl rand -hex 32`.
+- `GEOAPIFY_API_KEY` — a Geoapify key used server-side to geocode brewery addresses for the map.
 
-Do not put either secret in Angular source, Git, or ordinary client-visible variables. Redeploy Pages after changing bindings or secrets so the Functions receive them.
+Do not put secrets in Angular source, Git, or ordinary client-visible variables. Redeploy Pages after changing bindings or secrets so the Functions receive them.
 
 ## D1 setup and initial import
 

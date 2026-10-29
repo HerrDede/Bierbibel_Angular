@@ -6,6 +6,11 @@ import { StatisticsComponent } from './statistics.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'BierBibel — Bierliste' },
+  {
+    path: 'brauereien',
+    loadComponent: () => import('./brewery-map.component').then((component) => component.BreweryMapComponent),
+    title: 'BierBibel — Brauereikarte'
+  },
   { path: 'statistiken', component: StatisticsComponent, title: 'BierBibel — Statistiken' },
   { path: 'anmeldung', component: ReviewComponent, title: 'BierBibel — Neubewertung' },
   { path: 'admin', component: AdminComponent, title: 'BierBibel — Verwaltung' },

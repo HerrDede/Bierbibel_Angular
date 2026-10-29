@@ -1,0 +1,61 @@
+<section class="page-card brewery-map-page">
+  <div class="page-title-row">
+    <div>
+      <p class="eyebrow">Entdecken</p>
+      <h1>Brauereikarte</h1>
+      <p class="page-description">Brauereien mit gespeicherter Adresse auf der Karte. Wähle eine Markierung, um die bewerteten Biere zu sehen.</p>
+    </div>
+    <button class="button button-quiet" type="button" (click)="loadBeers()" [disabled]="loading || geocoding">
+      <span aria-hidden="true" class="refresh-icon">↻</span>
+      {{ loading || geocoding ? 'Lädt …' : 'Aktualisieren' }}
+    </button>
+  </div>
+
+  <p *ngIf="errorMessage" class="status-message error-message" role="alert">
+    {{ errorMessage }}
+    <button type="button" (click)="loadBeers()">Erneut versuchen</button>
+  </p>
+  <p *ngIf="loading && beers.length === 0 && !errorMessage" class="status-message" role="status">
+    Brauereien werden geladen …
+  </p>
+  <p *ngIf="geocoding" class="status-message" role="status">
+    {{ locations.length }} {{ locations.length === 1 ? 'Adresse wird' : 'Adressen werden' }} für die Karte gesucht …
+  </p>
+  <p *ngIf="locations.length === 0 && !loading && beers.length > 0" class="status-message">
+    Für die Brauereien sind noch keine Adressen hinterlegt.
+  </p>
+
+  <div class="map-layout">
+    <div class="brewery-map" #mapContainer aria-label="Karte mit Brauereien"></div>
+    <p class="map-attribution">Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap-Mitwirkende</a></p>
+  </div>
+
+  <section *ngIf="geocodingWarnings.length > 0" class="map-warning" role="status" aria-label="Nicht angezeigte Brauereien">
+    <strong>{{ geocodingWarnings.length }} {{ geocodingWarnings.length === 1 ? 'Adresse konnte' : 'Adressen konnten' }} nicht auf der Karte gefunden werden.</strong>
+    <ul>
+      <li *ngFor="let warning of geocodingWarnings">{{ warning }}</li>
+    </ul>
+  </section>
+
+  <section *ngIf="selectedBrewery" class="brewery-details" aria-live="polite" aria-labelledby="selected-brewery-heading">
+    <div class="brewery-details-heading">
+      <div>
+        <p class="eyebrow">Brauerei ausgewählt</p>
+        <h2 id="selected-brewery-heading">{{ selectedBrewery.name }}</h2>
+        <p class="brewery-address">{{ selectedBrewery.address }}</p>
+      </div>
+      <span class="count-pill">{{ selectedBrewery.beers.length }} {{ selectedBrewery.beers.length === 1 ? 'Bier' : 'Biere' }}</span>
+    </div>
+
+    <ul class="brewery-beer-list" *ngIf="selectedBrewery.beers.length > 0; else noRatedBeers">
+      <li *ngFor="let beer of selectedBrewery.beers">
+        <span>
+          <strong>{{ beer.BierName }}</strong>
+          <small>{{ beer.Art }}</small>
+        </span>
+        <strong class="beer-score">{{ beer.Bewertung }} <small>Punkte</small></strong>
+      </li>
+    </ul>
+    <ng-template #noRatedBeers><p class="empty-state">Für diese Brauerei sind keine bewerteten Biere eingetragen.</p></ng-template>
+  </section>
+</section>
