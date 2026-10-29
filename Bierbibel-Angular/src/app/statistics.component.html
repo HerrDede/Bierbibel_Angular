@@ -38,13 +38,20 @@
         </div>
 
         <div class="score-bands" *ngIf="ratedBeers.length > 0; else noScores">
-          <div class="score-band" *ngFor="let band of scoreBands">
+          <button
+            class="score-band score-band-trigger"
+            *ngFor="let band of scoreBands"
+            type="button"
+            [disabled]="band.count === 0"
+            [attr.aria-label]="band.label + ' Punkte: ' + band.count + ' Biere. Details anzeigen.'"
+            (click)="openScoreBandDrilldown(band, $event)"
+          >
             <span class="band-label">{{ band.label }}</span>
-            <div class="band-track" role="img" [attr.aria-label]="band.label + ': ' + band.count + ' Biere'">
+            <div class="band-track" aria-hidden="true">
               <span class="band-fill" [style.width]="barWidth(band.count, maxScoreBandCount)"></span>
             </div>
             <strong>{{ band.count }}</strong>
-          </div>
+          </button>
         </div>
         <ng-template #noScores><p class="empty-statistic">Noch keine bewerteten Biere vorhanden.</p></ng-template>
       </section>
@@ -76,9 +83,9 @@
               <button
                 class="brewery-trigger"
                 type="button"
-                (click)="toggleBreweryPopover(brewery, $event)"
-                [attr.aria-expanded]="selectedBrewery?.name === brewery.name"
-                [attr.aria-controls]="selectedBrewery?.name === brewery.name ? 'brewery-beers-popover' : null"
+                (click)="openBreweryDrilldown(brewery, $event)"
+                [attr.aria-expanded]="activeDrilldown?.eyebrow === 'Brauerei' && activeDrilldown?.title === brewery.name"
+                [attr.aria-controls]="activeDrilldown?.eyebrow === 'Brauerei' && activeDrilldown?.title === brewery.name ? 'statistics-drilldown' : null"
               >
                 {{ brewery.name }}
               </button>
@@ -100,44 +107,48 @@
         <span class="count-pill">{{ categories.length }} Sorten</span>
       </div>
       <div class="category-grid" *ngIf="categories.length > 0; else noCategories">
-        <div class="category-card" *ngFor="let category of categories">
+        <button
+          class="category-card category-card-trigger"
+          *ngFor="let category of categories"
+          type="button"
+          [attr.aria-label]="category.name + ': ' + category.count + ' bewertete Biere. Details anzeigen.'"
+          [attr.aria-expanded]="activeDrilldown?.eyebrow === 'Biersorte' && activeDrilldown?.title === category.name"
+          (click)="openCategoryDrilldown(category, $event)"
+        >
           <span>{{ category.name }}</span>
           <strong>{{ category.count }}</strong>
           <small>{{ category.count === 1 ? 'Bier' : 'Biere' }} · Ø {{ formatScore(category.average) }} Punkte</small>
-        </div>
+        </button>
       </div>
       <ng-template #noCategories><p class="empty-statistic">Noch keine Sorten vorhanden.</p></ng-template>
     </section>
 
-    <ng-container *ngIf="selectedBrewery as brewery">
+    <ng-container *ngIf="activeDrilldown as drilldown">
       <button
         class="brewery-popover-backdrop"
         type="button"
-        aria-label="Brauerei-Popup schließen"
-        (click)="closeBreweryPopover()"
+        aria-label="Detailansicht schließen"
+        (click)="closeDrilldown()"
       ></button>
       <section
-        id="brewery-beers-popover"
+        id="statistics-drilldown"
         class="brewery-popover"
         role="dialog"
-        aria-modal="true"
-        [attr.aria-label]="'Bewertete Biere von ' + brewery.name"
+        [attr.aria-label]="drilldown.eyebrow + ': ' + drilldown.title"
         [ngStyle]="{ top: breweryPopoverPosition.top + 'px', left: breweryPopoverPosition.left + 'px' }"
         [style.transform-origin]="breweryPopoverPosition.transformOrigin"
         (click)="$event.stopPropagation()"
       >
         <div class="brewery-popover-heading">
           <div>
-            <p class="eyebrow">Bewertete Biere</p>
-            <h2>{{ brewery.name }}</h2>
+            <p class="eyebrow">{{ drilldown.eyebrow }}</p>
+            <h2>{{ drilldown.title }}</h2>
           </div>
-          <button class="brewery-popover-close" type="button" aria-label="Schließen" (click)="closeBreweryPopover()">×</button>
+          <button class="brewery-popover-close" type="button" aria-label="Schließen" (click)="closeDrilldown()">×</button>
         </div>
-        <p class="brewery-popover-summary">
-          {{ brewery.count }} {{ brewery.count === 1 ? 'Bier' : 'Biere' }} · Ø {{ formatScore(brewery.average) }} · Höchstwert {{ formatScore(brewery.highest) }}
-        </p>
+        <p class="brewery-popover-summary">{{ drilldown.summary }}</p>
         <ul class="brewery-popover-list">
-          <li *ngFor="let entry of selectedBreweryBeers">
+          <li *ngFor="let entry of drilldown.beers">
             <span>
               <strong>{{ entry.beer.BierName }}</strong>
               <small>{{ entry.beer.Art }}</small>

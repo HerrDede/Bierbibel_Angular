@@ -11,6 +11,8 @@ interface RatedBeer {
 interface ScoreBand {
   label: string;
   count: number;
+  min: number;
+  max: number;
 }
 
 interface AverageEntry {
@@ -18,6 +20,13 @@ interface AverageEntry {
   average: number;
   highest: number;
   count: number;
+}
+
+interface StatisticsDrilldown {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  beers: RatedBeer[];
 }
 
 @Component({
@@ -34,7 +43,7 @@ export class StatisticsComponent {
   loading = false;
   errorMessage = '';
   showTopTwenty = false;
-  selectedBrewery: AverageEntry | null = null;
+  activeDrilldown: StatisticsDrilldown | null = null;
   breweryPopoverPosition = { top: 0, left: 0, transformOrigin: 'top left' };
 
   private readonly scoreBandRanges: ReadonlyArray<{ label: string; min: number; max: number }> = [
@@ -78,7 +87,9 @@ export class StatisticsComponent {
     const rated = this.ratedBeers;
     return this.scoreBandRanges.map((range) => ({
       label: range.label,
-      count: rated.filter((entry) => entry.score >= range.min && entry.score < range.max).length
+      count: rated.filter((entry) => entry.score >= range.min && entry.score < range.max).length,
+      min: range.min,
+      max: range.max
     }));
   }
 
@@ -94,17 +105,6 @@ export class StatisticsComponent {
     return this.breweries.slice(0, this.showTopTwenty ? 20 : 10);
   }
 
-  get selectedBreweryBeers(): RatedBeer[] {
-    if (!this.selectedBrewery) {
-      return [];
-    }
-
-    const selectedName = this.selectedBrewery.name.trim().toLocaleLowerCase('de');
-    return this.ratedBeers
-      .filter(({ beer }) => beer.Brauerei.trim().toLocaleLowerCase('de') === selectedName)
-      .sort((first, second) => second.score - first.score || first.beer.BierName.localeCompare(second.beer.BierName, 'de'));
-  }
-
   get maxScoreBandCount(): number {
     return Math.max(1, ...this.scoreBands.map((band) => band.count));
   }
@@ -112,7 +112,7 @@ export class StatisticsComponent {
   loadBeers(): void {
     this.loading = true;
     this.errorMessage = '';
-    this.closeBreweryPopover();
+    this.closeDrilldown();
     this.beerService.loadBeers().subscribe({
       next: (beers) => {
         this.beers = beers;
@@ -139,9 +139,52 @@ export class StatisticsComponent {
     return `${(count / max) * 100}%`;
   }
 
-  toggleBreweryPopover(brewery: AverageEntry, event: MouseEvent): void {
-    if (this.selectedBrewery?.name === brewery.name) {
-      this.closeBreweryPopover();
+  openBreweryDrilldown(brewery: AverageEntry, event: MouseEvent): void {
+    const name = brewery.name.trim().toLocaleLowerCase('de');
+    const beers = this.ratedBeers
+      .filter(({ beer }) => (beer.Brauerei.trim() || 'Ohne Angabe').toLocaleLowerCase('de') === name)
+      .sort(this.compareRatedBeers);
+    this.openDrilldown({
+      eyebrow: 'Brauerei',
+      title: brewery.name,
+      summary: `${brewery.count} ${brewery.count === 1 ? 'Bier' : 'Biere'} · Ø ${this.formatScore(brewery.average)} · Höchstwert ${this.formatScore(brewery.highest)}`,
+      beers
+    }, event);
+  }
+
+  openCategoryDrilldown(category: AverageEntry, event: MouseEvent): void {
+    const name = category.name.trim().toLocaleLowerCase('de');
+    const beers = this.ratedBeers
+      .filter(({ beer }) => (beer.Art.trim() || 'Ohne Angabe').toLocaleLowerCase('de') === name)
+      .sort(this.compareRatedBeers);
+    this.openDrilldown({
+      eyebrow: 'Biersorte',
+      title: category.name,
+      summary: `${category.count} ${category.count === 1 ? 'Bier' : 'Biere'} · Ø ${this.formatScore(category.average)} Punkte`,
+      beers
+    }, event);
+  }
+
+  openScoreBandDrilldown(band: ScoreBand, event: MouseEvent): void {
+    if (band.count === 0) {
+      return;
+    }
+
+    const beers = this.ratedBeers
+      .filter(({ score }) => score >= band.min && score < band.max)
+      .sort(this.compareRatedBeers);
+    this.openDrilldown({
+      eyebrow: 'Punktebereich',
+      title: `${band.label} Punkte`,
+      summary: `${band.count} ${band.count === 1 ? 'Bier' : 'Biere'} in diesem Bereich`,
+      beers
+    }, event);
+  }
+
+  private openDrilldown(drilldown: StatisticsDrilldown, event: MouseEvent): void {
+    if (this.activeDrilldown?.eyebrow === drilldown.eyebrow
+      && this.activeDrilldown.title === drilldown.title) {
+      this.closeDrilldown();
       return;
     }
 
@@ -163,17 +206,20 @@ export class StatisticsComponent {
       left,
       transformOrigin: top > rect.bottom ? 'bottom left' : 'top left'
     };
-    this.selectedBrewery = brewery;
+    this.activeDrilldown = drilldown;
   }
 
-  closeBreweryPopover(): void {
-    this.selectedBrewery = null;
+  closeDrilldown(): void {
+    this.activeDrilldown = null;
   }
 
   @HostListener('document:keydown.escape')
   closePopoverOnEscape(): void {
-    this.closeBreweryPopover();
+    this.closeDrilldown();
   }
+
+  private readonly compareRatedBeers = (first: RatedBeer, second: RatedBeer): number =>
+    second.score - first.score || first.beer.BierName.localeCompare(second.beer.BierName, 'de');
 
   private averagesBy(getGroup: (beer: IndexedBeer) => string): AverageEntry[] {
     const groups = new Map<string, { total: number; highest: number; count: number }>();

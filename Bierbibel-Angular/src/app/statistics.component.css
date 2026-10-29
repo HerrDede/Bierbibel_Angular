@@ -109,6 +109,29 @@
   font-size: 0.78rem;
 }
 
+.score-band-trigger {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.score-band-trigger:not(:disabled):hover .band-label,
+.score-band-trigger:not(:disabled):hover > strong {
+  color: var(--pine);
+}
+
+.score-band-trigger:not(:disabled):hover .band-fill {
+  filter: brightness(1.08);
+}
+
+.score-band-trigger:disabled {
+  cursor: default;
+}
+
 .band-track {
   height: 9px;
   overflow: hidden;
@@ -396,6 +419,21 @@
   padding: 11px 12px;
   border-radius: 9px;
   background: var(--form-surface);
+}
+
+.category-card-trigger {
+  width: 100%;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: background-color 140ms ease, transform 140ms ease;
+}
+
+.category-card-trigger:hover {
+  transform: translateY(-2px);
+  background: var(--surface-tint);
 }
 
 .category-card > span {
