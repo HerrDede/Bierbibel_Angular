@@ -18,6 +18,7 @@
 }
 
 .map-layout {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 13px;
@@ -60,36 +61,92 @@
   padding-left: 20px;
 }
 
-.brewery-details {
-  padding: 20px;
+.brewery-map-popup {
+  position: absolute;
+  z-index: 650;
+  width: min(340px, calc(100% - 24px));
+  max-height: min(65%, 390px);
+  overflow: auto;
+  padding: 15px;
+  transform: translate(-50%, calc(-100% - 12px));
   border: 1px solid var(--line);
-  border-radius: 13px;
+  border-radius: 15px;
   background: var(--surface);
+  box-shadow: 0 14px 40px rgb(16 31 29 / 28%);
+  animation: brewery-map-popup-in 180ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-.brewery-details-heading {
+.brewery-map-popup::after {
+  position: absolute;
+  bottom: -8px;
+  left: calc(50% - 8px);
+  width: 14px;
+  height: 14px;
+  transform: rotate(45deg);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  content: "";
+}
+
+.brewery-map-popup-below {
+  transform: translate(-50%, 12px);
+  animation-name: brewery-map-popup-in-below;
+}
+
+.brewery-map-popup-below::after {
+  top: -8px;
+  bottom: auto;
+  transform: rotate(225deg);
+}
+
+.brewery-map-popup-heading {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 15px;
+  gap: 12px;
 }
 
-.brewery-details-heading .eyebrow {
+.brewery-map-popup-heading .eyebrow {
   margin-bottom: 4px;
 }
 
-.brewery-details-heading h2 {
+.brewery-map-popup-heading h2 {
+  margin: 0;
+  overflow-wrap: anywhere;
   color: var(--pine);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
-.brewery-address {
-  margin: 0;
+.brewery-map-popup-close {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
   color: var(--muted);
-  font-size: 0.8rem;
+  cursor: pointer;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.brewery-map-popup-address {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.brewery-map-popup-count {
+  margin: 10px 0;
+  color: var(--pine);
+  font-size: 0.73rem;
+  font-weight: 700;
 }
 
 .brewery-beer-list {
@@ -131,9 +188,38 @@
 
 .empty-state {
   margin: 0;
-  padding: 18px 0 4px;
+  padding: 6px 0 2px;
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+@keyframes brewery-map-popup-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 5px)) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, calc(-100% - 12px)) scale(1);
+  }
+}
+
+@keyframes brewery-map-popup-in-below {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 5px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 12px) scale(1);
+  }
+}
+
+:host ::ng-deep .leaflet-marker-pane,
+:host ::ng-deep .leaflet-tooltip-pane {
+  z-index: 600;
 }
 
 :host ::ng-deep .leaflet-container {
@@ -149,6 +235,12 @@
   color: #253535;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .brewery-map-popup {
+    animation-duration: 1ms;
+  }
+}
+
 @media (max-width: 560px) {
   .brewery-map-page {
     gap: 14px;
@@ -159,7 +251,8 @@
     min-height: 320px;
   }
 
-  .brewery-details {
-    padding: 16px 13px;
+  .brewery-map-popup {
+    max-height: 62%;
+    padding: 12px;
   }
 }

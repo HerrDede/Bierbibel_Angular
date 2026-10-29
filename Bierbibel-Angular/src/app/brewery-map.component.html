@@ -27,6 +27,37 @@
 
   <div class="map-layout">
     <div class="brewery-map" #mapContainer aria-label="Karte mit Brauereien"></div>
+    <section
+      *ngIf="selectedBrewery as brewery"
+      class="brewery-map-popup"
+      [class.brewery-map-popup-below]="breweryPopupPosition.below"
+      [ngStyle]="{ left: breweryPopupPosition.left + 'px', top: breweryPopupPosition.top + 'px' }"
+      role="dialog"
+      [attr.aria-label]="'Bewertete Biere von ' + brewery.name"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="brewery-map-popup-heading">
+        <div>
+          <p class="eyebrow">Brauerei</p>
+          <h2>{{ brewery.name }}</h2>
+        </div>
+        <button class="brewery-map-popup-close" type="button" aria-label="Schließen" (click)="closeBreweryPopup()">×</button>
+      </div>
+      <p class="brewery-map-popup-address">{{ brewery.address }}</p>
+      <p class="brewery-map-popup-count">
+        {{ brewery.beers.length }} {{ brewery.beers.length === 1 ? 'bewertetes Bier' : 'bewertete Biere' }}
+      </p>
+      <ul class="brewery-beer-list" *ngIf="brewery.beers.length > 0; else noRatedBeers">
+        <li *ngFor="let beer of brewery.beers">
+          <span>
+            <strong>{{ beer.BierName }}</strong>
+            <small>{{ beer.Art }}</small>
+          </span>
+          <strong class="beer-score">{{ beer.Bewertung }} <small>Punkte</small></strong>
+        </li>
+      </ul>
+      <ng-template #noRatedBeers><p class="empty-state">Für diese Brauerei sind keine bewerteten Biere eingetragen.</p></ng-template>
+    </section>
     <p class="map-attribution">Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap-Mitwirkende</a></p>
   </div>
 
@@ -37,25 +68,4 @@
     </ul>
   </section>
 
-  <section *ngIf="selectedBrewery" class="brewery-details" aria-live="polite" aria-labelledby="selected-brewery-heading">
-    <div class="brewery-details-heading">
-      <div>
-        <p class="eyebrow">Brauerei ausgewählt</p>
-        <h2 id="selected-brewery-heading">{{ selectedBrewery.name }}</h2>
-        <p class="brewery-address">{{ selectedBrewery.address }}</p>
-      </div>
-      <span class="count-pill">{{ selectedBrewery.beers.length }} {{ selectedBrewery.beers.length === 1 ? 'Bier' : 'Biere' }}</span>
-    </div>
-
-    <ul class="brewery-beer-list" *ngIf="selectedBrewery.beers.length > 0; else noRatedBeers">
-      <li *ngFor="let beer of selectedBrewery.beers">
-        <span>
-          <strong>{{ beer.BierName }}</strong>
-          <small>{{ beer.Art }}</small>
-        </span>
-        <strong class="beer-score">{{ beer.Bewertung }} <small>Punkte</small></strong>
-      </li>
-    </ul>
-    <ng-template #noRatedBeers><p class="empty-state">Für diese Brauerei sind keine bewerteten Biere eingetragen.</p></ng-template>
-  </section>
 </section>

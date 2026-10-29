@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, Component, DestroyRef, ElementRef, inject, NgZone, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, ElementRef, HostListener, inject, NgZone, OnDestroy, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import * as L from 'leaflet';
 import { concatMap, from, map, toArray } from 'rxjs';
@@ -44,6 +44,7 @@ export class BreweryMapComponent implements AfterViewInit, OnDestroy {
   geocoding = false;
   errorMessage = '';
   geocodingWarnings: string[] = [];
+  breweryPopupPosition = { left: 0, top: 0, below: false };
 
   constructor() {
     this.loadBeers();
@@ -57,6 +58,8 @@ export class BreweryMapComponent implements AfterViewInit, OnDestroy {
 
     this.map = L.map(this.mapContainer.nativeElement, { scrollWheelZoom: false })
       .setView([51.1657, 10.4515], 6);
+    this.map.on('move zoom', this.updateBreweryPopupPosition);
+    this.map.on('click', this.closeBreweryPopup);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -165,11 +168,13 @@ export class BreweryMapComponent implements AfterViewInit, OnDestroy {
         color: '#ffffff',
         weight: 2,
         fillColor: '#477b79',
-        fillOpacity: 0.95
+        fillOpacity: 0.95,
+        bubblingMouseEvents: false
       }).bindTooltip(location.name);
       marker.on('click', () => {
         this.ngZone.run(() => {
           this.selectedBrewery = location;
+          this.positionBreweryPopup(location);
         });
       });
       this.markers.addLayer(marker);
@@ -183,6 +188,41 @@ export class BreweryMapComponent implements AfterViewInit, OnDestroy {
     }
 
     requestAnimationFrame(() => this.map?.invalidateSize());
+  }
+
+  closeBreweryPopup = (): void => {
+    this.ngZone.run(() => {
+      this.selectedBrewery = null;
+    });
+  };
+
+  @HostListener('document:keydown.escape')
+  closeBreweryPopupOnEscape(): void {
+    this.closeBreweryPopup();
+  }
+
+  private readonly updateBreweryPopupPosition = (): void => {
+    if (this.selectedBrewery) {
+      this.positionBreweryPopup(this.selectedBrewery);
+    }
+  };
+
+  private positionBreweryPopup(location: BreweryLocation): void {
+    if (!this.map || location.latitude === null || location.longitude === null) {
+      return;
+    }
+
+    const point = this.map.latLngToContainerPoint([location.latitude, location.longitude]);
+    const mapSize = this.map.getSize();
+    const popupWidth = Math.min(340, mapSize.x - 24);
+    const estimatedHeight = Math.min(340, mapSize.y * 0.65);
+    const left = Math.max(popupWidth / 2 + 12, Math.min(point.x, mapSize.x - popupWidth / 2 - 12));
+    const below = point.y < estimatedHeight + 32;
+    const top = below
+      ? Math.min(mapSize.y - estimatedHeight - 12, point.y + 22)
+      : Math.max(12, point.y - 14);
+
+    this.breweryPopupPosition = { left, top, below };
   }
 
   private groupBreweries(beers: IndexedBeer[]): BreweryLocation[] {
