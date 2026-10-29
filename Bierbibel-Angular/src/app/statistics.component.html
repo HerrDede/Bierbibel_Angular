@@ -55,14 +55,33 @@
             <p class="eyebrow">Anzahl bewerteter Biere</p>
             <h2 id="brewery-leaderboard-heading">Meistbewertete Brauereien</h2>
           </div>
-          <span class="count-pill">Top {{ breweries.length }}</span>
+          <div class="leaderboard-controls">
+            <span class="count-pill">Top {{ visibleBreweries.length }}</span>
+            <button
+              *ngIf="breweries.length > 10"
+              class="leaderboard-toggle"
+              type="button"
+              (click)="showTopTwenty = !showTopTwenty"
+              [attr.aria-expanded]="showTopTwenty"
+            >
+              {{ showTopTwenty ? 'Top 10 anzeigen' : 'Top 20 anzeigen' }}
+            </button>
+          </div>
         </div>
 
-        <ol class="leaderboard" *ngIf="breweries.length > 0; else noBreweries">
-          <li *ngFor="let brewery of breweries; let index = index">
+        <ol class="leaderboard" *ngIf="visibleBreweries.length > 0; else noBreweries">
+          <li *ngFor="let brewery of visibleBreweries; let index = index">
             <span class="rank-number">{{ index + 1 }}</span>
             <span class="leader-name">
-              {{ brewery.name }}
+              <button
+                class="brewery-trigger"
+                type="button"
+                (click)="toggleBreweryPopover(brewery, $event)"
+                [attr.aria-expanded]="selectedBrewery?.name === brewery.name"
+                [attr.aria-controls]="selectedBrewery?.name === brewery.name ? 'brewery-beers-popover' : null"
+              >
+                {{ brewery.name }}
+              </button>
               <small>Ø {{ formatScore(brewery.average) }} · Höchstwert {{ formatScore(brewery.highest) }}</small>
             </span>
             <strong>{{ brewery.count }} <small>{{ brewery.count === 1 ? 'Bier' : 'Biere' }}</small></strong>
@@ -89,5 +108,44 @@
       </div>
       <ng-template #noCategories><p class="empty-statistic">Noch keine Sorten vorhanden.</p></ng-template>
     </section>
+
+    <ng-container *ngIf="selectedBrewery as brewery">
+      <button
+        class="brewery-popover-backdrop"
+        type="button"
+        aria-label="Brauerei-Popup schließen"
+        (click)="closeBreweryPopover()"
+      ></button>
+      <section
+        id="brewery-beers-popover"
+        class="brewery-popover"
+        role="dialog"
+        aria-modal="true"
+        [attr.aria-label]="'Bewertete Biere von ' + brewery.name"
+        [ngStyle]="{ top: breweryPopoverPosition.top + 'px', left: breweryPopoverPosition.left + 'px' }"
+        [style.transform-origin]="breweryPopoverPosition.transformOrigin"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="brewery-popover-heading">
+          <div>
+            <p class="eyebrow">Bewertete Biere</p>
+            <h2>{{ brewery.name }}</h2>
+          </div>
+          <button class="brewery-popover-close" type="button" aria-label="Schließen" (click)="closeBreweryPopover()">×</button>
+        </div>
+        <p class="brewery-popover-summary">
+          {{ brewery.count }} {{ brewery.count === 1 ? 'Bier' : 'Biere' }} · Ø {{ formatScore(brewery.average) }} · Höchstwert {{ formatScore(brewery.highest) }}
+        </p>
+        <ul class="brewery-popover-list">
+          <li *ngFor="let entry of selectedBreweryBeers">
+            <span>
+              <strong>{{ entry.beer.BierName }}</strong>
+              <small>{{ entry.beer.Art }}</small>
+            </span>
+            <strong class="brewery-beer-score">{{ formatScore(entry.score) }}</strong>
+          </li>
+        </ul>
+      </section>
+    </ng-container>
   </ng-container>
 </section>

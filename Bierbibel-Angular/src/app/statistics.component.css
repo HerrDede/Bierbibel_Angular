@@ -193,6 +193,191 @@
   font-weight: 500;
 }
 
+.leaderboard-controls {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+
+.leaderboard-toggle {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--pine);
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+.leaderboard-toggle:hover {
+  color: var(--amber-deep);
+}
+
+.brewery-trigger {
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  text-align: left;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+
+.brewery-trigger:hover {
+  color: var(--pine);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.brewery-popover-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: rgb(17 28 27 / 22%);
+  cursor: default;
+  animation: brewery-backdrop-in 140ms ease-out both;
+}
+
+.brewery-popover {
+  position: fixed;
+  z-index: 1001;
+  width: min(360px, calc(100vw - 32px));
+  max-height: min(70vh, 480px);
+  overflow: auto;
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 18px 55px rgb(16 31 29 / 25%);
+  animation: brewery-popover-in 190ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.brewery-popover-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brewery-popover-heading .eyebrow {
+  margin-bottom: 4px;
+}
+
+.brewery-popover-heading h2 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--pine);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.brewery-popover-close {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.brewery-popover-summary {
+  margin: 10px 0 12px;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.brewery-popover-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-subtle);
+  list-style: none;
+}
+
+.brewery-popover-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line-subtle);
+}
+
+.brewery-popover-list li > span {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.brewery-popover-list li > span strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brewery-popover-list small {
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.brewery-beer-score {
+  color: var(--amber-deep);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+@keyframes brewery-popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(7px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes brewery-backdrop-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brewery-popover,
+  .brewery-popover-backdrop {
+    animation-duration: 1ms;
+  }
+}
+
 .category-panel {
   padding-bottom: 20px;
 }

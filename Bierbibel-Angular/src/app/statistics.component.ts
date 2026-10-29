@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { BeerService, IndexedBeer } from './beer.service';
 
 interface RatedBeer {
@@ -33,6 +33,9 @@ export class StatisticsComponent {
   beers: IndexedBeer[] = [];
   loading = false;
   errorMessage = '';
+  showTopTwenty = false;
+  selectedBrewery: AverageEntry | null = null;
+  breweryPopoverPosition = { top: 0, left: 0, transformOrigin: 'top left' };
 
   private readonly scoreBandRanges: ReadonlyArray<{ label: string; min: number; max: number }> = [
     { label: '10–19', min: 10, max: 20 },
@@ -84,7 +87,22 @@ export class StatisticsComponent {
   }
 
   get breweries(): AverageEntry[] {
-    return this.sortByCount(this.averagesBy((beer) => beer.Brauerei)).slice(0, 10);
+    return this.sortByCount(this.averagesBy((beer) => beer.Brauerei));
+  }
+
+  get visibleBreweries(): AverageEntry[] {
+    return this.breweries.slice(0, this.showTopTwenty ? 20 : 10);
+  }
+
+  get selectedBreweryBeers(): RatedBeer[] {
+    if (!this.selectedBrewery) {
+      return [];
+    }
+
+    const selectedName = this.selectedBrewery.name.trim().toLocaleLowerCase('de');
+    return this.ratedBeers
+      .filter(({ beer }) => beer.Brauerei.trim().toLocaleLowerCase('de') === selectedName)
+      .sort((first, second) => second.score - first.score || first.beer.BierName.localeCompare(second.beer.BierName, 'de'));
   }
 
   get maxScoreBandCount(): number {
@@ -94,6 +112,7 @@ export class StatisticsComponent {
   loadBeers(): void {
     this.loading = true;
     this.errorMessage = '';
+    this.closeBreweryPopover();
     this.beerService.loadBeers().subscribe({
       next: (beers) => {
         this.beers = beers;
@@ -118,6 +137,42 @@ export class StatisticsComponent {
 
   barWidth(count: number, max: number): string {
     return `${(count / max) * 100}%`;
+  }
+
+  toggleBreweryPopover(brewery: AverageEntry, event: MouseEvent): void {
+    if (this.selectedBrewery?.name === brewery.name) {
+      this.closeBreweryPopover();
+      return;
+    }
+
+    const trigger = event.currentTarget;
+    if (!(trigger instanceof HTMLElement)) {
+      return;
+    }
+
+    const rect = trigger.getBoundingClientRect();
+    const popoverWidth = Math.min(360, window.innerWidth - 32);
+    const left = Math.max(16, Math.min(rect.left, window.innerWidth - popoverWidth - 16));
+    const estimatedHeight = Math.min(420, window.innerHeight * 0.7);
+    const top = rect.bottom + estimatedHeight + 16 <= window.innerHeight
+      ? rect.bottom + 8
+      : Math.max(16, rect.top - estimatedHeight - 8);
+
+    this.breweryPopoverPosition = {
+      top,
+      left,
+      transformOrigin: top > rect.bottom ? 'bottom left' : 'top left'
+    };
+    this.selectedBrewery = brewery;
+  }
+
+  closeBreweryPopover(): void {
+    this.selectedBrewery = null;
+  }
+
+  @HostListener('document:keydown.escape')
+  closePopoverOnEscape(): void {
+    this.closeBreweryPopover();
   }
 
   private averagesBy(getGroup: (beer: IndexedBeer) => string): AverageEntry[] {
