@@ -235,6 +235,13 @@ export class BreweryMapComponent implements AfterViewInit, OnDestroy {
       beersByBrewery.set(breweryKey, breweryBeers);
     }
 
+    for (const breweryBeers of beersByBrewery.values()) {
+      breweryBeers.sort((first, second) =>
+        Number(second.Bewertung) - Number(first.Bewertung)
+        || first.BierName.localeCompare(second.BierName, 'de')
+      );
+    }
+
     for (const beer of beers) {
       const address = beer.Adresse?.trim();
       if (!address) {
@@ -244,11 +251,12 @@ export class BreweryMapComponent implements AfterViewInit, OnDestroy {
       const name = beer.Brauerei.trim() || 'Brauerei ohne Namen';
       const key = JSON.stringify([name.toLocaleLowerCase('de'), address.toLocaleLowerCase('de')]);
       const breweryKey = name.toLocaleLowerCase('de');
+      const breweryBeers = beersByBrewery.get(breweryKey) ?? [];
       const entry = grouped.get(key) ?? {
         id: `brewery-${grouped.size}`,
         name,
         address,
-        beers: beersByBrewery.get(breweryKey) ?? [],
+        beers: breweryBeers,
         latitude: null,
         longitude: null
       };
