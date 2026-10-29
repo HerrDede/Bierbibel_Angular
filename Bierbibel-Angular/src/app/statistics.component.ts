@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, HostListener, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
 import { BeerService, IndexedBeer } from './beer.service';
 
 interface RatedBeer {
@@ -37,7 +37,10 @@ interface StatisticsDrilldown {
   styleUrl: './statistics.component.css'
 })
 export class StatisticsComponent {
+  @ViewChild('drilldownPopup') private drilldownPopup?: ElementRef<HTMLElement>;
+
   private readonly beerService = inject(BeerService);
+  private readonly changeDetector = inject(ChangeDetectorRef);
 
   beers: IndexedBeer[] = [];
   loading = false;
@@ -207,10 +210,26 @@ export class StatisticsComponent {
       transformOrigin: top > rect.bottom ? 'bottom left' : 'top left'
     };
     this.activeDrilldown = drilldown;
+    this.changeDetector.detectChanges();
+
+    const popup = this.drilldownPopup?.nativeElement;
+    if (popup && typeof popup.showPopover === 'function' && !popup.matches(':popover-open')) {
+      popup.showPopover();
+    }
   }
 
   closeDrilldown(): void {
+    if (!this.activeDrilldown) {
+      return;
+    }
+
+    const popup = this.drilldownPopup?.nativeElement;
+    if (popup && typeof popup.hidePopover === 'function' && popup.matches(':popover-open')) {
+      popup.hidePopover();
+    }
+
     this.activeDrilldown = null;
+    this.changeDetector.detectChanges();
   }
 
   @HostListener('document:keydown.escape')
